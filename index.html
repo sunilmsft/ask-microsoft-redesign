@@ -7,127 +7,130 @@
 <title>Ask Microsoft - Welcome Redesign Options</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:#e8e8e8;color:#1a1a1a;line-height:1.5}
+body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:#f0f0f0;color:#242424;line-height:1.5;font-size:14px}
 
-.top-bar{background:linear-gradient(135deg,#1b3a5c 0%,#1a4a7a 50%,#1b5a9e 100%);color:#fff;padding:16px 32px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100;box-shadow:0 3px 12px rgba(0,0,0,.25)}
-.top-bar h1{font-size:17px;font-weight:700;letter-spacing:.2px}
-.top-bar .sub{font-size:11px;opacity:.6;margin-left:auto;font-weight:500;letter-spacing:.5px;text-transform:uppercase}
+.top-bar{background:#0F6CBD;color:#fff;padding:12px 24px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:100;box-shadow:0 2px 4px rgba(0,0,0,.14)}
+.top-bar h1{font-size:16px;font-weight:600;letter-spacing:0}
+.top-bar .sub{font-size:12px;opacity:.7;margin-left:auto;font-weight:400;letter-spacing:.3px;text-transform:uppercase}
 
-.tabs{display:flex;flex-wrap:wrap;background:#f5f5f5;border-bottom:1px solid #ddd;padding:0 16px;position:sticky;top:52px;z-index:99}
-.tab{padding:13px 16px;font-size:12px;font-weight:600;color:#666;cursor:pointer;border-bottom:3px solid transparent;transition:.2s;white-space:nowrap;border-radius:6px 6px 0 0}
-.tab:hover{color:#0078d4;background:#eef4fb}
-.tab.active{color:#fff;background:#1a1a1a;border-bottom-color:#1a1a1a}
+.tabs{display:flex;flex-wrap:wrap;background:#fff;border-bottom:1px solid #e0e0e0;padding:0 16px;position:sticky;top:48px;z-index:99}
+.tab{padding:12px 16px;font-size:13px;font-weight:600;color:#616161;cursor:pointer;border-bottom:2px solid transparent;transition:all .1s;white-space:nowrap;border-radius:4px 4px 0 0}
+.tab:hover{color:#242424;background:#f5f5f5}
+.tab.active{color:#0F6CBD;background:transparent;border-bottom-color:#0F6CBD}
 
 .panel{display:none;padding:24px;padding-right:404px}
 .panel.active{display:flex;gap:24px;flex-wrap:wrap;justify-content:flex-start;align-items:flex-start}
 
-.info-card{flex:1;max-width:420px;min-width:280px;background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 6px rgba(0,0,0,.05)}
-.info-card h3{font-size:15px;font-weight:700;color:#0078d4;margin-bottom:5px}
+.info-card{flex:1;max-width:420px;min-width:280px;background:#fff;border-radius:8px;padding:20px;box-shadow:0 2px 4px rgba(0,0,0,.06),0 0 2px rgba(0,0,0,.04)}
+.info-card h3{font-size:16px;font-weight:600;color:#0F6CBD;margin-bottom:5px}
 .info-card .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#999;font-weight:600;margin-bottom:3px}
 .info-card p{font-size:13px;color:#666;margin-bottom:10px}
 .info-card ul{font-size:13px;color:#666;padding-left:16px;margin-bottom:10px}
 .info-card li{margin-bottom:5px}
-.note{background:#fafafa;border-left:3px solid #0078d4;padding:9px 12px;font-size:12px;color:#555;border-radius:0 6px 6px 0;margin-top:10px}
-.tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600;margin-bottom:8px;background:#dee8f5;color:#3F6FAE}
+.note{background:#fafafa;border-left:3px solid #0F6CBD;padding:9px 12px;font-size:12px;color:#616161;border-radius:0 4px 4px 0;margin-top:10px}
+.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:4px;font-weight:600;margin-bottom:8px;background:#EBF3FC;color:#0F6CBD}
 
-/* Chat widget */
-.cw{width:380px;position:fixed;top:0;right:0;bottom:0;background:#f5f5f5;box-shadow:-4px 0 24px rgba(0,0,0,.15);display:flex;flex-direction:column;overflow:hidden;border-left:1px solid #ddd;z-index:101;flex-shrink:0;border-radius:0}
-.cw-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;flex-shrink:0;border-bottom:1px solid #eee}
-.cw-logo{width:34px;height:34px;background:linear-gradient(135deg,#0078d4 0%,#005a9e 100%);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 3px 8px rgba(0,120,212,.35),inset 0 1px 0 rgba(255,255,255,.25)}
-.cw-head .ttl{font-size:18px;font-weight:700;flex:1;color:#1a1a1a;letter-spacing:-.3px}
+/* Chat widget — Fluent 2 */
+.cw{width:380px;position:fixed;top:0;right:0;bottom:0;background:#fafafa;box-shadow:0 2px 16px rgba(0,0,0,.14),0 0 2px rgba(0,0,0,.12);display:flex;flex-direction:column;overflow:hidden;border-left:1px solid #e0e0e0;z-index:101;flex-shrink:0;border-radius:0}
+.cw-head{display:flex;align-items:center;gap:10px;padding:12px 16px;background:#fff;flex-shrink:0;border-bottom:1px solid #e0e0e0}
+.cw-logo{width:32px;height:32px;background:#0F6CBD;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cw-head .ttl{font-size:16px;font-weight:600;flex:1;color:#242424;letter-spacing:0}
 .hdr-acts{display:flex;align-items:center;gap:2px;flex-shrink:0}
 .hdr-wrap{position:relative;flex-shrink:0}
-/* 3D header icons */
-.hdr-btn{width:32px;height:32px;border:none;background:linear-gradient(180deg,#f8f8f8 0%,#e8e8e8 100%);cursor:pointer;color:#555;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:all .15s;box-shadow:0 2px 4px rgba(0,0,0,.12),0 1px 0 rgba(255,255,255,.8) inset;border:1px solid #d0d0d0}
-.hdr-btn:hover{background:linear-gradient(180deg,#eef4fb 0%,#d6e8f7 100%);color:#0078d4;box-shadow:0 3px 8px rgba(0,120,212,.2),0 1px 0 rgba(255,255,255,.9) inset;border-color:#a0c4e8;transform:translateY(-1px)}
-.hdr-btn:active{transform:translateY(0);box-shadow:0 1px 2px rgba(0,0,0,.15) inset}
+/* Fluent 2 subtle buttons */
+.hdr-btn{width:32px;height:32px;border:none;background:transparent;cursor:pointer;color:#616161;display:flex;align-items:center;justify-content:center;border-radius:4px;transition:all .1s}
+.hdr-btn:hover{background:#f5f5f5;color:#242424}
+.hdr-btn:active{background:#e0e0e0;color:#242424}
 .hdr-btn svg{width:16px;height:16px;pointer-events:none}
-.rst{color:#777}
-.rst:hover{color:#0078d4}
-.xb{background:none !important;border:none !important;box-shadow:none !important;font-size:20px;color:#999;width:28px;height:28px}
-.xb:hover{color:#1a1a1a;background:none !important;transform:none !important;box-shadow:none !important;border:none !important}
+.rst{color:#616161}
+.rst:hover{color:#242424}
+.xb{background:transparent !important;border:none !important;box-shadow:none !important;font-size:18px;color:#616161;width:32px;height:32px}
+.xb:hover{color:#242424;background:#f5f5f5 !important}
 
-.pop{display:none;position:absolute;top:40px;right:0;background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:14px 16px;box-shadow:0 8px 28px rgba(0,0,0,.16);z-index:50;white-space:nowrap;min-width:240px}
+.pop{display:none;position:absolute;top:40px;right:0;background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:14px 16px;box-shadow:0 4px 28px rgba(0,0,0,.24),0 0 8px rgba(0,0,0,.12);z-index:50;white-space:nowrap;min-width:240px}
 .pop.open{display:block}
 .pop-arrow{position:absolute;top:-6px;right:12px;width:10px;height:10px;background:#fff;border-left:1px solid #e0e0e0;border-top:1px solid #e0e0e0;transform:rotate(45deg)}
 .pop-title{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:4px}
 .pop-body{font-size:12px;color:#707070;line-height:1.5}
 .pop-phone{display:flex;align-items:center;gap:8px;margin-top:8px}
-.pop-phone a{font-size:15px;font-weight:600;color:#0078d4;text-decoration:none}
-.pop-phone a:hover{text-decoration:underline}
-.pop-hours{font-size:11px;color:#999;margin-top:3px}
-.pop-link{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:13px;font-weight:600;color:#0078d4;text-decoration:none}
-.pop-link:hover{text-decoration:underline}
-.copy-btn{font-family:inherit;font-size:11px;padding:3px 10px;border:1px solid #d0d0d0;border-radius:4px;background:#fff;cursor:pointer;color:#616161;transition:.12s}
-.copy-btn:hover{border-color:#0078d4;color:#0078d4;background:#f0f6ff}
+.pop-phone a{font-size:15px;font-weight:600;color:#115EA3;text-decoration:none}
+.pop-phone a:hover{text-decoration:underline;color:#0F548C}
+.pop-hours{font-size:12px;color:#707070;margin-top:3px}
+.pop-link{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:14px;font-weight:600;color:#115EA3;text-decoration:none}
+.pop-link:hover{text-decoration:underline;color:#0F548C}
+.copy-btn{font-family:inherit;font-size:12px;padding:4px 12px;border:1px solid #d1d1d1;border-radius:4px;background:#fff;cursor:pointer;color:#242424;transition:all .1s}
+.copy-btn:hover{border-color:#0F6CBD;color:#0F6CBD;background:#EBF3FC}
 
 .cw-main{flex:1;display:flex;overflow:hidden;min-height:0}
-.cw-bar{width:4px;background:linear-gradient(180deg,#0078d4,#4cc2ff,#0078d4);flex-shrink:0}
-.cw-body{flex:1;overflow-y:auto;padding:10px 8px;display:flex;flex-direction:column;gap:6px;background:#f5f5f5;min-height:0;justify-content:flex-end}
-.cw-foot{padding:8px 12px 12px;background:#fff;flex-shrink:0;border-top:1px solid #eee}
-.cw-foot .disc{font-size:11px;color:#888;text-align:center;margin-bottom:6px;font-weight:500}
-.cw-input{display:flex;gap:6px;align-items:center;background:#fff;border:1px solid #ccc;border-radius:8px;padding:4px 10px;position:relative;overflow:hidden}
-.cw-input::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#0078d4,#4cc2ff,#50e6ff,#4cc2ff,#0078d4);border-radius:0 0 8px 8px}
-.cw-input input{flex:1;border:none;background:none;padding:10px 4px;font-size:14px;font-family:inherit;outline:none;color:#1a1a1a}
-.cw-input input::placeholder{color:#999}
-.cw-input .snd{background:none;border:none;cursor:pointer;color:#0078d4;padding:4px;display:flex;align-items:center;transition:.15s}
-.cw-input .snd:hover{transform:scale(1.15)}
+.cw-bar{width:4px;background:linear-gradient(180deg,#0F6CBD,#62ABF5,#0F6CBD);flex-shrink:0}
+.cw-body{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:#fafafa;min-height:0;justify-content:flex-end}
+.cw-foot{padding:8px 12px 12px;background:#fff;flex-shrink:0;border-top:1px solid #e0e0e0}
+.cw-foot .disc{font-size:12px;color:#707070;text-align:center;margin-bottom:6px;font-weight:400}
+.cw-input{display:flex;gap:6px;align-items:center;background:#fff;border:1px solid #d1d1d1;border-radius:4px;padding:4px 10px;position:relative;overflow:hidden;transition:border-color .1s}
+.cw-input:focus-within{border-color:#0F6CBD}
+.cw-input::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:#0F6CBD;border-radius:0 0 4px 4px;transform:scaleX(0);transition:transform .15s}
+.cw-input:focus-within::after{transform:scaleX(1)}
+.cw-input input{flex:1;border:none;background:none;padding:8px 4px;font-size:14px;font-family:inherit;outline:none;color:#242424}
+.cw-input input::placeholder{color:#707070}
+.cw-input .snd{background:none;border:none;cursor:pointer;color:#0F6CBD;padding:4px;display:flex;align-items:center;transition:.1s}
+.cw-input .snd:hover{color:#115EA3}
 
-.m{max-width:100%;font-size:13px;line-height:1.4;animation:fu .3s ease}
-.m .mb{padding:8px 10px}
-@keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.mb{background:#fff;padding:10px 12px;border-radius:4px 12px 12px 12px;align-self:flex-start;border:1px solid #e6e6e6;color:#1a1a1a}
+.m{max-width:100%;font-size:14px;line-height:1.5;animation:fu .15s ease}
+.m .mb{padding:10px 12px}
+@keyframes fu{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.mb{background:#fff;padding:10px 12px;border-radius:4px 8px 8px 8px;align-self:flex-start;border:1px solid #e0e0e0;color:#242424}
 .mb p{margin:0 0 8px}
 .mb p:last-child{margin-bottom:0}
 .mb ul,.mb ol{margin:6px 0;padding-left:0;list-style:none}
-.mb li{position:relative;padding:3px 0 3px 18px;font-size:12.5px;line-height:1.45;color:#444}
-.mb li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:#0078d4}
-.mb h4{font-size:13px;font-weight:600;color:#0078d4;margin:8px 0 4px;padding-bottom:3px;border-bottom:1px solid #f0f0f0}
+.mb li{position:relative;padding:3px 0 3px 18px;font-size:13px;line-height:1.45;color:#424242}
+.mb li::before{content:'';position:absolute;left:0;top:10px;width:5px;height:5px;border-radius:50%;background:#0F6CBD}
+.mb h4{font-size:14px;font-weight:600;color:#0F6CBD;margin:8px 0 4px;padding-bottom:3px;border-bottom:1px solid #f0f0f0}
 .mb h4:first-child{margin-top:0}
 .mb .plan-row{display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;border-bottom:1px solid #f5f5f5}
-.mb .plan-name{font-weight:600;color:#1a1a1a}
-.mb .plan-price{font-size:12px;color:#0078d4;font-weight:600}
-.mb .cta-link{display:inline-block;margin-top:8px;padding:5px 14px;background:#0078d4;color:#fff;border-radius:5px;text-decoration:none;font-size:12px;font-weight:600;transition:.15s}
-.mb .cta-link:hover{background:#106ebe}
-.mb hr{border:none;border-top:1px solid #eee;margin:8px 0}
-.mu{background:#d6e8f7;padding:10px 12px;border-radius:12px 4px 12px 12px;align-self:flex-end;border:1px solid #b8d4ee;color:#1a1a1a;font-size:13px;line-height:1.4;animation:fu .3s ease}
-.mb a{color:#0078d4;text-decoration:underline}
-.tr-note{font-size:12px;color:#888;margin-top:6px}
-.fb{margin-top:3px;display:flex;gap:4px}
-.tb{background:none;border:none;cursor:pointer;padding:1px;color:#b0b8c0;display:flex;align-items:center;transition:.15s}
-.tb:hover{color:#0078d4;transform:scale(1.1)}
-.ts{font-size:10px;color:#bbb;margin-top:1px;align-self:flex-start}
+.mb .plan-name{font-weight:600;color:#242424}
+.mb .plan-price{font-size:13px;color:#0F6CBD;font-weight:600}
+.mb .cta-link{display:inline-block;margin-top:8px;padding:5px 14px;background:#0F6CBD;color:#fff;border-radius:4px;text-decoration:none;font-size:13px;font-weight:600;transition:all .1s}
+.mb .cta-link:hover{background:#115EA3}
+.mb hr{border:none;border-top:1px solid #e0e0e0;margin:8px 0}
+.mu{background:#EBF3FC;padding:10px 12px;border-radius:8px 4px 8px 8px;align-self:flex-end;border:1px solid #BFD4EA;color:#242424;font-size:14px;line-height:1.5;animation:fu .15s ease}
+.mb a{color:#115EA3;text-decoration:underline}
+.mb a:hover{color:#0F548C}
+.tr-note{font-size:12px;color:#707070;margin-top:6px}
+.fb{margin-top:4px;display:flex;gap:4px}
+.tb{background:none;border:none;cursor:pointer;padding:2px;color:#a0a0a0;display:flex;align-items:center;border-radius:4px;transition:all .1s}
+.tb:hover{color:#242424;background:#f5f5f5}
+.ts{font-size:12px;color:#a0a0a0;margin-top:2px;align-self:flex-start}
 
 /* Dot typing indicator */
 .typing{display:flex;gap:4px;padding:10px 14px;align-self:flex-start}
 .typing span{width:7px;height:7px;background:#bbb;border-radius:50%;animation:bounce .6s infinite alternate}
 .typing span:nth-child(2){animation-delay:.2s}
 .typing span:nth-child(3){animation-delay:.4s}
-@keyframes bounce{to{background:#0078d4;transform:translateY(-4px)}}
+@keyframes bounce{to{background:#0F6CBD;transform:translateY(-4px)}}
 
-.opt-row{margin-top:6px;padding-top:4px;border-top:1px solid #eee;font-size:11px;color:#999;line-height:1.35}
-.opt-row a{color:#0078d4;text-decoration:none;cursor:pointer}
-.opt-row a:hover{text-decoration:underline}
+.opt-row{margin-top:6px;padding-top:4px;border-top:1px solid #e0e0e0;font-size:12px;color:#707070;line-height:1.35}
+.opt-row a{color:#115EA3;text-decoration:none;cursor:pointer}
+.opt-row a:hover{text-decoration:underline;color:#0F548C}
 
-.consent-card{background:#fafafa;border:1px solid #e0e0e0;border-radius:8px;padding:10px 12px;font-size:13px;color:#555;animation:fu .35s ease}
-.consent-card a{color:#0078d4;text-decoration:underline;cursor:pointer}
+.consent-card{background:#fafafa;border:1px solid #e0e0e0;border-radius:8px;padding:12px;font-size:14px;color:#616161;animation:fu .15s ease}
+.consent-card a{color:#115EA3;text-decoration:underline;cursor:pointer}
 .tog-row{display:flex;align-items:center;justify-content:space-between;padding-top:8px;border-top:1px solid #f0f0f0;margin-top:8px}
 .tog-lbl{font-size:12px;color:#1a1a1a;font-weight:500}
-.tog{width:40px;height:22px;background:#c8c6c4;border-radius:11px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
-.tog.on{background:#0078d4}
+.tog{width:40px;height:22px;background:#c8c6c4;border-radius:12px;position:relative;cursor:pointer;transition:background .1s;flex-shrink:0}
+.tog.on{background:#0F6CBD}
 .tog::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
 .tog.on::after{transform:translateX(18px)}
 
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.chip{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#f0f7ff;border:1px solid #c0d8f0;border-radius:18px;font-size:12px;color:#0078d4;font-weight:500;cursor:pointer;transition:all .15s;user-select:none}
-.chip:hover{background:#deecf9;box-shadow:0 2px 6px rgba(0,120,212,.15);transform:translateY(-1px)}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#EBF3FC;border:1px solid #BFD4EA;border-radius:16px;font-size:13px;color:#0F6CBD;font-weight:600;cursor:pointer;transition:all .1s;user-select:none}
+.chip:hover{background:#D0E5F5;border-color:#0F6CBD}
 .chip:active{transform:translateY(0)}
 .chip svg{width:14px;height:14px}
 
 .exp-card{border:1px solid #e0e0e0;border-radius:8px;overflow:hidden;margin-top:10px;background:#fff}
 .exp-hdr{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;cursor:pointer;transition:background .12s}
 .exp-hdr:hover{background:#fafafa}
-.exp-hdr span{font-size:13px;font-weight:600;color:#0078d4;display:flex;align-items:center;gap:5px}
+.exp-hdr span{font-size:14px;font-weight:600;color:#0F6CBD;display:flex;align-items:center;gap:5px}
 .exp-chev{transition:transform .2s}
 .exp-card.open .exp-chev{transform:rotate(180deg)}
 .exp-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
@@ -138,53 +141,53 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
 .exp-inner li svg{flex-shrink:0}
 .exp-faq{border-top:1px solid #f0f0f0;margin-top:6px;padding-top:6px}
 .exp-faq a{font-size:12px;color:#888;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
-.exp-faq a:hover{color:#0078d4;text-decoration:underline}
+.exp-faq a:hover{color:#0F6CBD;text-decoration:underline}
 
 .modal-bg{display:none;position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:60;border-radius:8px;align-items:center;justify-content:center}
 .modal-bg.open{display:flex}
-.modal-box{background:#fff;border-radius:10px;padding:22px;margin:20px;max-width:330px;box-shadow:0 12px 40px rgba(0,0,0,.22)}
+.modal-box{background:#fff;border-radius:8px;padding:24px;margin:20px;max-width:330px;box-shadow:0 4px 28px rgba(0,0,0,.24),0 0 8px rgba(0,0,0,.12)}
 .modal-box h3{font-size:15px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:7px;color:#1a1a1a}
 .modal-box p{font-size:13px;color:#616161;line-height:1.55;margin-bottom:12px}
-.modal-box a{color:#0078d4;text-decoration:none}
+.modal-box a{color:#0F6CBD;text-decoration:none}
 .modal-box a:hover{text-decoration:underline}
 .modal-box .hint{font-size:11px;color:#ababab;margin-bottom:14px}
 .modal-acts{display:flex;gap:8px;justify-content:flex-end}
-.m-btn{font-family:inherit;font-size:13px;font-weight:600;padding:7px 18px;border-radius:6px;cursor:pointer;transition:.12s}
-.m-pri{background:#0078d4;color:#fff;border:1px solid #0078d4}
-.m-pri:hover{background:#106ebe}
-.m-sec{background:#fff;color:#616161;border:1px solid #d0d0d0}
+.m-btn{font-family:inherit;font-size:14px;font-weight:600;padding:6px 16px;border-radius:4px;cursor:pointer;transition:all .1s}
+.m-pri{background:#0F6CBD;color:#fff;border:1px solid #0F6CBD}
+.m-pri:hover{background:#115EA3;border-color:#115EA3}
+.m-sec{background:#fff;color:#242424;border:1px solid #d1d1d1}
 .m-sec:hover{background:#f5f5f5}
 
 .disc-info{display:inline-flex;align-items:center;gap:5px}
 .disc-info a{color:#999;text-decoration:none;display:inline-flex}
-.disc-info a:hover{color:#0078d4}
+.disc-info a:hover{color:#242424}
 
 /* Comparison page */
 .cmp-wrap{max-width:960px;width:100%;flex-direction:column !important}
-.cmp-intro{background:#fff;border-radius:10px;padding:20px 24px;box-shadow:0 2px 6px rgba(0,0,0,.05);margin-bottom:16px}
-.cmp-intro h2{font-size:17px;font-weight:700;color:#1a1a1a;margin-bottom:4px}
+.cmp-intro{background:#fff;border-radius:8px;padding:20px 24px;box-shadow:0 2px 4px rgba(0,0,0,.06),0 0 2px rgba(0,0,0,.04);margin-bottom:16px}
+.cmp-intro h2{font-size:16px;font-weight:600;color:#242424;margin-bottom:4px}
 .cmp-intro p{font-size:13px;color:#666;margin:0}
-.cmp-tbl{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.05)}
-.cmp-tbl th,.cmp-tbl td{padding:11px 14px;text-align:left;font-size:12.5px;border-bottom:1px solid #f0f0f0;vertical-align:top}
-.cmp-tbl th{background:#fafafa;font-weight:600;color:#555;white-space:nowrap}
-.cmp-tbl thead th{background:#1a1a1a;color:#fff;font-size:11px;text-transform:uppercase;letter-spacing:.5px;padding:10px 14px}
-.cmp-tbl thead th:first-child{background:#333;border-radius:10px 0 0 0}
-.cmp-tbl thead th:last-child{border-radius:0 10px 0 0}
+.cmp-tbl{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 4px rgba(0,0,0,.06),0 0 2px rgba(0,0,0,.04)}
+.cmp-tbl th,.cmp-tbl td{padding:10px 14px;text-align:left;font-size:13px;border-bottom:1px solid #f0f0f0;vertical-align:top}
+.cmp-tbl th{background:#fafafa;font-weight:600;color:#616161;white-space:nowrap}
+.cmp-tbl thead th{background:#0F6CBD;color:#fff;font-size:12px;text-transform:uppercase;letter-spacing:.3px;padding:10px 14px;font-weight:600}
+.cmp-tbl thead th:first-child{border-radius:8px 0 0 0}
+.cmp-tbl thead th:last-child{border-radius:0 8px 0 0}
 .cmp-tbl tbody tr:last-child td{border-bottom:none}
 .cmp-tbl tbody tr:hover{background:#f8fbff}
 .cmp-tbl td{color:#444;line-height:1.45}
 .cmp-tbl .dim{color:#999;font-style:italic}
-.cmp-tbl .hi{color:#0078d4;font-weight:600}
-.cmp-tbl .feat{font-weight:600;color:#1a1a1a;white-space:nowrap}
+.cmp-tbl .hi{color:#0F6CBD;font-weight:600}
+.cmp-tbl .feat{font-weight:600;color:#242424;white-space:nowrap}
 .cmp-leg{display:flex;gap:16px;margin-top:14px;flex-wrap:wrap}
 .cmp-leg span{font-size:11px;color:#888;display:flex;align-items:center;gap:4px}
-.cmp-leg .dot-a{width:8px;height:8px;border-radius:50%;background:#0078d4}
+.cmp-leg .dot-a{width:8px;height:8px;border-radius:50%;background:#0F6CBD}
 .cmp-leg .dot-b{width:8px;height:8px;border-radius:50%;background:#5c2d91}
 .cmp-leg .dot-c{width:8px;height:8px;border-radius:50%;background:#008575}
 .cmp-leg .dot-d{width:8px;height:8px;border-radius:50%;background:#d83b01}
-.cmp-note{background:#fafafa;border-left:3px solid #0078d4;padding:12px 16px;border-radius:0 8px 8px 0;margin-top:16px;font-size:12px;color:#555;line-height:1.55}
-.cmp-note strong{color:#1a1a1a}
-.ha{color:#0078d4}.hb{color:#5c2d91}.hc{color:#008575}.hd{color:#d83b01}
+.cmp-note{background:#fafafa;border-left:3px solid #0F6CBD;padding:12px 16px;border-radius:0 4px 4px 0;margin-top:16px;font-size:13px;color:#616161;line-height:1.55}
+.cmp-note strong{color:#242424}
+.ha{color:#0F6CBD}.hb{color:#5c2d91}.hc{color:#008575}.hd{color:#d83b01}
 
 /* Star badge for Option D */
 .tag-d{background:#fff3e0;color:#d83b01}
@@ -238,7 +241,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
     </div>
     <div class="cw-foot">
       <div class="disc">AI-generated content may be incorrect</div>
-      <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'A')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'A')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0078d4"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
+      <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'A')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'A')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
     </div>
   </div>
 </div>
@@ -268,12 +271,12 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
     </div>
     <div class="cw-main"><div class="cw-bar"></div>
       <div class="cw-body" id="bodyB">
-        <div class="consent-card"><div style="display:flex;align-items:flex-start;gap:8px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#0078d4" style="flex-shrink:0;margin-top:1px"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg><div><strong style="font-size:13px;color:#1a1a1a">Your Privacy</strong><br><span style="font-size:12px">We may save this conversation to improve our services. <a href="#">Privacy details</a></span></div></div><div class="tog-row"><span class="tog-lbl">Save my transcripts</span><div class="tog on" onclick="this.classList.toggle('on')"></div></div></div>
+        <div class="consent-card"><div style="display:flex;align-items:flex-start;gap:8px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#0F6CBD" style="flex-shrink:0;margin-top:1px"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg><div><strong style="font-size:13px;color:#1a1a1a">Your Privacy</strong><br><span style="font-size:12px">We may save this conversation to improve our services. <a href="#">Privacy details</a></span></div></div><div class="tog-row"><span class="tog-lbl">Save my transcripts</span><div class="tog on" onclick="this.classList.toggle('on')"></div></div></div>
         <div class="m mb">Hi. I'm an AI agent. I'm here to help you get started with Microsoft 365. What can I do for you?
           <div class="chips" id="chipsB">
-            <span class="chip" onclick="chipSend(this,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Compare plans</span>
-            <span class="chip" onclick="chipSend(this,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Free trial</span>
-            <span class="chip" onclick="chipSend(this,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Support</span>
+            <span class="chip" onclick="chipSend(this,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Compare plans</span>
+            <span class="chip" onclick="chipSend(this,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Free trial</span>
+            <span class="chip" onclick="chipSend(this,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Support</span>
           </div>
         </div>
         <div class="fb"><button class="tb"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 22V11M2 13V20a2 2 0 002 2h13.4a2 2 0 002-1.7l1.4-9a2 2 0 00-2-2.3H15V4a2 2 0 00-2-2h0a2 2 0 00-2 1.6L9 11H4a2 2 0 00-2 2z"/></svg></button><button class="tb"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2V13M22 11V4a2 2 0 00-2-2H6.6a2 2 0 00-2 1.7L3.2 12.7A2 2 0 005.2 15H9v3a2 2 0 002 2h0a2 2 0 002-1.6L15 13h5a2 2 0 002-2z"/></svg></button></div>
@@ -282,7 +285,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
     </div>
     <div class="cw-foot">
       <div class="disc disc-info">AI-generated content may be incorrect <a href="#" title="Transparency FAQ (PDF)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16h.01M12 8v4" stroke-linecap="round"/></svg></a></div>
-      <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'B')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0078d4"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
+      <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'B')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
     </div>
   </div>
 </div>
@@ -313,7 +316,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
     <div class="cw-main"><div class="cw-bar"></div>
       <div class="cw-body" id="bodyC">
         <div class="m mb">Hi. I'm an AI agent here to help with Microsoft 365. What can I do for you?
-          <div class="exp-card" id="expC"><div class="exp-hdr" onclick="this.parentElement.classList.toggle('open')"><span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0078d4" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16h.01M12 8v4" stroke-linecap="round"/></svg> What I can help with</span><svg class="exp-chev" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#999"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div><div class="exp-body"><div class="exp-inner"><ul><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Compare plans and features</li><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Start a free trial</li><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Answer support questions</li></ul><div class="exp-faq"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#999"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> Transparency FAQ (PDF) &#8599;</a></div></div></div></div>
+          <div class="exp-card" id="expC"><div class="exp-hdr" onclick="this.parentElement.classList.toggle('open')"><span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0F6CBD" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16h.01M12 8v4" stroke-linecap="round"/></svg> What I can help with</span><svg class="exp-chev" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#999"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div><div class="exp-body"><div class="exp-inner"><ul><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Compare plans and features</li><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Start a free trial</li><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Answer support questions</li></ul><div class="exp-faq"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#999"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> Transparency FAQ (PDF) &#8599;</a></div></div></div></div>
         </div>
         <div class="fb"><button class="tb"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 22V11M2 13V20a2 2 0 002 2h13.4a2 2 0 002-1.7l1.4-9a2 2 0 00-2-2.3H15V4a2 2 0 00-2-2h0a2 2 0 00-2 1.6L9 11H4a2 2 0 00-2 2z"/></svg></button><button class="tb"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2V13M22 11V4a2 2 0 00-2-2H6.6a2 2 0 00-2 1.7L3.2 12.7A2 2 0 005.2 15H9v3a2 2 0 002 2h0a2 2 0 002-1.6L15 13h5a2 2 0 002-2z"/></svg></button></div>
         <span class="ts">just now</span>
@@ -321,9 +324,9 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
     </div>
     <div class="cw-foot">
       <div class="disc">AI-generated content may be incorrect</div>
-      <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'C')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'C')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0078d4"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
+      <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'C')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'C')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
     </div>
-    <div class="modal-bg open" id="modalC"><div class="modal-box"><h3><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#0078d4"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> Before we begin</h3><p>To improve our services, we may save a transcript of this conversation. Your data is handled in accordance with the <a href="#">Microsoft Privacy Statement</a>.</p><p class="hint">You can change this preference at any time.</p><div class="modal-acts"><button class="m-btn m-sec" onclick="document.getElementById('modalC').classList.remove('open')">Opt out</button><button class="m-btn m-pri" onclick="document.getElementById('modalC').classList.remove('open')">I agree</button></div></div></div>
+    <div class="modal-bg open" id="modalC"><div class="modal-box"><h3><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> Before we begin</h3><p>To improve our services, we may save a transcript of this conversation. Your data is handled in accordance with the <a href="#">Microsoft Privacy Statement</a>.</p><p class="hint">You can change this preference at any time.</p><div class="modal-acts"><button class="m-btn m-sec" onclick="document.getElementById('modalC').classList.remove('open')">Opt out</button><button class="m-btn m-pri" onclick="document.getElementById('modalC').classList.remove('open')">I agree</button></div></div></div>
   </div>
 </div>
 
@@ -355,9 +358,9 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
       <div class="cw-body" id="bodyD">
         <div class="m mb">Hi. I'm an AI agent here to help with Microsoft 365. What can I do for you?
           <div class="chips" id="chipsD">
-            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Compare plans</span>
-            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Free trial</span>
-            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Support</span>
+            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Compare plans</span>
+            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Free trial</span>
+            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Support</span>
           </div>
           <div class="tr-note">To learn more about this AI feature, read the <a href="#">Transparency FAQ (PDF)</a> &#8599;</div>
           <div class="opt-row">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out &#8212; this conversation will not be saved.';this.parentElement.style.color='#a4262c';this.parentElement.style.fontWeight='600';return false">Opt out</a></div>
@@ -368,7 +371,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
     </div>
     <div class="cw-foot">
       <div class="disc">AI-generated content may be incorrect</div>
-      <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'D')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0078d4"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
+      <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'D')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
     </div>
   </div>
 </div>
@@ -384,8 +387,8 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
       <thead><tr><th style="width:130px">Feature</th><th class="ha">A &#183; Streamlined</th><th class="hb">B &#183; Chip-Based</th><th class="hc">C &#183; Card-First</th><th class="hd">D &#183; Hybrid &#9733;</th></tr></thead>
       <tbody>
         <tr><td class="feat">Greeting Style</td><td>Full paragraph, all capabilities in natural language</td><td>Short one-liner + visual chips</td><td>Minimal one-liner + collapsible card</td><td class="hi">Minimal one-liner + chips (best of B+C)</td></tr>
-        <tr><td class="feat">Callback</td><td colspan="4" style="text-align:center;color:#0078d4;font-weight:600">Same &#8212; Header icon with popover linking to request form</td></tr>
-        <tr><td class="feat">Call Us</td><td colspan="4" style="text-align:center;color:#0078d4;font-weight:600">Same &#8212; Header icon with popover: click-to-call + copy</td></tr>
+        <tr><td class="feat">Callback</td><td colspan="4" style="text-align:center;color:#0F6CBD;font-weight:600">Same &#8212; Header icon with popover linking to request form</td></tr>
+        <tr><td class="feat">Call Us</td><td colspan="4" style="text-align:center;color:#0F6CBD;font-weight:600">Same &#8212; Header icon with popover: click-to-call + copy</td></tr>
         <tr><td class="feat">Transparency FAQ</td><td>Inline link below greeting. <span class="hi">Always visible.</span></td><td>Info icon at bottom. <span class="hi">Always visible.</span></td><td>Inside expandable card. <span class="dim">Visible when opened.</span></td><td class="hi">Inline link below greeting. Always visible.</td></tr>
         <tr><td class="feat">Transcript Consent</td><td>Subtle "Opt out" link. <span class="dim">Non-blocking.</span></td><td>Toggle card with on/off. <span class="dim">Non-blocking.</span></td><td>Modal overlay. <span class="hi">Blocking, one-time.</span></td><td class="hi">Subtle "Opt out" link. Non-blocking.</td></tr>
         <tr style="background:#f8fbff"><td class="feat">Consent Persistence</td><td>One-time click</td><td>Persistent toggle</td><td>One-time modal</td><td>One-time click</td></tr>
@@ -400,7 +403,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
       <span><span class="dot-b"></span> Option B</span>
       <span><span class="dot-c"></span> Option C</span>
       <span><span class="dot-d"></span> Option D</span>
-      <span style="color:#0078d4;font-weight:600">Blue = strength</span>
+      <span style="color:#0F6CBD;font-weight:600">Blue = strength</span>
       <span style="color:#999;font-style:italic">Italic = trade-off</span>
     </div>
     <div class="cmp-note">
