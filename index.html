@@ -18,8 +18,8 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
 .tab:hover{color:#0078d4;background:#eef4fb}
 .tab.active{color:#fff;background:#1a1a1a;border-bottom-color:#1a1a1a}
 
-.panel{display:none;padding:24px}
-.panel.active{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;align-items:flex-start}
+.panel{display:none;padding:24px;padding-right:404px}
+.panel.active{display:flex;gap:24px;flex-wrap:wrap;justify-content:flex-start;align-items:flex-start}
 
 .info-card{flex:1;max-width:420px;min-width:280px;background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 6px rgba(0,0,0,.05)}
 .info-card h3{font-size:15px;font-weight:700;color:#0078d4;margin-bottom:5px}
@@ -31,7 +31,7 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
 .tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600;margin-bottom:8px;background:#dee8f5;color:#3F6FAE}
 
 /* Chat widget */
-.cw{width:380px;height:660px;background:#f5f5f5;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,.18);display:flex;flex-direction:column;overflow:hidden;border:1px solid #ddd;flex-shrink:0}
+.cw{width:380px;position:fixed;top:0;right:0;bottom:0;background:#f5f5f5;box-shadow:-4px 0 24px rgba(0,0,0,.15);display:flex;flex-direction:column;overflow:hidden;border-left:1px solid #ddd;z-index:90;flex-shrink:0;border-radius:0}
 .cw-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;flex-shrink:0;border-bottom:1px solid #eee}
 .cw-logo{width:34px;height:34px;background:linear-gradient(135deg,#0078d4 0%,#005a9e 100%);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 3px 8px rgba(0,120,212,.35),inset 0 1px 0 rgba(255,255,255,.25)}
 .cw-head .ttl{font-size:18px;font-weight:700;flex:1;color:#1a1a1a;letter-spacing:-.3px}
@@ -42,6 +42,8 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
 .hdr-btn:hover{background:linear-gradient(180deg,#eef4fb 0%,#d6e8f7 100%);color:#0078d4;box-shadow:0 3px 8px rgba(0,120,212,.2),0 1px 0 rgba(255,255,255,.9) inset;border-color:#a0c4e8;transform:translateY(-1px)}
 .hdr-btn:active{transform:translateY(0);box-shadow:0 1px 2px rgba(0,0,0,.15) inset}
 .hdr-btn svg{width:16px;height:16px;pointer-events:none}
+.rst{color:#777}
+.rst:hover{color:#0078d4}
 .xb{background:none !important;border:none !important;box-shadow:none !important;font-size:20px;color:#999;width:28px;height:28px}
 .xb:hover{color:#1a1a1a;background:none !important;transform:none !important;box-shadow:none !important;border:none !important}
 
@@ -217,14 +219,14 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
     </ul>
     <div class="note"><strong>Why it works:</strong> Closest to the current experience. Warm greeting without the clutter. Callback and phone discoverable via header icons.</div>
   </div>
-  <div class="cw" style="position:relative" id="cwA">
+  <div class="cw" id="cwA">
     <div class="cw-head">
       <div class="cw-logo"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></div>
       <div class="ttl">Ask Microsoft</div>
       <div class="hdr-acts">
         <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popA1')" title="Request a callback"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.05 15.05 0 01-6.59-6.59l2.2-2.2c.28-.28.36-.67.25-1.02A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/><path d="M18 8v2h2V8c0-3.31-2.69-6-6-6v2c2.21 0 4 1.79 4 4z"/><path d="M15 8h2a3 3 0 00-3-3v2c.55 0 1 .45 1 1z"/></svg></button><div class="pop" id="popA1"><div class="pop-arrow"></div><div class="pop-title">Request a sales call</div><div class="pop-body">A Microsoft Sales Representative will contact you.</div><a class="pop-link" href="https://info.microsoft.com/ww-landing-microsoft-365-contact-me.html" target="_blank" rel="noopener">Request callback &#8599;</a></div></div>
         <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popA2')" title="Call us"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.31.03.66-.25 1.01l-2.2 2.21z"/></svg></button><div class="pop" id="popA2" style="right:-10px"><div class="pop-arrow" style="right:20px"></div><div class="pop-title">Call us</div><div class="pop-phone"><a href="tel:+18006427676">(800) 642-7676</a><button class="copy-btn" onclick="copyNum(this,event)">Copy</button></div><div class="pop-hours">Mon &#8211; Fri, 6 AM &#8211; 6 PM PT</div></div></div>
-        <button class="hdr-btn xb" title="Close">&#10005;</button>
+        <button class="hdr-btn rst" onclick="resetChat(this)" title="New conversation"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 105.64-11.36L1 10"/></svg></button><button class="hdr-btn xb" title="Close">&#10005;</button>
       </div>
     </div>
     <div class="cw-main"><div class="cw-bar"></div>
@@ -254,14 +256,14 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
     </ul>
     <div class="note"><strong>Why it works:</strong> Chips are scannable and inviting. Reduces the "wall of text" feeling for net-new customers.</div>
   </div>
-  <div class="cw" style="position:relative" id="cwB">
+  <div class="cw" id="cwB">
     <div class="cw-head">
       <div class="cw-logo"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></div>
       <div class="ttl">Ask Microsoft</div>
       <div class="hdr-acts">
         <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popB1')" title="Request a callback"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.05 15.05 0 01-6.59-6.59l2.2-2.2c.28-.28.36-.67.25-1.02A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/><path d="M18 8v2h2V8c0-3.31-2.69-6-6-6v2c2.21 0 4 1.79 4 4z"/><path d="M15 8h2a3 3 0 00-3-3v2c.55 0 1 .45 1 1z"/></svg></button><div class="pop" id="popB1"><div class="pop-arrow"></div><div class="pop-title">Request a sales call</div><div class="pop-body">A Microsoft Sales Representative will contact you.</div><a class="pop-link" href="https://info.microsoft.com/ww-landing-microsoft-365-contact-me.html" target="_blank" rel="noopener">Request callback &#8599;</a></div></div>
         <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popB2')" title="Call us"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.31.03.66-.25 1.01l-2.2 2.21z"/></svg></button><div class="pop" id="popB2" style="right:-10px"><div class="pop-arrow" style="right:20px"></div><div class="pop-title">Call us</div><div class="pop-phone"><a href="tel:+18006427676">(800) 642-7676</a><button class="copy-btn" onclick="copyNum(this,event)">Copy</button></div><div class="pop-hours">Mon &#8211; Fri, 6 AM &#8211; 6 PM PT</div></div></div>
-        <button class="hdr-btn xb" title="Close">&#10005;</button>
+        <button class="hdr-btn rst" onclick="resetChat(this)" title="New conversation"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 105.64-11.36L1 10"/></svg></button><button class="hdr-btn xb" title="Close">&#10005;</button>
       </div>
     </div>
     <div class="cw-main"><div class="cw-bar"></div>
@@ -298,14 +300,14 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
     </ul>
     <div class="note"><strong>Why it works:</strong> Maximizes chat area for conversation. Returning users see almost no chrome.</div>
   </div>
-  <div class="cw" style="position:relative" id="cwC">
+  <div class="cw" id="cwC">
     <div class="cw-head">
       <div class="cw-logo"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></div>
       <div class="ttl">Ask Microsoft</div>
       <div class="hdr-acts">
         <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popC1')" title="Request a callback"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.05 15.05 0 01-6.59-6.59l2.2-2.2c.28-.28.36-.67.25-1.02A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/><path d="M18 8v2h2V8c0-3.31-2.69-6-6-6v2c2.21 0 4 1.79 4 4z"/><path d="M15 8h2a3 3 0 00-3-3v2c.55 0 1 .45 1 1z"/></svg></button><div class="pop" id="popC1"><div class="pop-arrow"></div><div class="pop-title">Request a sales call</div><div class="pop-body">A Microsoft Sales Representative will contact you.</div><a class="pop-link" href="https://info.microsoft.com/ww-landing-microsoft-365-contact-me.html" target="_blank" rel="noopener">Request callback &#8599;</a></div></div>
         <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popC2')" title="Call us"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.31.03.66-.25 1.01l-2.2 2.21z"/></svg></button><div class="pop" id="popC2" style="right:-10px"><div class="pop-arrow" style="right:20px"></div><div class="pop-title">Call us</div><div class="pop-phone"><a href="tel:+18006427676">(800) 642-7676</a><button class="copy-btn" onclick="copyNum(this,event)">Copy</button></div><div class="pop-hours">Mon &#8211; Fri, 6 AM &#8211; 6 PM PT</div></div></div>
-        <button class="hdr-btn xb" title="Close">&#10005;</button>
+        <button class="hdr-btn rst" onclick="resetChat(this)" title="New conversation"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 105.64-11.36L1 10"/></svg></button><button class="hdr-btn xb" title="Close">&#10005;</button>
       </div>
     </div>
     <div class="cw-main"><div class="cw-bar"></div>
@@ -339,14 +341,14 @@ body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;backgrou
     </ul>
     <div class="note"><strong>Why it works:</strong> Combines the best signal-to-noise ratio. Net-new customers see a clean greeting, can scan chips OR just type, and consent is non-blocking. No wall of text, no modal, no toggle card &#8212; just a clean chat ready to go.</div>
   </div>
-  <div class="cw" style="position:relative" id="cwD">
+  <div class="cw" id="cwD">
     <div class="cw-head">
       <div class="cw-logo"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></div>
       <div class="ttl">Ask Microsoft</div>
       <div class="hdr-acts">
         <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popD1')" title="Request a callback"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.05 15.05 0 01-6.59-6.59l2.2-2.2c.28-.28.36-.67.25-1.02A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/><path d="M18 8v2h2V8c0-3.31-2.69-6-6-6v2c2.21 0 4 1.79 4 4z"/><path d="M15 8h2a3 3 0 00-3-3v2c.55 0 1 .45 1 1z"/></svg></button><div class="pop" id="popD1"><div class="pop-arrow"></div><div class="pop-title">Request a sales call</div><div class="pop-body">A Microsoft Sales Representative will contact you.</div><a class="pop-link" href="https://info.microsoft.com/ww-landing-microsoft-365-contact-me.html" target="_blank" rel="noopener">Request callback &#8599;</a></div></div>
         <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popD2')" title="Call us"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.31.03.66-.25 1.01l-2.2 2.21z"/></svg></button><div class="pop" id="popD2" style="right:-10px"><div class="pop-arrow" style="right:20px"></div><div class="pop-title">Call us</div><div class="pop-phone"><a href="tel:+18006427676">(800) 642-7676</a><button class="copy-btn" onclick="copyNum(this,event)">Copy</button></div><div class="pop-hours">Mon &#8211; Fri, 6 AM &#8211; 6 PM PT</div></div></div>
-        <button class="hdr-btn xb" title="Close">&#10005;</button>
+        <button class="hdr-btn rst" onclick="resetChat(this)" title="New conversation"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 105.64-11.36L1 10"/></svg></button><button class="hdr-btn xb" title="Close">&#10005;</button>
       </div>
     </div>
     <div class="cw-main"><div class="cw-bar"></div>
@@ -534,6 +536,23 @@ function chipSend(chip, variant){
     typing.remove();
     addMsg(body, reply, 'mb');
   }, 800 + Math.random() * 600);
+}
+
+/* Save initial body HTML on load, restore on reset */
+var initHTML = {};
+document.addEventListener('DOMContentLoaded', function(){
+  ['A','B','C','D'].forEach(function(v){
+    var b = document.getElementById('body'+v);
+    if(b) initHTML[v] = b.innerHTML;
+  });
+});
+function resetChat(btn){
+  var cw = btn.closest('.cw');
+  var body = cw.querySelector('.cw-body');
+  var id = body.id;
+  var v = id.replace('body','');
+  if(initHTML[v]) body.innerHTML = initHTML[v];
+  body.scrollTop = body.scrollHeight;
 }
 </script>
 </body>
