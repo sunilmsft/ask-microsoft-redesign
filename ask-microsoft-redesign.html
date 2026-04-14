@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ask Microsoft - Welcome Redesign Options</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,sans-serif;background:#e8e8e8;color:#1a1a1a;line-height:1.5}
+
+.top-bar{background:linear-gradient(135deg,#1b3a5c 0%,#1a4a7a 50%,#1b5a9e 100%);color:#fff;padding:16px 32px;display:flex;align-items:center;gap:14px;position:sticky;top:0;z-index:100;box-shadow:0 3px 12px rgba(0,0,0,.25)}
+.top-bar h1{font-size:17px;font-weight:700;letter-spacing:.2px}
+.top-bar .sub{font-size:11px;opacity:.6;margin-left:auto;font-weight:500;letter-spacing:.5px;text-transform:uppercase}
+
+.tabs{display:flex;flex-wrap:wrap;background:#f5f5f5;border-bottom:1px solid #ddd;padding:0 16px;position:sticky;top:52px;z-index:99}
+.tab{padding:13px 16px;font-size:12px;font-weight:600;color:#666;cursor:pointer;border-bottom:3px solid transparent;transition:.2s;white-space:nowrap;border-radius:6px 6px 0 0}
+.tab:hover{color:#0078d4;background:#eef4fb}
+.tab.active{color:#fff;background:#1a1a1a;border-bottom-color:#1a1a1a}
+
+.panel{display:none;padding:24px}
+.panel.active{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;align-items:flex-start}
+
+.info-card{flex:1;max-width:420px;min-width:280px;background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+.info-card h3{font-size:15px;font-weight:700;color:#0078d4;margin-bottom:5px}
+.info-card .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#999;font-weight:600;margin-bottom:3px}
+.info-card p{font-size:13px;color:#666;margin-bottom:10px}
+.info-card ul{font-size:13px;color:#666;padding-left:16px;margin-bottom:10px}
+.info-card li{margin-bottom:5px}
+.note{background:#fafafa;border-left:3px solid #0078d4;padding:9px 12px;font-size:12px;color:#555;border-radius:0 6px 6px 0;margin-top:10px}
+.tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:4px;font-weight:600;margin-bottom:8px;background:#dee8f5;color:#3F6FAE}
+
+/* Chat widget */
+.cw{width:380px;height:660px;background:#f5f5f5;border-radius:8px;box-shadow:0 4px 24px rgba(0,0,0,.18);display:flex;flex-direction:column;overflow:hidden;border:1px solid #ddd;flex-shrink:0}
+.cw-head{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;flex-shrink:0;border-bottom:1px solid #eee}
+.cw-logo{width:34px;height:34px;background:linear-gradient(135deg,#0078d4 0%,#005a9e 100%);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 3px 8px rgba(0,120,212,.35),inset 0 1px 0 rgba(255,255,255,.25)}
+.cw-head .ttl{font-size:18px;font-weight:700;flex:1;color:#1a1a1a;letter-spacing:-.3px}
+.hdr-acts{display:flex;align-items:center;gap:2px;flex-shrink:0}
+.hdr-wrap{position:relative;flex-shrink:0}
+/* 3D header icons */
+.hdr-btn{width:32px;height:32px;border:none;background:linear-gradient(180deg,#f8f8f8 0%,#e8e8e8 100%);cursor:pointer;color:#555;display:flex;align-items:center;justify-content:center;border-radius:8px;transition:all .15s;box-shadow:0 2px 4px rgba(0,0,0,.12),0 1px 0 rgba(255,255,255,.8) inset;border:1px solid #d0d0d0}
+.hdr-btn:hover{background:linear-gradient(180deg,#eef4fb 0%,#d6e8f7 100%);color:#0078d4;box-shadow:0 3px 8px rgba(0,120,212,.2),0 1px 0 rgba(255,255,255,.9) inset;border-color:#a0c4e8;transform:translateY(-1px)}
+.hdr-btn:active{transform:translateY(0);box-shadow:0 1px 2px rgba(0,0,0,.15) inset}
+.hdr-btn svg{width:16px;height:16px;pointer-events:none}
+.xb{background:none !important;border:none !important;box-shadow:none !important;font-size:20px;color:#999;width:28px;height:28px}
+.xb:hover{color:#1a1a1a;background:none !important;transform:none !important;box-shadow:none !important;border:none !important}
+
+.pop{display:none;position:absolute;top:40px;right:0;background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:14px 16px;box-shadow:0 8px 28px rgba(0,0,0,.16);z-index:50;white-space:nowrap;min-width:240px}
+.pop.open{display:block}
+.pop-arrow{position:absolute;top:-6px;right:12px;width:10px;height:10px;background:#fff;border-left:1px solid #e0e0e0;border-top:1px solid #e0e0e0;transform:rotate(45deg)}
+.pop-title{font-size:13px;font-weight:600;color:#1a1a1a;margin-bottom:4px}
+.pop-body{font-size:12px;color:#707070;line-height:1.5}
+.pop-phone{display:flex;align-items:center;gap:8px;margin-top:8px}
+.pop-phone a{font-size:15px;font-weight:600;color:#0078d4;text-decoration:none}
+.pop-phone a:hover{text-decoration:underline}
+.pop-hours{font-size:11px;color:#999;margin-top:3px}
+.pop-link{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:13px;font-weight:600;color:#0078d4;text-decoration:none}
+.pop-link:hover{text-decoration:underline}
+.copy-btn{font-family:inherit;font-size:11px;padding:3px 10px;border:1px solid #d0d0d0;border-radius:4px;background:#fff;cursor:pointer;color:#616161;transition:.12s}
+.copy-btn:hover{border-color:#0078d4;color:#0078d4;background:#f0f6ff}
+
+.cw-main{flex:1;display:flex;overflow:hidden;min-height:0}
+.cw-bar{width:4px;background:linear-gradient(180deg,#0078d4,#4cc2ff,#0078d4);flex-shrink:0}
+.cw-body{flex:1;overflow-y:auto;padding:10px 8px;display:flex;flex-direction:column;gap:6px;background:#f5f5f5;min-height:0;justify-content:flex-end}
+.cw-foot{padding:8px 12px 12px;background:#fff;flex-shrink:0;border-top:1px solid #eee}
+.cw-foot .disc{font-size:11px;color:#888;text-align:center;margin-bottom:6px;font-weight:500}
+.cw-input{display:flex;gap:6px;align-items:center;background:#fff;border:1px solid #ccc;border-radius:8px;padding:4px 10px;position:relative;overflow:hidden}
+.cw-input::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#0078d4,#4cc2ff,#50e6ff,#4cc2ff,#0078d4);border-radius:0 0 8px 8px}
+.cw-input input{flex:1;border:none;background:none;padding:10px 4px;font-size:14px;font-family:inherit;outline:none;color:#1a1a1a}
+.cw-input input::placeholder{color:#999}
+.cw-input .snd{background:none;border:none;cursor:pointer;color:#0078d4;padding:4px;display:flex;align-items:center;transition:.15s}
+.cw-input .snd:hover{transform:scale(1.15)}
+
+.m{max-width:100%;font-size:13px;line-height:1.4;animation:fu .3s ease}
+@keyframes fu{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.mb{background:#fff;padding:10px 12px;border-radius:4px 12px 12px 12px;align-self:flex-start;border:1px solid #e6e6e6;color:#1a1a1a}
+.mb p{margin:0 0 8px}
+.mb p:last-child{margin-bottom:0}
+.mb ul,.mb ol{margin:6px 0;padding-left:0;list-style:none}
+.mb li{position:relative;padding:3px 0 3px 18px;font-size:12.5px;line-height:1.45;color:#444}
+.mb li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:#0078d4}
+.mb h4{font-size:13px;font-weight:600;color:#0078d4;margin:8px 0 4px;padding-bottom:3px;border-bottom:1px solid #f0f0f0}
+.mb h4:first-child{margin-top:0}
+.mb .plan-row{display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;border-bottom:1px solid #f5f5f5}
+.mb .plan-name{font-weight:600;color:#1a1a1a}
+.mb .plan-price{font-size:12px;color:#0078d4;font-weight:600}
+.mb .cta-link{display:inline-block;margin-top:8px;padding:5px 14px;background:#0078d4;color:#fff;border-radius:5px;text-decoration:none;font-size:12px;font-weight:600;transition:.15s}
+.mb .cta-link:hover{background:#106ebe}
+.mb hr{border:none;border-top:1px solid #eee;margin:8px 0}
+.mu{background:#d6e8f7;padding:10px 12px;border-radius:12px 4px 12px 12px;align-self:flex-end;border:1px solid #b8d4ee;color:#1a1a1a;font-size:13px;line-height:1.4;animation:fu .3s ease}
+.mb a{color:#0078d4;text-decoration:underline}
+.tr-note{font-size:12px;color:#888;margin-top:6px}
+.fb{margin-top:6px;display:flex;gap:8px}
+.tb{background:none;border:none;cursor:pointer;padding:2px;color:#8899aa;display:flex;align-items:center;transition:.15s}
+.tb:hover{color:#0078d4;transform:scale(1.15)}
+.ts{font-size:11px;color:#999;margin-top:2px;align-self:flex-start}
+
+/* Dot typing indicator */
+.typing{display:flex;gap:4px;padding:10px 14px;align-self:flex-start}
+.typing span{width:7px;height:7px;background:#bbb;border-radius:50%;animation:bounce .6s infinite alternate}
+.typing span:nth-child(2){animation-delay:.2s}
+.typing span:nth-child(3){animation-delay:.4s}
+@keyframes bounce{to{background:#0078d4;transform:translateY(-4px)}}
+
+.opt-row{margin-top:6px;padding-top:4px;border-top:1px solid #eee;font-size:11px;color:#999;line-height:1.35}
+.opt-row a{color:#0078d4;text-decoration:none;cursor:pointer}
+.opt-row a:hover{text-decoration:underline}
+
+.consent-card{background:#fafafa;border:1px solid #e0e0e0;border-radius:8px;padding:10px 12px;font-size:13px;color:#555;animation:fu .35s ease}
+.consent-card a{color:#0078d4;text-decoration:underline;cursor:pointer}
+.tog-row{display:flex;align-items:center;justify-content:space-between;padding-top:8px;border-top:1px solid #f0f0f0;margin-top:8px}
+.tog-lbl{font-size:12px;color:#1a1a1a;font-weight:500}
+.tog{width:40px;height:22px;background:#c8c6c4;border-radius:11px;position:relative;cursor:pointer;transition:background .2s;flex-shrink:0}
+.tog.on{background:#0078d4}
+.tog::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.tog.on::after{transform:translateX(18px)}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:#f0f7ff;border:1px solid #c0d8f0;border-radius:18px;font-size:12px;color:#0078d4;font-weight:500;cursor:pointer;transition:all .15s;user-select:none}
+.chip:hover{background:#deecf9;box-shadow:0 2px 6px rgba(0,120,212,.15);transform:translateY(-1px)}
+.chip:active{transform:translateY(0)}
+.chip svg{width:14px;height:14px}
+
+.exp-card{border:1px solid #e0e0e0;border-radius:8px;overflow:hidden;margin-top:10px;background:#fff}
+.exp-hdr{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;cursor:pointer;transition:background .12s}
+.exp-hdr:hover{background:#fafafa}
+.exp-hdr span{font-size:13px;font-weight:600;color:#0078d4;display:flex;align-items:center;gap:5px}
+.exp-chev{transition:transform .2s}
+.exp-card.open .exp-chev{transform:rotate(180deg)}
+.exp-body{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.exp-card.open .exp-body{max-height:300px}
+.exp-inner{padding:0 12px 10px}
+.exp-inner ul{list-style:none}
+.exp-inner li{display:flex;align-items:center;gap:7px;padding:4px 0;font-size:12px;color:#616161}
+.exp-inner li svg{flex-shrink:0}
+.exp-faq{border-top:1px solid #f0f0f0;margin-top:6px;padding-top:6px}
+.exp-faq a{font-size:12px;color:#888;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.exp-faq a:hover{color:#0078d4;text-decoration:underline}
+
+.modal-bg{display:none;position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:60;border-radius:8px;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal-box{background:#fff;border-radius:10px;padding:22px;margin:20px;max-width:330px;box-shadow:0 12px 40px rgba(0,0,0,.22)}
+.modal-box h3{font-size:15px;font-weight:600;margin-bottom:6px;display:flex;align-items:center;gap:7px;color:#1a1a1a}
+.modal-box p{font-size:13px;color:#616161;line-height:1.55;margin-bottom:12px}
+.modal-box a{color:#0078d4;text-decoration:none}
+.modal-box a:hover{text-decoration:underline}
+.modal-box .hint{font-size:11px;color:#ababab;margin-bottom:14px}
+.modal-acts{display:flex;gap:8px;justify-content:flex-end}
+.m-btn{font-family:inherit;font-size:13px;font-weight:600;padding:7px 18px;border-radius:6px;cursor:pointer;transition:.12s}
+.m-pri{background:#0078d4;color:#fff;border:1px solid #0078d4}
+.m-pri:hover{background:#106ebe}
+.m-sec{background:#fff;color:#616161;border:1px solid #d0d0d0}
+.m-sec:hover{background:#f5f5f5}
+
+.disc-info{display:inline-flex;align-items:center;gap:5px}
+.disc-info a{color:#999;text-decoration:none;display:inline-flex}
+.disc-info a:hover{color:#0078d4}
+
+/* Comparison page */
+.cmp-wrap{max-width:960px;width:100%;flex-direction:column !important}
+.cmp-intro{background:#fff;border-radius:10px;padding:20px 24px;box-shadow:0 2px 6px rgba(0,0,0,.05);margin-bottom:16px}
+.cmp-intro h2{font-size:17px;font-weight:700;color:#1a1a1a;margin-bottom:4px}
+.cmp-intro p{font-size:13px;color:#666;margin:0}
+.cmp-tbl{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+.cmp-tbl th,.cmp-tbl td{padding:11px 14px;text-align:left;font-size:12.5px;border-bottom:1px solid #f0f0f0;vertical-align:top}
+.cmp-tbl th{background:#fafafa;font-weight:600;color:#555;white-space:nowrap}
+.cmp-tbl thead th{background:#1a1a1a;color:#fff;font-size:11px;text-transform:uppercase;letter-spacing:.5px;padding:10px 14px}
+.cmp-tbl thead th:first-child{background:#333;border-radius:10px 0 0 0}
+.cmp-tbl thead th:last-child{border-radius:0 10px 0 0}
+.cmp-tbl tbody tr:last-child td{border-bottom:none}
+.cmp-tbl tbody tr:hover{background:#f8fbff}
+.cmp-tbl td{color:#444;line-height:1.45}
+.cmp-tbl .dim{color:#999;font-style:italic}
+.cmp-tbl .hi{color:#0078d4;font-weight:600}
+.cmp-tbl .feat{font-weight:600;color:#1a1a1a;white-space:nowrap}
+.cmp-leg{display:flex;gap:16px;margin-top:14px;flex-wrap:wrap}
+.cmp-leg span{font-size:11px;color:#888;display:flex;align-items:center;gap:4px}
+.cmp-leg .dot-a{width:8px;height:8px;border-radius:50%;background:#0078d4}
+.cmp-leg .dot-b{width:8px;height:8px;border-radius:50%;background:#5c2d91}
+.cmp-leg .dot-c{width:8px;height:8px;border-radius:50%;background:#008575}
+.cmp-leg .dot-d{width:8px;height:8px;border-radius:50%;background:#d83b01}
+.cmp-note{background:#fafafa;border-left:3px solid #0078d4;padding:12px 16px;border-radius:0 8px 8px 0;margin-top:16px;font-size:12px;color:#555;line-height:1.55}
+.cmp-note strong{color:#1a1a1a}
+.ha{color:#0078d4}.hb{color:#5c2d91}.hc{color:#008575}.hd{color:#d83b01}
+
+/* Star badge for Option D */
+.tag-d{background:#fff3e0;color:#d83b01}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+  <h1>Ask Microsoft &#8212; Welcome Greeting Redesign Options</h1>
+  <span class="sub">UX Review &nbsp;|&nbsp; April 2026</span>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="sw('A')">A &#183; Streamlined</div>
+  <div class="tab" onclick="sw('B')">B &#183; Chip-Based</div>
+  <div class="tab" onclick="sw('C')">C &#183; Card-First</div>
+  <div class="tab" onclick="sw('D')" style="border-left:1px solid #ddd">D &#183; Best-Of Hybrid &#9733;</div>
+  <div class="tab" onclick="sw('S')" style="margin-left:auto;border-left:1px solid #ddd">&#9776; Summary</div>
+</div>
+
+<!-- ==================== OPTION A ==================== -->
+<div class="panel active" id="pA">
+  <div class="info-card">
+    <span class="tag">Lowest Friction</span>
+    <h3>Option A: Streamlined</h3>
+    <p class="lbl">Welcome redesign approach</p>
+    <ul>
+      <li><strong>Greeting:</strong> Full paragraph listing all 3 capabilities in natural language</li>
+      <li><strong>Consent:</strong> Subtle opt-out link below the greeting</li>
+      <li><strong>Transparency FAQ:</strong> Quiet link below the message &#8212; always visible, never competing</li>
+    </ul>
+    <div class="note"><strong>Why it works:</strong> Closest to the current experience. Warm greeting without the clutter. Callback and phone discoverable via header icons.</div>
+  </div>
+  <div class="cw" style="position:relative" id="cwA">
+    <div class="cw-head">
+      <div class="cw-logo"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></div>
+      <div class="ttl">Ask Microsoft</div>
+      <div class="hdr-acts">
+        <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popA1')" title="Request a callback"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.05 15.05 0 01-6.59-6.59l2.2-2.2c.28-.28.36-.67.25-1.02A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/><path d="M18 8v2h2V8c0-3.31-2.69-6-6-6v2c2.21 0 4 1.79 4 4z"/><path d="M15 8h2a3 3 0 00-3-3v2c.55 0 1 .45 1 1z"/></svg></button><div class="pop" id="popA1"><div class="pop-arrow"></div><div class="pop-title">Request a sales call</div><div class="pop-body">A Microsoft Sales Representative will contact you.</div><a class="pop-link" href="https://info.microsoft.com/ww-landing-microsoft-365-contact-me.html" target="_blank" rel="noopener">Request callback &#8599;</a></div></div>
+        <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popA2')" title="Call us"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.31.03.66-.25 1.01l-2.2 2.21z"/></svg></button><div class="pop" id="popA2" style="right:-10px"><div class="pop-arrow" style="right:20px"></div><div class="pop-title">Call us</div><div class="pop-phone"><a href="tel:+18006427676">(800) 642-7676</a><button class="copy-btn" onclick="copyNum(this,event)">Copy</button></div><div class="pop-hours">Mon &#8211; Fri, 6 AM &#8211; 6 PM PT</div></div></div>
+        <button class="hdr-btn xb" title="Close">&#10005;</button>
+      </div>
+    </div>
+    <div class="cw-main"><div class="cw-bar"></div>
+      <div class="cw-body" id="bodyA">
+        <div class="m mb">Hi. I'm an AI agent, I can help you compare plans and features, start a free trial, or answer support questions.<br><br>What can I do for you?<div class="tr-note">To learn more about this AI web feature, read the <a href="#">Transparency FAQ (PDF)</a> &#8599;</div><div class="opt-row">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out &#8212; this conversation will not be saved.';this.parentElement.style.color='#a4262c';this.parentElement.style.fontWeight='600';return false">Opt out</a></div></div>
+        <div class="fb"><button class="tb"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 22V11M2 13V20a2 2 0 002 2h13.4a2 2 0 002-1.7l1.4-9a2 2 0 00-2-2.3H15V4a2 2 0 00-2-2h0a2 2 0 00-2 1.6L9 11H4a2 2 0 00-2 2z"/></svg></button><button class="tb"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2V13M22 11V4a2 2 0 00-2-2H6.6a2 2 0 00-2 1.7L3.2 12.7A2 2 0 005.2 15H9v3a2 2 0 002 2h0a2 2 0 002-1.6L15 13h5a2 2 0 002-2z"/></svg></button></div>
+        <span class="ts">just now</span>
+      </div>
+    </div>
+    <div class="cw-foot">
+      <div class="disc">AI-generated content may be incorrect</div>
+      <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'A')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'A')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0078d4"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== OPTION B ==================== -->
+<div class="panel" id="pB">
+  <div class="info-card">
+    <span class="tag">Best for Scanners</span>
+    <h3>Option B: Chip-Based</h3>
+    <p class="lbl">Welcome redesign approach</p>
+    <ul>
+      <li><strong>Greeting:</strong> Ultra-short with capabilities as visual chips</li>
+      <li><strong>Consent:</strong> Inline toggle card with on/off switch</li>
+      <li><strong>Transparency FAQ:</strong> Info icon next to AI disclaimer</li>
+    </ul>
+    <div class="note"><strong>Why it works:</strong> Chips are scannable and inviting. Reduces the "wall of text" feeling for net-new customers.</div>
+  </div>
+  <div class="cw" style="position:relative" id="cwB">
+    <div class="cw-head">
+      <div class="cw-logo"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></div>
+      <div class="ttl">Ask Microsoft</div>
+      <div class="hdr-acts">
+        <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popB1')" title="Request a callback"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.05 15.05 0 01-6.59-6.59l2.2-2.2c.28-.28.36-.67.25-1.02A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/><path d="M18 8v2h2V8c0-3.31-2.69-6-6-6v2c2.21 0 4 1.79 4 4z"/><path d="M15 8h2a3 3 0 00-3-3v2c.55 0 1 .45 1 1z"/></svg></button><div class="pop" id="popB1"><div class="pop-arrow"></div><div class="pop-title">Request a sales call</div><div class="pop-body">A Microsoft Sales Representative will contact you.</div><a class="pop-link" href="https://info.microsoft.com/ww-landing-microsoft-365-contact-me.html" target="_blank" rel="noopener">Request callback &#8599;</a></div></div>
+        <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popB2')" title="Call us"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.31.03.66-.25 1.01l-2.2 2.21z"/></svg></button><div class="pop" id="popB2" style="right:-10px"><div class="pop-arrow" style="right:20px"></div><div class="pop-title">Call us</div><div class="pop-phone"><a href="tel:+18006427676">(800) 642-7676</a><button class="copy-btn" onclick="copyNum(this,event)">Copy</button></div><div class="pop-hours">Mon &#8211; Fri, 6 AM &#8211; 6 PM PT</div></div></div>
+        <button class="hdr-btn xb" title="Close">&#10005;</button>
+      </div>
+    </div>
+    <div class="cw-main"><div class="cw-bar"></div>
+      <div class="cw-body" id="bodyB">
+        <div class="consent-card"><div style="display:flex;align-items:flex-start;gap:8px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#0078d4" style="flex-shrink:0;margin-top:1px"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg><div><strong style="font-size:13px;color:#1a1a1a">Your Privacy</strong><br><span style="font-size:12px">We may save this conversation to improve our services. <a href="#">Privacy details</a></span></div></div><div class="tog-row"><span class="tog-lbl">Save my transcripts</span><div class="tog on" onclick="this.classList.toggle('on')"></div></div></div>
+        <div class="m mb">Hi. I'm an AI agent. I'm here to help you get started with Microsoft 365. What can I do for you?
+          <div class="chips" id="chipsB">
+            <span class="chip" onclick="chipSend(this,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Compare plans</span>
+            <span class="chip" onclick="chipSend(this,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Free trial</span>
+            <span class="chip" onclick="chipSend(this,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Support</span>
+          </div>
+        </div>
+        <div class="fb"><button class="tb"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 22V11M2 13V20a2 2 0 002 2h13.4a2 2 0 002-1.7l1.4-9a2 2 0 00-2-2.3H15V4a2 2 0 00-2-2h0a2 2 0 00-2 1.6L9 11H4a2 2 0 00-2 2z"/></svg></button><button class="tb"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2V13M22 11V4a2 2 0 00-2-2H6.6a2 2 0 00-2 1.7L3.2 12.7A2 2 0 005.2 15H9v3a2 2 0 002 2h0a2 2 0 002-1.6L15 13h5a2 2 0 002-2z"/></svg></button></div>
+        <span class="ts">just now</span>
+      </div>
+    </div>
+    <div class="cw-foot">
+      <div class="disc disc-info">AI-generated content may be incorrect <a href="#" title="Transparency FAQ (PDF)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16h.01M12 8v4" stroke-linecap="round"/></svg></a></div>
+      <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'B')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0078d4"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== OPTION C ==================== -->
+<div class="panel" id="pC">
+  <div class="info-card">
+    <span class="tag">Cleanest First Impression</span>
+    <h3>Option C: Card-First</h3>
+    <p class="lbl">Welcome redesign approach</p>
+    <ul>
+      <li><strong>Greeting:</strong> Minimal one-liner with collapsible capabilities card</li>
+      <li><strong>Consent:</strong> First-time modal overlay, one-time blocking</li>
+      <li><strong>Transparency FAQ:</strong> Inside expandable card alongside capabilities</li>
+    </ul>
+    <div class="note"><strong>Why it works:</strong> Maximizes chat area for conversation. Returning users see almost no chrome.</div>
+  </div>
+  <div class="cw" style="position:relative" id="cwC">
+    <div class="cw-head">
+      <div class="cw-logo"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></div>
+      <div class="ttl">Ask Microsoft</div>
+      <div class="hdr-acts">
+        <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popC1')" title="Request a callback"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.05 15.05 0 01-6.59-6.59l2.2-2.2c.28-.28.36-.67.25-1.02A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/><path d="M18 8v2h2V8c0-3.31-2.69-6-6-6v2c2.21 0 4 1.79 4 4z"/><path d="M15 8h2a3 3 0 00-3-3v2c.55 0 1 .45 1 1z"/></svg></button><div class="pop" id="popC1"><div class="pop-arrow"></div><div class="pop-title">Request a sales call</div><div class="pop-body">A Microsoft Sales Representative will contact you.</div><a class="pop-link" href="https://info.microsoft.com/ww-landing-microsoft-365-contact-me.html" target="_blank" rel="noopener">Request callback &#8599;</a></div></div>
+        <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popC2')" title="Call us"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.31.03.66-.25 1.01l-2.2 2.21z"/></svg></button><div class="pop" id="popC2" style="right:-10px"><div class="pop-arrow" style="right:20px"></div><div class="pop-title">Call us</div><div class="pop-phone"><a href="tel:+18006427676">(800) 642-7676</a><button class="copy-btn" onclick="copyNum(this,event)">Copy</button></div><div class="pop-hours">Mon &#8211; Fri, 6 AM &#8211; 6 PM PT</div></div></div>
+        <button class="hdr-btn xb" title="Close">&#10005;</button>
+      </div>
+    </div>
+    <div class="cw-main"><div class="cw-bar"></div>
+      <div class="cw-body" id="bodyC">
+        <div class="m mb">Hi. I'm an AI agent here to help with Microsoft 365. What can I do for you?
+          <div class="exp-card" id="expC"><div class="exp-hdr" onclick="this.parentElement.classList.toggle('open')"><span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0078d4" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16h.01M12 8v4" stroke-linecap="round"/></svg> What I can help with</span><svg class="exp-chev" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#999"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div><div class="exp-body"><div class="exp-inner"><ul><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Compare plans and features</li><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Start a free trial</li><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Answer support questions</li></ul><div class="exp-faq"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#999"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> Transparency FAQ (PDF) &#8599;</a></div></div></div></div>
+        </div>
+        <div class="fb"><button class="tb"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 22V11M2 13V20a2 2 0 002 2h13.4a2 2 0 002-1.7l1.4-9a2 2 0 00-2-2.3H15V4a2 2 0 00-2-2h0a2 2 0 00-2 1.6L9 11H4a2 2 0 00-2 2z"/></svg></button><button class="tb"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2V13M22 11V4a2 2 0 00-2-2H6.6a2 2 0 00-2 1.7L3.2 12.7A2 2 0 005.2 15H9v3a2 2 0 002 2h0a2 2 0 002-1.6L15 13h5a2 2 0 002-2z"/></svg></button></div>
+        <span class="ts">just now</span>
+      </div>
+    </div>
+    <div class="cw-foot">
+      <div class="disc">AI-generated content may be incorrect</div>
+      <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'C')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'C')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0078d4"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
+    </div>
+    <div class="modal-bg open" id="modalC"><div class="modal-box"><h3><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#0078d4"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> Before we begin</h3><p>To improve our services, we may save a transcript of this conversation. Your data is handled in accordance with the <a href="#">Microsoft Privacy Statement</a>.</p><p class="hint">You can change this preference at any time.</p><div class="modal-acts"><button class="m-btn m-sec" onclick="document.getElementById('modalC').classList.remove('open')">Opt out</button><button class="m-btn m-pri" onclick="document.getElementById('modalC').classList.remove('open')">I agree</button></div></div></div>
+  </div>
+</div>
+
+<!-- ==================== OPTION D - BEST-OF HYBRID ==================== -->
+<div class="panel" id="pD">
+  <div class="info-card">
+    <span class="tag tag-d">&#9733; Recommended Hybrid</span>
+    <h3>Option D: Best-Of Hybrid</h3>
+    <p class="lbl">Combines the strongest elements from A, B, and C</p>
+    <ul>
+      <li><strong>From C:</strong> Minimal one-liner greeting &#8212; clean and immediate</li>
+      <li><strong>From B:</strong> Smart prompt chips &#8212; scannable, interactive capabilities</li>
+      <li><strong>From A:</strong> Subtle opt-out link &#8212; non-blocking, low friction consent</li>
+      <li><strong>FAQ:</strong> Inline link below greeting (always visible, from A)</li>
+    </ul>
+    <div class="note"><strong>Why it works:</strong> Combines the best signal-to-noise ratio. Net-new customers see a clean greeting, can scan chips OR just type, and consent is non-blocking. No wall of text, no modal, no toggle card &#8212; just a clean chat ready to go.</div>
+  </div>
+  <div class="cw" style="position:relative" id="cwD">
+    <div class="cw-head">
+      <div class="cw-logo"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg></div>
+      <div class="ttl">Ask Microsoft</div>
+      <div class="hdr-acts">
+        <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popD1')" title="Request a callback"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.05 15.05 0 01-6.59-6.59l2.2-2.2c.28-.28.36-.67.25-1.02A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/><path d="M18 8v2h2V8c0-3.31-2.69-6-6-6v2c2.21 0 4 1.79 4 4z"/><path d="M15 8h2a3 3 0 00-3-3v2c.55 0 1 .45 1 1z"/></svg></button><div class="pop" id="popD1"><div class="pop-arrow"></div><div class="pop-title">Request a sales call</div><div class="pop-body">A Microsoft Sales Representative will contact you.</div><a class="pop-link" href="https://info.microsoft.com/ww-landing-microsoft-365-contact-me.html" target="_blank" rel="noopener">Request callback &#8599;</a></div></div>
+        <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popD2')" title="Call us"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.31.03.66-.25 1.01l-2.2 2.21z"/></svg></button><div class="pop" id="popD2" style="right:-10px"><div class="pop-arrow" style="right:20px"></div><div class="pop-title">Call us</div><div class="pop-phone"><a href="tel:+18006427676">(800) 642-7676</a><button class="copy-btn" onclick="copyNum(this,event)">Copy</button></div><div class="pop-hours">Mon &#8211; Fri, 6 AM &#8211; 6 PM PT</div></div></div>
+        <button class="hdr-btn xb" title="Close">&#10005;</button>
+      </div>
+    </div>
+    <div class="cw-main"><div class="cw-bar"></div>
+      <div class="cw-body" id="bodyD">
+        <div class="m mb">Hi. I'm an AI agent here to help with Microsoft 365. What can I do for you?
+          <div class="chips" id="chipsD">
+            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Compare plans</span>
+            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Free trial</span>
+            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0078d4"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Support</span>
+          </div>
+          <div class="tr-note">To learn more about this AI feature, read the <a href="#">Transparency FAQ (PDF)</a> &#8599;</div>
+          <div class="opt-row">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out &#8212; this conversation will not be saved.';this.parentElement.style.color='#a4262c';this.parentElement.style.fontWeight='600';return false">Opt out</a></div>
+        </div>
+        <div class="fb"><button class="tb"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 22V11M2 13V20a2 2 0 002 2h13.4a2 2 0 002-1.7l1.4-9a2 2 0 00-2-2.3H15V4a2 2 0 00-2-2h0a2 2 0 00-2 1.6L9 11H4a2 2 0 00-2 2z"/></svg></button><button class="tb"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2V13M22 11V4a2 2 0 00-2-2H6.6a2 2 0 00-2 1.7L3.2 12.7A2 2 0 005.2 15H9v3a2 2 0 002 2h0a2 2 0 002-1.6L15 13h5a2 2 0 002-2z"/></svg></button></div>
+        <span class="ts">just now</span>
+      </div>
+    </div>
+    <div class="cw-foot">
+      <div class="disc">AI-generated content may be incorrect</div>
+      <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'D')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0078d4"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SUMMARY & COMPARISON ==================== -->
+<div class="panel" id="pS">
+  <div class="cmp-wrap">
+    <div class="cmp-intro">
+      <h2>Summary &#38; Comparison</h2>
+      <p>Side-by-side breakdown of how each option handles the key UX elements being redesigned.</p>
+    </div>
+    <table class="cmp-tbl">
+      <thead><tr><th style="width:130px">Feature</th><th class="ha">A &#183; Streamlined</th><th class="hb">B &#183; Chip-Based</th><th class="hc">C &#183; Card-First</th><th class="hd">D &#183; Hybrid &#9733;</th></tr></thead>
+      <tbody>
+        <tr><td class="feat">Greeting Style</td><td>Full paragraph, all capabilities in natural language</td><td>Short one-liner + visual chips</td><td>Minimal one-liner + collapsible card</td><td class="hi">Minimal one-liner + chips (best of B+C)</td></tr>
+        <tr><td class="feat">Callback</td><td colspan="4" style="text-align:center;color:#0078d4;font-weight:600">Same &#8212; Header icon with popover linking to request form</td></tr>
+        <tr><td class="feat">Call Us</td><td colspan="4" style="text-align:center;color:#0078d4;font-weight:600">Same &#8212; Header icon with popover: click-to-call + copy</td></tr>
+        <tr><td class="feat">Transparency FAQ</td><td>Inline link below greeting. <span class="hi">Always visible.</span></td><td>Info icon at bottom. <span class="hi">Always visible.</span></td><td>Inside expandable card. <span class="dim">Visible when opened.</span></td><td class="hi">Inline link below greeting. Always visible.</td></tr>
+        <tr><td class="feat">Transcript Consent</td><td>Subtle "Opt out" link. <span class="dim">Non-blocking.</span></td><td>Toggle card with on/off. <span class="dim">Non-blocking.</span></td><td>Modal overlay. <span class="hi">Blocking, one-time.</span></td><td class="hi">Subtle "Opt out" link. Non-blocking.</td></tr>
+        <tr style="background:#f8fbff"><td class="feat">Consent Persistence</td><td>One-time click</td><td>Persistent toggle</td><td>One-time modal</td><td>One-time click</td></tr>
+        <tr><td class="feat">Consent Visibility</td><td><span class="dim">Easy to miss</span></td><td><span class="hi">Hard to miss</span></td><td><span class="hi">Impossible to miss</span></td><td><span class="dim">Easy to miss</span></td></tr>
+        <tr><td class="feat">Greeting Length</td><td>~35 words</td><td>~15 words + 3 chips</td><td>~12 words + card</td><td>~12 words + 3 chips</td></tr>
+        <tr><td class="feat">First Impression</td><td>Warm &#38; familiar</td><td>Modern &#38; scannable</td><td>Clean &#38; minimal</td><td class="hi">Clean, modern &#38; actionable</td></tr>
+        <tr><td class="feat">Best For</td><td>Users who read</td><td>Users who scan</td><td>Returning users</td><td class="hi">All audiences</td></tr>
+      </tbody>
+    </table>
+    <div class="cmp-leg">
+      <span><span class="dot-a"></span> Option A</span>
+      <span><span class="dot-b"></span> Option B</span>
+      <span><span class="dot-c"></span> Option C</span>
+      <span><span class="dot-d"></span> Option D</span>
+      <span style="color:#0078d4;font-weight:600">Blue = strength</span>
+      <span style="color:#999;font-style:italic">Italic = trade-off</span>
+    </div>
+    <div class="cmp-note">
+      <strong>What stays the same across all four options:</strong><br>
+      &#8226; All 3 capabilities preserved (compare plans, free trial, support)<br>
+      &#8226; Callback and Call Us moved from message body to header icons<br>
+      &#8226; Phone popover includes click-to-call + copy button<br>
+      &#8226; Input box with gradient accent bar<br>
+      &#8226; Blue sidebar, feedback thumbs, AI disclaimer<br>
+      &#8226; Transparency FAQ always accessible (placement varies)<br>
+      &#8226; All chats are interactive &#8212; powered by M365 knowledge base
+    </div>
+  </div>
+</div>
+
+<script>
+/* Tab switching */
+function sw(id){
+  var ids=['A','B','C','D','S'];
+  document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('active',ids[i]===id)});
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active',p.id==='p'+id)});
+  document.querySelectorAll('.pop.open').forEach(function(p){p.classList.remove('open')});
+}
+
+/* Popovers */
+function togglePop(e,id){
+  e.stopPropagation();
+  var el=document.getElementById(id),was=el.classList.contains('open');
+  document.querySelectorAll('.pop.open').forEach(function(p){p.classList.remove('open')});
+  if(!was)el.classList.add('open');
+}
+function copyNum(btn,e){
+  e.stopPropagation();
+  if(navigator.clipboard){navigator.clipboard.writeText('(800) 642-7676')}
+  btn.textContent='Copied!';setTimeout(function(){btn.textContent='Copy'},1500);
+}
+document.addEventListener('click',function(){document.querySelectorAll('.pop.open').forEach(function(p){p.classList.remove('open')})});
+document.querySelectorAll('.pop').forEach(function(p){p.addEventListener('click',function(e){e.stopPropagation()})});
+
+/* ========== INTERACTIVE CHAT ENGINE ========== */
+/* M365 Knowledge Base sourced from microsoft.com/en-us/microsoft-365/ */
+var KB = [
+  {k:['plan','plans','pricing','price','cost','compare','comparison','difference','which plan','what plan'],
+   a:'<h4>Microsoft 365 Plans</h4><div class="plan-row"><span class="plan-name">Free</span><span class="plan-price">$0</span></div><ul><li>Web and mobile apps, 5 GB storage</li></ul><div class="plan-row"><span class="plan-name">Basic</span><span class="plan-price">$19.99/yr</span></div><ul><li>100 GB storage, ad-free Outlook, ransomware protection</li></ul><div class="plan-row"><span class="plan-name">Personal</span><span class="plan-price">$99.99/yr</span></div><ul><li>Desktop apps, 1 TB storage, Copilot AI, Defender, Teams</li></ul><div class="plan-row"><span class="plan-name">Family</span><span class="plan-price">$129.99/yr</span></div><ul><li>Everything in Personal for up to 6 people, up to 6 TB</li></ul><div class="plan-row"><span class="plan-name">Premium</span><span class="plan-price">$199.99/yr</span></div><ul><li>Everything in Family + extensive Copilot and exclusive AI features</li></ul><hr>Would you like help choosing the right plan?'},
+  {k:['free trial','try','trial','test','try free','start trial','free'],
+   a:'<h4>Free Trials Available</h4><p>Try any plan free with full access to desktop apps, 1 TB storage, and Copilot AI.</p><ul><li><a href="https://www.microsoft.com/en-us/microsoft-365/try-prs" target="_blank">Try Personal free &#8599;</a></li><li><a href="https://www.microsoft.com/en-us/microsoft-365/try" target="_blank">Try Family free &#8599;</a></li><li><a href="https://www.microsoft.com/en-us/microsoft-365/try-premium" target="_blank">Try Premium free &#8599;</a></li></ul>'},
+  {k:['copilot','ai','artificial intelligence','ai features','copilot features'],
+   a:'<h4>Copilot &#8212; Your AI Companion</h4><p>Built right into Microsoft 365, Copilot helps you work smarter:</p><ul><li><strong>Research with ease</strong> &#8212; AI-powered tips and brainstorming</li><li><strong>Plan with precision</strong> &#8212; Organize tasks and schedules</li><li><strong>Create with confidence</strong> &#8212; Draft docs, presentations, and more</li><li><strong>Protect what matters</strong> &#8212; Security insights</li></ul><p>Available in Personal, Family, and Premium. <strong>Premium</strong> has the highest AI usage limits.</p>'},
+  {k:['word','document','write','writing','doc'],
+   a:'<h4>Microsoft Word</h4><p>Elevate your writing and create beautiful documents anywhere.</p><ul><li>AI-powered writing with Copilot</li><li>Real-time collaboration</li><li>Desktop, web, and mobile versions</li></ul><p>Included in <strong>Personal</strong>, <strong>Family</strong>, and <strong>Premium</strong>. Web/mobile versions are free.</p>'},
+  {k:['excel','spreadsheet','data','number'],
+   a:'<h4>Microsoft Excel</h4><p>Turn data into insights with easy-to-read spreadsheets.</p><ul><li>AI-powered analysis with Copilot</li><li>Advanced formulas and charts</li><li>Real-time collaboration</li></ul><p>Included in <strong>Personal</strong>, <strong>Family</strong>, and <strong>Premium</strong> plans.</p>'},
+  {k:['powerpoint','presentation','slides','ppt'],
+   a:'<h4>Microsoft PowerPoint</h4><p>Turn inspiration into stunning presentations.</p><ul><li>Generate presentations from prompts</li><li>Design professional slides instantly</li><li>Collaborate in real time</li></ul><p>Included in <strong>Personal</strong>, <strong>Family</strong>, and <strong>Premium</strong> plans.</p>'},
+  {k:['outlook','email','calendar','mail'],
+   a:'<h4>Microsoft Outlook</h4><p>Email, calendar, tasks, and contacts in one place.</p><ul><li>Ad-free experience (Basic and above)</li><li>Advanced security</li><li>Copilot integration for email drafting</li></ul><p>Included in all paid plans. <strong>Basic ($19.99/yr)</strong> gives you ad-free Outlook with 100 GB storage.</p>'},
+  {k:['onedrive','storage','cloud','files','backup'],
+   a:'<h4>OneDrive Cloud Storage</h4><div class="plan-row"><span class="plan-name">Free</span><span class="plan-price">5 GB</span></div><div class="plan-row"><span class="plan-name">Basic</span><span class="plan-price">100 GB</span></div><div class="plan-row"><span class="plan-name">Personal</span><span class="plan-price">1 TB</span></div><div class="plan-row"><span class="plan-name">Family</span><span class="plan-price">Up to 6 TB</span></div><p style="margin-top:8px">Includes ransomware protection and file sharing across all your devices.</p>'},
+  {k:['teams','chat','meeting','video','call','collaborate'],
+   a:'<h4>Microsoft Teams</h4><p>Not just for work &#8212; connect and collaborate with anyone, anytime.</p><ul><li>Video and audio calls</li><li>Chat and file sharing</li><li>Copilot for meeting summaries</li></ul><p>Included in Personal, Family, and Premium plans.</p>'},
+  {k:['defender','security','protect','safe','virus','malware'],
+   a:'<h4>Microsoft Defender</h4><p>Safeguard your personal data and devices.</p><ul><li>Identity theft monitoring</li><li>Device security</li><li>Online privacy protection</li></ul><p>Included in <strong>Personal</strong>, <strong>Family</strong>, and <strong>Premium</strong> plans.</p>'},
+  {k:['student','education','college','school','university'],
+   a:'<h4>Student Offer</h4><p>For a limited time, get <strong>12 months of Microsoft 365 Premium free</strong> with your college email!</p><ul><li>All desktop apps</li><li>1 TB cloud storage</li><li>Copilot AI features</li><li>All Premium features</li></ul><a class="cta-link" href="https://www.microsoft.com/en-us/microsoft-365/college-student-pricing" target="_blank">Get the student offer &#8599;</a>'},
+  {k:['family','share','people','household','kids','members'],
+   a:'<h4>Microsoft 365 Family &#8212; $129.99/yr</h4><p>Designed for up to 6 people:</p><ul><li>Each person gets their own account</li><li>Up to 5 devices per person</li><li>Up to 6 TB storage (1 TB per person)</li><li>All desktop apps included</li><li>Microsoft Defender for the whole family</li></ul><p><em style="font-size:11px;color:#999">Note: AI/Copilot features available to subscription owner only.</em></p><a class="cta-link" href="https://www.microsoft.com/en-us/microsoft-365/try" target="_blank">Try Family free &#8599;</a>'},
+  {k:['premium','best','top','ultimate','highest','most features'],
+   a:'<h4>Microsoft 365 Premium &#8212; $199.99/yr</h4><p>The most feature-rich plan:</p><ul><li>Everything in Family</li><li>Extensive Copilot AI usage limits</li><li>Exclusive Copilot features</li><li>Extensive AI image creation in Designer</li></ul><p>Perfect for the highest AI capabilities.</p><a class="cta-link" href="https://www.microsoft.com/en-us/microsoft-365/try-premium" target="_blank">Try Premium free &#8599;</a>'},
+  {k:['personal','individual','single','just me','one person'],
+   a:'<h4>Microsoft 365 Personal &#8212; $99.99/yr</h4><p>Perfect for one person:</p><ul><li>Desktop apps: Word, Excel, PowerPoint, Outlook, OneNote</li><li>1 TB cloud storage</li><li>Copilot AI features</li><li>Microsoft Defender security</li><li>Teams, Designer, Clipchamp</li><li>Use on up to 5 devices</li></ul><a class="cta-link" href="https://www.microsoft.com/en-us/microsoft-365/try-prs" target="_blank">Try Personal free &#8599;</a>'},
+  {k:['designer','design','create','image','graphic'],
+   a:'<h4>Microsoft Designer</h4><p>Create, design, and edit anything you can imagine in seconds with AI.</p><ul><li>Included in Personal, Family, and Premium</li><li>Premium gets extensive AI image creation</li></ul>'},
+  {k:['clipchamp','video','edit video','4k'],
+   a:'<h4>Clipchamp Video Editor</h4><p>Included in Personal, Family, and Premium.</p><ul><li>4K video exports</li><li>Personalized brand kits</li><li>Exclusive filters and effects</li></ul><p>Perfect for social media content, presentations, and personal projects.</p>'},
+  {k:['basic','cheap','affordable','budget','low cost','19'],
+   a:'<h4>Microsoft 365 Basic &#8212; $19.99/yr</h4><p>The most affordable paid plan:</p><ul><li>100 GB cloud storage</li><li>Ad-free Outlook email</li><li>OneDrive ransomware protection</li><li>Web and mobile app access</li><li>Ongoing support</li></ul><p>Great entry point for email and cloud storage.</p><a class="cta-link" href="https://go.microsoft.com/fwlink/p/?LinkID=2186361" target="_blank">Get Basic &#8599;</a>'},
+  {k:['business','enterprise','work','company','organization'],
+   a:'<h4>Business &#38; Enterprise Plans</h4><p>Microsoft 365 offers specialized business solutions:</p><ul><li><a href="https://www.microsoft.com/en-us/microsoft-365/microsoft-365-business" target="_blank">Microsoft 365 for Business &#8599;</a></li><li><a href="https://www.microsoft.com/en-us/microsoft-365/microsoft-365-enterprise" target="_blank">Microsoft 365 for Enterprise &#8599;</a></li><li><a href="https://www.microsoft.com/en-us/microsoft-365-copilot" target="_blank">Microsoft 365 Copilot for Business &#8599;</a></li></ul><p>Includes advanced admin controls, compliance tools, and enterprise-grade security.</p>'},
+  {k:['help','support','issue','problem','trouble','not working','fix','broken'],
+   a:'<h4>Need Help?</h4><ul><li><a href="https://support.microsoft.com/" target="_blank">Microsoft Support &#8599;</a></li><li>Call <strong>(800) 642-7676</strong> Mon-Fri 6 AM - 6 PM PT</li><li>Use the phone icon in the header to call directly</li></ul><p>Or describe your issue and I\'ll do my best to help!</p>'}
+];
+var defaultReply = '<h4>How can I help?</h4><p>I can assist with Microsoft 365 plans, features, and getting started. Try asking about:</p><ul><li>Plan comparisons and pricing</li><li>Starting a free trial</li><li>Copilot AI features</li><li>Specific apps (Word, Excel, PowerPoint, etc.)</li><li>Student offers</li><li>Security with Defender</li></ul><p>What would you like to know?</p>';
+
+function findReply(text){
+  var t = text.toLowerCase();
+  for(var i=0;i<KB.length;i++){
+    for(var j=0;j<KB[i].k.length;j++){
+      if(t.indexOf(KB[i].k[j]) !== -1) return KB[i].a;
+    }
+  }
+  return defaultReply;
+}
+
+function addMsg(body, html, cls){
+  var d = document.createElement('div');
+  d.className = 'm ' + cls;
+  d.innerHTML = html;
+  body.appendChild(d);
+  body.scrollTop = body.scrollHeight;
+  return d;
+}
+
+function addTyping(body){
+  var d = document.createElement('div');
+  d.className = 'typing';
+  d.innerHTML = '<span></span><span></span><span></span>';
+  body.appendChild(d);
+  body.scrollTop = body.scrollHeight;
+  return d;
+}
+
+function sendMsg(input, variant){
+  var text = input.value.trim();
+  if(!text) return;
+  input.value = '';
+  var body = document.getElementById('body' + variant);
+  addMsg(body, text, 'mu');
+  var typing = addTyping(body);
+  var reply = findReply(text);
+  setTimeout(function(){
+    typing.remove();
+    addMsg(body, reply, 'mb');
+  }, 800 + Math.random() * 600);
+}
+
+function chipSend(chip, variant){
+  var text = chip.textContent.trim();
+  var body = document.getElementById('body' + variant);
+  addMsg(body, text, 'mu');
+  var typing = addTyping(body);
+  var reply = findReply(text);
+  setTimeout(function(){
+    typing.remove();
+    addMsg(body, reply, 'mb');
+  }, 800 + Math.random() * 600);
+}
+</script>
+</body>
+</html>
