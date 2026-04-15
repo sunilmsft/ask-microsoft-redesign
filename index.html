@@ -38,15 +38,15 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .cw-head .ttl{font-size:18px;font-weight:700;flex:1;color:#242424;letter-spacing:-.01em}
 .hdr-acts{display:flex;align-items:center;gap:2px;flex-shrink:0}
 .hdr-wrap{position:relative;flex-shrink:0}
-/* Fluent 2 subtle buttons */
-.hdr-btn{width:32px;height:32px;border:none;background:transparent;cursor:pointer;color:#616161;display:flex;align-items:center;justify-content:center;border-radius:4px;transition:all .1s}
-.hdr-btn:hover{background:#f5f5f5;color:#242424}
-.hdr-btn:active{background:#e0e0e0;color:#242424}
+/* Fluent 2 subtle buttons — embossed circles */
+.hdr-btn{width:34px;height:34px;border:1px solid rgba(0,0,0,.1);background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.4));cursor:pointer;color:#616161;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:all .15s;box-shadow:0 1px 2px rgba(0,0,0,.1),inset 0 1px 0 rgba(255,255,255,.8)}
+.hdr-btn:hover{background:linear-gradient(180deg,#fff,#eef4fb);color:#0F6CBD;border-color:rgba(15,108,189,.25);box-shadow:0 2px 4px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.9)}
+.hdr-btn:active{background:linear-gradient(180deg,rgba(255,255,255,.3),rgba(255,255,255,.7));box-shadow:inset 0 1px 3px rgba(0,0,0,.12);color:#242424}
 .hdr-btn svg{width:16px;height:16px;pointer-events:none}
 .rst{color:#616161}
-.rst:hover{color:#242424}
-.xb{background:transparent !important;border:none !important;box-shadow:none !important;font-size:18px;color:#616161;width:32px;height:32px}
-.xb:hover{color:#242424;background:#f5f5f5 !important}
+.rst:hover{color:#0F6CBD}
+.xb{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.4)) !important;border:1px solid rgba(0,0,0,.1) !important;box-shadow:0 1px 2px rgba(0,0,0,.1),inset 0 1px 0 rgba(255,255,255,.8) !important;font-size:18px;color:#616161;width:34px;height:34px;border-radius:50%}
+.xb:hover{color:#c42b1c;background:linear-gradient(180deg,#fff,#fde7e4) !important;border-color:rgba(196,43,28,.25) !important}
 
 .pop{display:none;position:absolute;top:40px;right:0;background:#fff;border:1px solid #e0e0e0;border-radius:8px;padding:14px 16px;box-shadow:0 4px 28px rgba(0,0,0,.24),0 0 8px rgba(0,0,0,.12);z-index:50;white-space:nowrap;min-width:240px}
 .pop.open{display:block}
