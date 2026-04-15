@@ -690,15 +690,15 @@ function sw(id){
   document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('active',ids[i]===id)});
   document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active',p.id==='p'+id)});
   document.querySelectorAll('.pop.open').forEach(function(p){p.classList.remove('open')});
-  document.querySelectorAll('.cw').forEach(function(c){c.style.display=id==='S'?'none':'flex'});
-  /* Handle E compare widgets */
-  var cwEC=document.getElementById('cwEC');
+  /* Hide ALL widgets first, then show only the right one */
+  document.querySelectorAll('.cw').forEach(function(c){c.style.display='none'});
   if(id==='E'){
     var isClassic=document.querySelectorAll('.cmp-toggle-btn')[1].classList.contains('active');
     document.getElementById('cwE').style.display=isClassic?'none':'flex';
-    cwEC.style.display=isClassic?'flex':'none';
-  } else {
-    cwEC.style.display='none';
+    document.getElementById('cwEC').style.display=isClassic?'flex':'none';
+  } else if(id!=='S'){
+    var cw=document.getElementById('cw'+id);
+    if(cw) cw.style.display='flex';
   }
   document.querySelectorAll('.panel').forEach(function(p){if(p.id==='pS'){p.style.paddingRight='24px'}else{p.style.paddingRight=''}});
 }
@@ -848,6 +848,9 @@ document.addEventListener('DOMContentLoaded', function(){
     var b = document.getElementById('body'+v);
     if(b) initHTML[v] = b.innerHTML;
   });
+  /* On load, only show cwA (default active tab) */
+  document.querySelectorAll('.cw').forEach(function(c){c.style.display='none'});
+  document.getElementById('cwA').style.display='flex';
 });
 function resetChat(btn){
   var cw = btn.closest('.cw');
