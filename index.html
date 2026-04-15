@@ -194,6 +194,13 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .cmp-note{background:#fafafa;border-left:3px solid #0F6CBD;padding:12px 16px;border-radius:0 4px 4px 0;margin-top:16px;font-size:13px;color:#616161;line-height:1.55}
 .cmp-note strong{color:#242424}
 .ha{color:#0F6CBD}.hb{color:#5c2d91}.hc{color:#008575}.hd{color:#d83b01}
+.insight-card{display:flex;gap:10px;background:#fff;border-radius:8px;padding:14px 16px;box-shadow:0 2px 4px rgba(0,0,0,.06),0 0 2px rgba(0,0,0,.04);font-size:13px;line-height:1.5;color:#444}
+.insight-card strong{color:#242424;display:block;margin-bottom:2px}
+.insight-card .insight-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+.insight-card .insight-detail{color:#616161;font-size:12px}
+.insight-card.learn{border-left:3px solid #107c10}
+.insight-card.edge{border-left:3px solid #0F6CBD}
+.insight-card.gap{border-left:3px solid #c42b1c}
 
 /* Star badge for Option D */
 .tag-d{background:#fff3e0;color:#d83b01}
@@ -358,9 +365,9 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
       <div class="cw-body" id="bodyD">
         <div class="m mb">Hi. I'm an AI agent here to help with Microsoft 365. What can I do for you?
           <div class="chips" id="chipsD">
-            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Compare plans</span>
-            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Free trial</span>
-            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Support</span>
+            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Which plan fits me?</span>
+            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Start a free trial</span>
+            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Get help</span>
           </div>
           <div class="tr-note"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#999"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> <a href="#">Transparency FAQ &#8599;</a></div>
           <div class="opt-row">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out &#8212; this conversation will not be saved.';this.parentElement.style.color='#a4262c';this.parentElement.style.fontWeight='600';return false">Opt out</a></div>
@@ -413,6 +420,94 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
       &#8226; Blue sidebar, feedback thumbs, AI disclaimer<br>
       &#8226; Transparency FAQ always accessible (placement varies)<br>
       &#8226; All chats are interactive &#8212; powered by M365 knowledge base
+    </div>
+
+    <!-- Competitive Insights -->
+    <div class="cmp-intro" style="margin-top:24px">
+      <h2>Competitive UX Insights</h2>
+      <p>How leading support chatbots handle the welcome experience &#8212; and what Ask Microsoft can learn.</p>
+    </div>
+
+    <table class="cmp-tbl">
+      <thead><tr><th style="width:130px">UX Element</th><th>Intercom (Fin)</th><th>Zendesk</th><th>Salesforce (Agentforce)</th><th style="background:#0a5a1a">Ask Microsoft (D&#9733;)</th></tr></thead>
+      <tbody>
+        <tr><td class="feat">Greeting Length</td><td>~20 words, topic-aware</td><td>Privacy notice first, then minimal greeting</td><td>~5 words: "Ask Agentforce anything"</td><td class="hi">~18 words &#8212; concise, capability-focused</td></tr>
+        <tr><td class="feat">Quick Actions</td><td>Smart suggestions based on page context</td><td>Pre-built flows, button-based</td><td>None &#8212; open input only</td><td class="hi">Visual chips with icons (Compare, Trial, Support)</td></tr>
+        <tr><td class="feat">Trust / AI Disclosure</td><td>Footer badge "Powered by Fin AI"</td><td class="hi">Privacy notice as first message &#8212; before greeting</td><td>Minimal &#8212; brand trust implied</td><td>Transparency FAQ pill + persistent footer disclaimer</td></tr>
+        <tr><td class="feat">Human Handoff</td><td class="hi">"Talk to a person" always 1 click away</td><td>Escalation routing, sometimes buried</td><td>CRM-integrated routing</td><td>Header icons for callback + phone</td></tr>
+        <tr><td class="feat">Consent / Privacy</td><td>Cookie consent separate from chat</td><td class="hi">Inline privacy notice, always visible</td><td>Minimal, deferred to site policy</td><td>Inline opt-out link, non-blocking</td></tr>
+        <tr><td class="feat">Brand Identity</td><td>Custom colors, logo, widget shape</td><td>Fully themeable widget</td><td>Salesforce blue, minimal chrome</td><td class="hi">Fluent 2 design system, 3D header, gradient bar</td></tr>
+        <tr><td class="feat">Input UX</td><td>Open input + suggested topics</td><td>Open input, no hints</td><td>"Ask anything" placeholder</td><td class="hi">Input with gradient accent bar + send button</td></tr>
+        <tr><td class="feat">Feedback</td><td>Thumbs + CSAT after resolution</td><td>CSAT survey post-close</td><td>Thumbs on responses</td><td>Thumbs on every bot message</td></tr>
+      </tbody>
+    </table>
+
+    <div class="cmp-intro" style="margin-top:24px">
+      <h2>What We Can Learn &#8212; Without Copying</h2>
+      <p>Insights adapted for the Microsoft brand and Ask Microsoft's unique position as a sales-assist chat.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px">
+      <div class="insight-card learn">
+        <div class="insight-icon">&#9650;</div>
+        <div>
+          <strong>From Intercom:</strong> Human handoff visibility<br>
+          <span class="insight-detail">Their "Talk to a person" is always visible. Our callback/phone icons are good but could be more discoverable. Consider a text label on hover or first-visit tooltip.</span>
+        </div>
+      </div>
+      <div class="insight-card learn">
+        <div class="insight-icon">&#9650;</div>
+        <div>
+          <strong>From Zendesk:</strong> Privacy-first framing<br>
+          <span class="insight-detail">They lead with privacy before the greeting. We don't need to go that far, but our Transparency FAQ + opt-out approach is actually stronger for compliance.</span>
+        </div>
+      </div>
+      <div class="insight-card learn">
+        <div class="insight-icon">&#9650;</div>
+        <div>
+          <strong>From Salesforce:</strong> Ultra-minimal greeting<br>
+          <span class="insight-detail">"Ask Agentforce anything" &#8212; brave simplicity. Our D option is close at ~18 words. We could test an even shorter variant: "Hi, I'm here to help with M365."</span>
+        </div>
+      </div>
+      <div class="insight-card learn">
+        <div class="insight-icon">&#9650;</div>
+        <div>
+          <strong>From Tidio/Industry:</strong> Action-verb chips<br>
+          <span class="insight-detail">Best-in-class chips use action verbs: "Track my order", "Find my plan." Consider "Which plan fits me?" vs generic "Compare plans."</span>
+        </div>
+      </div>
+      <div class="insight-card edge">
+        <div class="insight-icon" style="color:#0F6CBD">&#9733;</div>
+        <div>
+          <strong>Our Edge:</strong> Sales-assist context<br>
+          <span class="insight-detail">Most competitors are support-only. Ask Microsoft is a sales + support hybrid. The smart prompts and plan comparison KB give us a unique advantage none of them have.</span>
+        </div>
+      </div>
+      <div class="insight-card edge">
+        <div class="insight-icon" style="color:#0F6CBD">&#9733;</div>
+        <div>
+          <strong>Our Edge:</strong> Fluent 2 design system<br>
+          <span class="insight-detail">No competitor has a design system as mature as Fluent 2 behind their chat. Our visual consistency, accessibility, and brand coherence are market-leading.</span>
+        </div>
+      </div>
+      <div class="insight-card gap">
+        <div class="insight-icon" style="color:#c42b1c">&#9660;</div>
+        <div>
+          <strong>Gap:</strong> No proactive engagement<br>
+          <span class="insight-detail">Intercom and Zendesk offer page-context triggers (e.g., show pricing help on the pricing page). Ask Microsoft could trigger contextual chips based on the page a customer is browsing.</span>
+        </div>
+      </div>
+      <div class="insight-card gap">
+        <div class="insight-icon" style="color:#c42b1c">&#9660;</div>
+        <div>
+          <strong>Gap:</strong> No post-conversation follow-up<br>
+          <span class="insight-detail">Zendesk sends CSAT surveys and Intercom tracks resolution quality. Ask Microsoft could add a brief "Was this helpful?" flow after a conversation ends.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cmp-note" style="margin-top:16px">
+      <strong>Bottom line:</strong> Ask Microsoft is already competitive on greeting UX, trust/transparency, and visual design. The biggest opportunities are in (1) making human-assist options more discoverable, (2) testing shorter greetings, (3) page-context-aware chip suggestions, and (4) post-conversation feedback loops. Our unique sales-assist positioning and Fluent 2 foundation are genuine differentiators.
     </div>
   </div>
 </div>
