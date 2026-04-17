@@ -300,26 +300,24 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 </div>
 
 <div class="tabs">
-  <div class="tab active" onclick="sw('A')">A &#183; Streamlined</div>
-  <div class="tab" onclick="sw('B')">B &#183; Chip-Based</div>
-  <div class="tab" onclick="sw('C')">C &#183; Card-First</div>
-  <div class="tab" onclick="sw('D')" style="border-left:1px solid #ddd">D &#183; Best-Of Hybrid &#9733;</div>
-  <div class="tab" onclick="sw('E')" style="border-left:1px solid #ddd;background:linear-gradient(90deg,#f8fbff,#f0e6fa)">E &#183; AI-Native &#9733;&#9733;</div>
+  <div class="tab active" onclick="sw('E')">A &#183; Recommended &#9733;</div>
+  <div class="tab" onclick="sw('A')">B &#183; Baseline</div>
+  <div class="tab" onclick="sw('D')">C &#183; Chips</div>
   <div class="tab" onclick="sw('S')" style="margin-left:auto;border-left:1px solid #ddd">&#9776; Summary</div>
 </div>
 
 <!-- ==================== OPTION A ==================== -->
-<div class="panel active" id="pA">
+<div class="panel" id="pA">
   <div class="info-card">
-    <span class="tag">Lowest Friction</span>
-    <h3>Option A: Streamlined</h3>
-    <p class="lbl">Welcome redesign approach</p>
+    <span class="tag">Original</span>
+    <h3>Option B: Baseline</h3>
+    <p class="lbl">Original welcome approach</p>
     <ul>
-      <li><strong>Greeting:</strong> Full paragraph listing all 3 capabilities in natural language</li>
-      <li><strong>Consent:</strong> Subtle opt-out link below the greeting</li>
-      <li><strong>Transparency FAQ:</strong> Quiet link below the message &#8212; always visible, never competing</li>
+      <li><strong>Greeting:</strong> Full paragraph listing capabilities</li>
+      <li><strong>Consent:</strong> Subtle opt-out link below greeting</li>
+      <li><strong>Prompts:</strong> None &#8212; text-only greeting</li>
     </ul>
-    <div class="note"><strong>Why it works:</strong> Closest to the current experience. Warm greeting without the clutter. Callback and phone discoverable via header icons.</div>
+    <div class="note"><strong>Why it's here:</strong> Preserved as a baseline for comparison. Shows the starting point before redesign.</div>
   </div>
   <div class="cw" id="cwA">
     <div class="cw-head">
@@ -344,98 +342,21 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 </div>
 
 <!-- ==================== OPTION B ==================== -->
-<div class="panel" id="pB">
-  <div class="info-card">
-    <span class="tag">Best for Scanners</span>
-    <h3>Option B: Chip-Based</h3>
-    <p class="lbl">Welcome redesign approach</p>
-    <ul>
-      <li><strong>Greeting:</strong> Ultra-short with capabilities as visual chips</li>
-      <li><strong>Consent:</strong> Inline toggle card with on/off switch</li>
-      <li><strong>Transparency FAQ:</strong> Info icon next to AI disclaimer</li>
-    </ul>
-    <div class="note"><strong>Why it works:</strong> Chips are scannable and inviting. Reduces the "wall of text" feeling for net-new customers.</div>
-  </div>
-  <div class="cw" id="cwB">
-    <div class="cw-head">
-      <div class="cw-logo"><img src="icon.jpg" alt="Ask Microsoft"></div>
-      <div class="ttl">Ask Microsoft</div>
-      <div class="hdr-acts">
-        <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popB1')" title="Request a callback"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.05 15.05 0 01-6.59-6.59l2.2-2.2c.28-.28.36-.67.25-1.02A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/><path d="M18 8v2h2V8c0-3.31-2.69-6-6-6v2c2.21 0 4 1.79 4 4z"/><path d="M15 8h2a3 3 0 00-3-3v2c.55 0 1 .45 1 1z"/></svg></button><div class="pop" id="popB1"><div class="pop-arrow"></div><div class="pop-title">Request a sales call</div><div class="pop-body">A Microsoft Sales Representative will contact you.</div><a class="pop-link" href="https://info.microsoft.com/ww-landing-microsoft-365-contact-me.html" target="_blank" rel="noopener">Request callback &#8599;</a></div></div>
-        <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popB2')" title="Call us"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.31.03.66-.25 1.01l-2.2 2.21z"/></svg></button><div class="pop" id="popB2" style="right:-10px"><div class="pop-arrow" style="right:20px"></div><div class="pop-title">Call us</div><div class="pop-phone"><a href="tel:+18006427676">(800) 642-7676</a><button class="copy-btn" onclick="copyNum(this,event)">Copy</button></div><div class="pop-hours">Mon &#8211; Fri, 6 AM &#8211; 6 PM PT</div></div></div>
-        <button class="hdr-btn rst" onclick="resetChat(this)" title="New conversation"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 105.64-11.36L1 10"/></svg></button><button class="hdr-btn xb" title="Close">&#10005;</button>
-      </div>
-    </div>
-    <div class="cw-main"><div class="cw-bar"></div>
-      <div class="cw-body" id="bodyB">
-        <div class="consent-card"><div style="display:flex;align-items:flex-start;gap:8px"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#0F6CBD" style="flex-shrink:0;margin-top:1px"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg><div><strong style="font-size:13px;color:#1a1a1a">Your Privacy</strong><br><span style="font-size:12px">We may save this conversation to improve our services. <a href="#">Privacy details</a></span></div></div><div class="tog-row"><span class="tog-lbl">Save my transcripts</span><div class="tog on" onclick="this.classList.toggle('on')"></div></div></div>
-        <div class="m mb">Hi. I'm an AI agent. I'm here to help you get started with Microsoft 365. What can I do for you?
-          <div class="chips" id="chipsB">
-            <span class="chip" onclick="chipSend(this,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Compare plans</span>
-            <span class="chip" onclick="chipSend(this,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Free trial</span>
-            <span class="chip" onclick="chipSend(this,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Support</span>
-          </div>
-        <div class="fb"><button class="tb" onclick="voteFb(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 22V11M2 13V20a2 2 0 002 2h13.4a2 2 0 002-1.7l1.4-9a2 2 0 00-2-2.3H15V4a2 2 0 00-2-2h0a2 2 0 00-2 1.6L9 11H4a2 2 0 00-2 2z"/></svg></button><button class="tb" onclick="voteFb(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2V13M22 11V4a2 2 0 00-2-2H6.6a2 2 0 00-2 1.7L3.2 12.7A2 2 0 005.2 15H9v3a2 2 0 002 2h0a2 2 0 002-1.6L15 13h5a2 2 0 002-2z"/></svg></button></div><span class="ts">just now</span></div>
-      </div>
-    </div>
-    <div class="cw-foot">
-      <div class="disc disc-info">AI-generated content may be incorrect <a href="#" title="Transparency FAQ (PDF)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#999" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16h.01M12 8v4" stroke-linecap="round"/></svg></a></div>
-      <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'B')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'B')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
-    </div>
-  </div>
-</div>
-
-<!-- ==================== OPTION C ==================== -->
-<div class="panel" id="pC">
-  <div class="info-card">
-    <span class="tag">Cleanest First Impression</span>
-    <h3>Option C: Card-First</h3>
-    <p class="lbl">Welcome redesign approach</p>
-    <ul>
-      <li><strong>Greeting:</strong> Minimal one-liner with collapsible capabilities card</li>
-      <li><strong>Consent:</strong> First-time modal overlay, one-time blocking</li>
-      <li><strong>Transparency FAQ:</strong> Inside expandable card alongside capabilities</li>
-    </ul>
-    <div class="note"><strong>Why it works:</strong> Maximizes chat area for conversation. Returning users see almost no chrome.</div>
-  </div>
-  <div class="cw" id="cwC">
-    <div class="cw-head">
-      <div class="cw-logo"><img src="icon.jpg" alt="Ask Microsoft"></div>
-      <div class="ttl">Ask Microsoft</div>
-      <div class="hdr-acts">
-        <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popC1')" title="Request a callback"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.05 15.05 0 01-6.59-6.59l2.2-2.2c.28-.28.36-.67.25-1.02A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/><path d="M18 8v2h2V8c0-3.31-2.69-6-6-6v2c2.21 0 4 1.79 4 4z"/><path d="M15 8h2a3 3 0 00-3-3v2c.55 0 1 .45 1 1z"/></svg></button><div class="pop" id="popC1"><div class="pop-arrow"></div><div class="pop-title">Request a sales call</div><div class="pop-body">A Microsoft Sales Representative will contact you.</div><a class="pop-link" href="https://info.microsoft.com/ww-landing-microsoft-365-contact-me.html" target="_blank" rel="noopener">Request callback &#8599;</a></div></div>
-        <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popC2')" title="Call us"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.31.03.66-.25 1.01l-2.2 2.21z"/></svg></button><div class="pop" id="popC2" style="right:-10px"><div class="pop-arrow" style="right:20px"></div><div class="pop-title">Call us</div><div class="pop-phone"><a href="tel:+18006427676">(800) 642-7676</a><button class="copy-btn" onclick="copyNum(this,event)">Copy</button></div><div class="pop-hours">Mon &#8211; Fri, 6 AM &#8211; 6 PM PT</div></div></div>
-        <button class="hdr-btn rst" onclick="resetChat(this)" title="New conversation"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 105.64-11.36L1 10"/></svg></button><button class="hdr-btn xb" title="Close">&#10005;</button>
-      </div>
-    </div>
-    <div class="cw-main"><div class="cw-bar"></div>
-      <div class="cw-body" id="bodyC">
-        <div class="m mb">Hi. I'm an AI agent here to help with Microsoft 365. What can I do for you?
-          <div class="exp-card" id="expC"><div class="exp-hdr" onclick="this.parentElement.classList.toggle('open')"><span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0F6CBD" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16h.01M12 8v4" stroke-linecap="round"/></svg> What I can help with</span><svg class="exp-chev" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#999"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg></div><div class="exp-body"><div class="exp-inner"><ul><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Compare plans and features</li><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Start a free trial</li><li><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Answer support questions</li></ul><div class="exp-faq"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#999"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> Transparency FAQ &#8599;</a></div></div></div></div>
-        <div class="fb"><button class="tb" onclick="voteFb(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 22V11M2 13V20a2 2 0 002 2h13.4a2 2 0 002-1.7l1.4-9a2 2 0 00-2-2.3H15V4a2 2 0 00-2-2h0a2 2 0 00-2 1.6L9 11H4a2 2 0 00-2 2z"/></svg></button><button class="tb" onclick="voteFb(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2V13M22 11V4a2 2 0 00-2-2H6.6a2 2 0 00-2 1.7L3.2 12.7A2 2 0 005.2 15H9v3a2 2 0 002 2h0a2 2 0 002-1.6L15 13h5a2 2 0 002-2z"/></svg></button></div><span class="ts">just now</span></div>
-      </div>
-    </div>
-    <div class="cw-foot">
-      <div class="disc">AI-generated content may be incorrect</div>
-      <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'C')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'C')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
-    </div>
-    <div class="modal-bg open" id="modalC"><div class="modal-box"><h3><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> Before we begin</h3><p>To improve our services, we may save a transcript of this conversation. Your data is handled in accordance with the <a href="#">Microsoft Privacy Statement</a>.</p><p class="hint">You can change this preference at any time.</p><div class="modal-acts"><button class="m-btn m-sec" onclick="document.getElementById('modalC').classList.remove('open')">Opt out</button><button class="m-btn m-pri" onclick="document.getElementById('modalC').classList.remove('open')">I agree</button></div></div></div>
-  </div>
-</div>
+<!-- Panels B and C removed (consolidated to 3 tabs) -->
 
 <!-- ==================== OPTION D - BEST-OF HYBRID ==================== -->
 <div class="panel" id="pD">
   <div class="info-card">
-    <span class="tag tag-d">&#9733; Recommended Hybrid</span>
-    <h3>Option D: Best-Of Hybrid</h3>
-    <p class="lbl">Combines the strongest elements from A, B, and C</p>
+    <span class="tag">Alternative</span>
+    <h3>Option C: Chip-Based Prompts</h3>
+    <p class="lbl">Simple text chips instead of cards</p>
     <ul>
-      <li><strong>From C:</strong> Minimal one-liner greeting &#8212; clean and immediate</li>
-      <li><strong>From B:</strong> Smart prompt chips &#8212; scannable, interactive capabilities</li>
-      <li><strong>From A:</strong> Subtle opt-out link &#8212; non-blocking, low friction consent</li>
-      <li><strong>FAQ:</strong> Inline link below greeting (always visible, from A)</li>
+      <li><strong>Greeting:</strong> Minimal one-liner + inline prompt chips</li>
+      <li><strong>Chips:</strong> 6 scannable topics &#8212; no hierarchy, all equal weight</li>
+      <li><strong>Consent:</strong> Subtle opt-out link below greeting</li>
+      <li><strong>FAQ:</strong> Inline link, always visible</li>
     </ul>
-    <div class="note"><strong>Why it works:</strong> Combines the best signal-to-noise ratio. Net-new customers see a clean greeting, can scan chips OR just type, and consent is non-blocking. No wall of text, no modal, no toggle card &#8212; just a clean chat ready to go.</div>
+    <div class="note"><strong>Why test this:</strong> Chips are simpler and lower-friction than cards. Works well for users who scan quickly. Trade-off: no visual hierarchy or guided flows.</div>
   </div>
   <div class="cw" id="cwD">
     <div class="cw-head">
@@ -453,6 +374,9 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
           <div class="chips" id="chipsD">
             <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Which plan fits me?</span>
             <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Start a free trial</span>
+            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg> Explore Copilot AI</span>
+            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg> Student offers</span>
+            <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> Set up email</span>
             <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Get help</span>
           </div>
           <div class="tr-note"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#999"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> <a href="#">Transparency FAQ &#8599;</a></div>
@@ -468,38 +392,21 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 </div>
 
 <!-- ==================== OPTION E - AI-NATIVE EXPERIENCE ==================== -->
-<div class="panel" id="pE">
+<div class="panel active" id="pE">
   <div style="display:flex;flex-direction:column;gap:16px;flex:1;max-width:420px;min-width:280px">
-    <div class="cmp-toggle-bar">
-      <button class="cmp-toggle-btn active" onclick="compareE('ai')">AI-Native</button>
-      <button class="cmp-toggle-btn" onclick="compareE('classic')">Classic (D)</button>
-    </div>
     <div class="info-card" id="infoE-ai">
-      <span class="e-badge">&#10024; New Variant</span>
-      <h3 style="margin-top:6px">Option E: AI-Native Assistant</h3>
+      <span class="e-badge">&#10024; Recommended</span>
+      <h3 style="margin-top:6px">Option A: AI-Native Assistant</h3>
       <p class="lbl">Modern guided experience</p>
       <ul>
         <li><strong>Welcome:</strong> Task-based entry cards &#8212; zero text wall</li>
-        <li><strong>Chips:</strong> Contextual follow-ups after each response</li>
+        <li><strong>Guided Flows:</strong> Clickable buttons narrow intent before answering</li>
         <li><strong>Human Offramp:</strong> Seamless inline handoff after 2 exchanges</li>
         <li><strong>Stay-In:</strong> Inline action buttons (no redirect feel)</li>
         <li><strong>Voice:</strong> Mic icon in input bar</li>
-        <li><strong>Visual:</strong> Cleaner hierarchy, more whitespace</li>
+        <li><strong>Visual:</strong> Pill-shaped cards with primary hierarchy</li>
       </ul>
-      <div class="note"><strong>Why it works:</strong> Task-based entry reduces cognitive load. Contextual chips keep the conversation flowing naturally. The human offramp appears after enough context is gathered &#8212; not upfront where it competes with AI engagement. Inline actions keep users in the chat rather than redirecting to new pages.</div>
-    </div>
-    <div class="info-card" id="infoE-classic" style="display:none">
-      <span class="tag tag-d">&#9733; Baseline for Comparison</span>
-      <h3>Classic Experience (Option D)</h3>
-      <p class="lbl">Current recommended design</p>
-      <ul>
-        <li><strong>Greeting:</strong> Text one-liner with static chips</li>
-        <li><strong>Chips:</strong> Same 3 chips, always visible, never change</li>
-        <li><strong>Human assist:</strong> Header icons only</li>
-        <li><strong>Actions:</strong> External links with &#8599; indicators</li>
-        <li><strong>Input:</strong> Text only, no voice</li>
-      </ul>
-      <div class="note">Toggle to <strong>AI-Native</strong> to see the improvements.</div>
+      <div class="note"><strong>Why it works:</strong> Task-based entry reduces cognitive load. Guided flows keep the conversation flowing naturally. The human offramp appears after enough context is gathered &#8212; not upfront where it competes with AI engagement.</div>
     </div>
   </div>
 
@@ -516,57 +423,9 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
     </div>
     <div class="cw-main"><div class="cw-bar"></div>
       <div class="cw-body" id="bodyE">
-        <!-- BASELINE STARTER PROMPTS (original, preserved) -->
-        <div class="ai-welcome" id="promptBaseline" style="display:none">
-          <div class="ai-welcome-text">Hi, I'm your AI assistant for Microsoft 365. <span class="prompt-tog"><button class="active" onclick="togPrompt('base')">v1</button><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('polish')">v3</button></span></div>
-          <div class="task-grid">
-            <div class="task-card" onclick="taskSendE('Which Microsoft 365 plan is right for me?')">
-              <div class="tc-label">Find my plan<span class="tc-sub">Compare pricing &#38; features</span></div>
-            </div>
-            <div class="task-card" onclick="taskSendE('I want to start a free trial')">
-              <div class="tc-label">Try it free<span class="tc-sub">Full access, no commitment</span></div>
-            </div>
-            <div class="task-card" onclick="taskSendE('Tell me about Copilot AI features')">
-              <div class="tc-label">Explore Copilot AI<span class="tc-sub">AI-powered productivity</span></div>
-            </div>
-            <div class="task-card" onclick="taskSendE('I need help with a support issue')">
-              <div class="tc-label">Get support<span class="tc-sub">Troubleshoot &#38; resolve</span></div>
-            </div>
-            <div class="task-card" onclick="taskSendE('Tell me about student and education offers')">
-              <div class="tc-label">Student offers<span class="tc-sub">Free for 12 months</span></div>
-            </div>
-            <div class="task-card" onclick="taskSendE('How do I set up email with Outlook?')">
-              <div class="tc-label">Set up email<span class="tc-sub">Outlook configuration</span></div>
-            </div>
-          </div>
-        </div>
-        <!-- ENHANCED STARTER PROMPTS -->
-        <div class="ai-welcome enh" id="promptEnhanced" style="display:none">
-          <div class="ai-welcome-text">Hi, I'm an AI assistant. I'm here to help with Microsoft 365. <span class="prompt-tog"><button onclick="togPrompt('base')">v1</button><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('polish')">v3</button></span></div>
-          <div class="task-grid">
-            <div class="task-card hero" onclick="taskSendE('Help me pick the best Microsoft 365 plan for my needs')">
-              <div class="tc-label">Which plan is best for me?</div>
-            </div>
-            <div class="task-card" onclick="taskSendE('I want to start a free trial')">
-              <div class="tc-label">Start a free trial</div>
-            </div>
-            <div class="task-card" onclick="taskSendE('What can Copilot AI do for me?')">
-              <div class="tc-label">What can Copilot do?</div>
-            </div>
-            <div class="task-card" onclick="taskSendE('I need help fixing an issue')">
-              <div class="tc-label">Fix an issue</div>
-            </div>
-            <div class="task-card" onclick="taskSendE('Show me student and education offers')">
-              <div class="tc-label">Student discounts</div>
-            </div>
-            <div class="task-card" onclick="taskSendE('Help me set up Outlook email')">
-              <div class="tc-label">Set up Outlook</div>
-            </div>
-          </div>
-        </div>
-        <!-- POLISHED VARIANT -->
+        <!-- POLISHED VARIANT (only variant shown) -->
         <div class="ai-welcome polished" id="promptPolished">
-          <div class="ai-welcome-text">I'm an AI agent for Microsoft 365. How can I help today? <span class="prompt-tog"><button onclick="togPrompt('base')">v1</button><button onclick="togPrompt('enh')">v2</button><button class="active" onclick="togPrompt('polish')">v3</button></span></div>
+          <div class="ai-welcome-text">I'm an AI agent for Microsoft 365. How can I help today?</div>
           <div class="task-grid">
             <div class="task-card primary" onclick="taskSendE('Help me compare Microsoft 365 plans and pick the right one')">
               <div class="tc-label">Compare plans &#38; pricing</div>
@@ -603,35 +462,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
     </div>
   </div>
 
-  <!-- Classic comparison widget (hidden by default) -->
-  <div class="cw" id="cwEC" style="display:none">
-    <div class="cw-head">
-      <div class="cw-logo"><img src="icon.jpg" alt="Ask Microsoft"></div>
-      <div class="ttl">Ask Microsoft</div>
-      <div class="hdr-acts">
-        <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popEC1')" title="Request a callback"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1.02 1.02 0 00-1.02.24l-2.2 2.2a15.05 15.05 0 01-6.59-6.59l2.2-2.2c.28-.28.36-.67.25-1.02A11.36 11.36 0 018.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/><path d="M18 8v2h2V8c0-3.31-2.69-6-6-6v2c2.21 0 4 1.79 4 4z"/><path d="M15 8h2a3 3 0 00-3-3v2c.55 0 1 .45 1 1z"/></svg></button><div class="pop" id="popEC1"><div class="pop-arrow"></div><div class="pop-title">Request a sales call</div><div class="pop-body">A Microsoft Sales Representative will contact you.</div><a class="pop-link" href="https://info.microsoft.com/ww-landing-microsoft-365-contact-me.html" target="_blank" rel="noopener">Request callback &#8599;</a></div></div>
-        <div class="hdr-wrap"><button class="hdr-btn" onclick="togglePop(event,'popEC2')" title="Call us"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1C10.07 21 3 13.93 3 4c0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.31.03.66-.25 1.01l-2.2 2.21z"/></svg></button><div class="pop" id="popEC2" style="right:-10px"><div class="pop-arrow" style="right:20px"></div><div class="pop-title">Call us</div><div class="pop-phone"><a href="tel:+18006427676">(800) 642-7676</a><button class="copy-btn" onclick="copyNum(this,event)">Copy</button></div><div class="pop-hours">Mon &#8211; Fri, 6 AM &#8211; 6 PM PT</div></div></div>
-        <button class="hdr-btn rst" onclick="resetChat(this)" title="New conversation"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 105.64-11.36L1 10"/></svg></button><button class="hdr-btn xb" title="Close">&#10005;</button>
-      </div>
-    </div>
-    <div class="cw-main"><div class="cw-bar"></div>
-      <div class="cw-body" id="bodyEC">
-        <div class="m mb">Hi. I'm an AI agent here to help with Microsoft 365. What can I do for you?
-          <div class="chips">
-            <span class="chip" onclick="chipSend(this,'EC')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Which plan fits me?</span>
-            <span class="chip" onclick="chipSend(this,'EC')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Start a free trial</span>
-            <span class="chip" onclick="chipSend(this,'EC')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Get help</span>
-          </div>
-          <div class="tr-note"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#999"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> <a href="#">Transparency FAQ &#8599;</a></div>
-          <div class="opt-row">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out &#8212; this conversation will not be saved.';this.parentElement.style.color='#a4262c';this.parentElement.style.fontWeight='600';return false">Opt out</a></div>
-        <div class="fb"><button class="tb" onclick="voteFb(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 22V11M2 13V20a2 2 0 002 2h13.4a2 2 0 002-1.7l1.4-9a2 2 0 00-2-2.3H15V4a2 2 0 00-2-2h0a2 2 0 00-2 1.6L9 11H4a2 2 0 00-2 2z"/></svg></button><button class="tb" onclick="voteFb(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2V13M22 11V4a2 2 0 00-2-2H6.6a2 2 0 00-2 1.7L3.2 12.7A2 2 0 005.2 15H9v3a2 2 0 002 2h0a2 2 0 002-1.6L15 13h5a2 2 0 002-2z"/></svg></button></div><span class="ts">just now</span></div>
-      </div>
-    </div>
-    <div class="cw-foot">
-      <div class="disc">AI-generated content may be incorrect</div>
-      <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'EC')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'EC')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
-    </div>
-  </div>
+  <!-- Classic comparison widget removed -->
 </div>
 
 <!-- ==================== SUMMARY & COMPARISON ==================== -->
@@ -642,36 +473,36 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
       <p>Side-by-side breakdown of how each option handles the key UX elements being redesigned.</p>
     </div>
     <table class="cmp-tbl">
-      <thead><tr><th style="width:130px">Feature</th><th class="ha">A &#183; Streamlined</th><th class="hb">B &#183; Chip-Based</th><th class="hc">C &#183; Card-First</th><th class="hd">D &#183; Hybrid &#9733;</th></tr></thead>
+      <thead><tr><th style="width:130px">Feature</th><th class="ha">A &#183; Recommended &#9733;</th><th class="hb">B &#183; Baseline</th><th class="hd">C &#183; Chips</th></tr></thead>
       <tbody>
-        <tr><td class="feat">Greeting Style</td><td>Full paragraph, all capabilities in natural language</td><td>Short one-liner + visual chips</td><td>Minimal one-liner + collapsible card</td><td class="hi">Minimal one-liner + chips (best of B+C)</td></tr>
-        <tr><td class="feat">Callback</td><td colspan="4" style="text-align:center;color:#0F6CBD;font-weight:600">Same &#8212; Header icon with popover linking to request form</td></tr>
-        <tr><td class="feat">Call Us</td><td colspan="4" style="text-align:center;color:#0F6CBD;font-weight:600">Same &#8212; Header icon with popover: click-to-call + copy</td></tr>
-        <tr><td class="feat">Transparency FAQ</td><td>Inline link below greeting. <span class="hi">Always visible.</span></td><td>Info icon at bottom. <span class="hi">Always visible.</span></td><td>Inside expandable card. <span class="dim">Visible when opened.</span></td><td class="hi">Inline link below greeting. Always visible.</td></tr>
-        <tr><td class="feat">Transcript Consent</td><td>Subtle "Opt out" link. <span class="dim">Non-blocking.</span></td><td>Toggle card with on/off. <span class="dim">Non-blocking.</span></td><td>Modal overlay. <span class="hi">Blocking, one-time.</span></td><td class="hi">Subtle "Opt out" link. Non-blocking.</td></tr>
-        <tr style="background:#f8fbff"><td class="feat">Consent Persistence</td><td>One-time click</td><td>Persistent toggle</td><td>One-time modal</td><td>One-time click</td></tr>
-        <tr><td class="feat">Consent Visibility</td><td><span class="dim">Easy to miss</span></td><td><span class="hi">Hard to miss</span></td><td><span class="hi">Impossible to miss</span></td><td><span class="dim">Easy to miss</span></td></tr>
-        <tr><td class="feat">Greeting Length</td><td>~35 words</td><td>~15 words + 3 chips</td><td>~12 words + card</td><td>~12 words + 3 chips</td></tr>
-        <tr><td class="feat">First Impression</td><td>Warm &#38; familiar</td><td>Modern &#38; scannable</td><td>Clean &#38; minimal</td><td class="hi">Clean, modern &#38; actionable</td></tr>
-        <tr><td class="feat">Best For</td><td>Users who read</td><td>Users who scan</td><td>Returning users</td><td class="hi">All audiences</td></tr>
+        <tr><td class="feat">Greeting Style</td><td class="hi">Pill-shaped task cards with primary hierarchy</td><td>Full paragraph, all capabilities in natural language</td><td>Minimal one-liner + 6 text chips</td></tr>
+        <tr><td class="feat">Guided Flows</td><td class="hi">Clickable buttons narrow intent before answering</td><td><span class="dim">None &#8212; free-text only</span></td><td><span class="dim">None &#8212; free-text only</span></td></tr>
+        <tr><td class="feat">Human Offramp</td><td class="hi">Inline handoff bar after 2 exchanges (delayed 1.5s)</td><td>Header icons only</td><td>Header icons only</td></tr>
+        <tr><td class="feat">Callback</td><td colspan="3" style="text-align:center;color:#0F6CBD;font-weight:600">Same &#8212; Header icon with popover linking to request form</td></tr>
+        <tr><td class="feat">Call Us</td><td colspan="3" style="text-align:center;color:#0F6CBD;font-weight:600">Same &#8212; Header icon with popover: click-to-call + copy</td></tr>
+        <tr><td class="feat">Transparency FAQ</td><td class="hi">Inline link below cards. Always visible.</td><td>Inline link below greeting. <span class="hi">Always visible.</span></td><td class="hi">Inline link below greeting. Always visible.</td></tr>
+        <tr><td class="feat">Transcript Consent</td><td colspan="3" style="text-align:center">Subtle "Opt out" link. <span class="dim">Non-blocking.</span></td></tr>
+        <tr><td class="feat">Voice Input</td><td class="hi">Mic icon in input bar</td><td><span class="dim">Text only</span></td><td><span class="dim">Text only</span></td></tr>
+        <tr><td class="feat">Greeting Length</td><td>~12 words + 4 cards (6 expandable)</td><td>~35 words paragraph</td><td>~12 words + 6 chips</td></tr>
+        <tr><td class="feat">First Impression</td><td class="hi">Modern, guided &#38; actionable</td><td>Warm &#38; familiar</td><td>Clean &#38; scannable</td></tr>
+        <tr><td class="feat">Best For</td><td class="hi">All audiences &#8212; task-oriented entry</td><td>Users who read</td><td>Users who scan</td></tr>
       </tbody>
     </table>
     <div class="cmp-leg">
-      <span><span class="dot-a"></span> Option A</span>
-      <span><span class="dot-b"></span> Option B</span>
-      <span><span class="dot-c"></span> Option C</span>
-      <span><span class="dot-d"></span> Option D</span>
+      <span><span class="dot-a"></span> Option A (Recommended)</span>
+      <span><span class="dot-b"></span> Option B (Baseline)</span>
+      <span><span class="dot-d"></span> Option C (Chips)</span>
       <span style="color:#0F6CBD;font-weight:600">Blue = strength</span>
       <span style="color:#999;font-style:italic">Italic = trade-off</span>
     </div>
     <div class="cmp-note">
-      <strong>What stays the same across all four options:</strong><br>
-      &#8226; All 3 capabilities preserved (compare plans, free trial, support)<br>
-      &#8226; Callback and Call Us moved from message body to header icons<br>
+      <strong>What stays the same across all three options:</strong><br>
+      &#8226; All capabilities preserved (compare plans, free trial, Copilot, support)<br>
+      &#8226; Callback and Call Us in header icons with popovers<br>
       &#8226; Phone popover includes click-to-call + copy button<br>
       &#8226; Input box with gradient accent bar<br>
       &#8226; Blue sidebar, feedback thumbs, AI disclaimer<br>
-      &#8226; Transparency FAQ always accessible (placement varies)<br>
+      &#8226; Transparency FAQ always accessible<br>
       &#8226; All chats are interactive &#8212; powered by M365 knowledge base
     </div>
 
@@ -682,7 +513,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
     </div>
 
     <table class="cmp-tbl">
-      <thead><tr><th style="width:130px">UX Element</th><th><a href="https://www.intercom.com/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">Intercom (Fin)</a></th><th><a href="https://www.zendesk.com/service/messaging/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">Zendesk</a></th><th><a href="https://www.salesforce.com/agentforce/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">Salesforce (Agentforce)</a></th><th style="background:#0a5a1a">Ask Microsoft (D&#9733;)</th></tr></thead>
+      <thead><tr><th style="width:130px">UX Element</th><th><a href="https://www.intercom.com/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">Intercom (Fin)</a></th><th><a href="https://www.zendesk.com/service/messaging/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">Zendesk</a></th><th><a href="https://www.salesforce.com/agentforce/" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline">Salesforce (Agentforce)</a></th><th style="background:#0a5a1a">Ask Microsoft (A&#9733;)</th></tr></thead>
       <tbody>
         <tr><td class="feat">Greeting Length</td><td>~20 words, topic-aware</td><td>Privacy notice first, then minimal greeting</td><td>~5 words: "Ask Agentforce anything"</td><td class="hi">~18 words &#8212; concise, capability-focused</td></tr>
         <tr><td class="feat">Quick Actions</td><td>Smart suggestions based on page context</td><td>Pre-built flows, button-based</td><td>None &#8212; open input only</td><td class="hi">Visual chips with icons (Compare, Trial, Support)</td></tr>
@@ -768,17 +599,12 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 <script>
 /* Tab switching */
 function sw(id){
-  var ids=['A','B','C','D','E','S'];
+  var ids=['E','A','D','S'];
   document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('active',ids[i]===id)});
   document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active',p.id==='p'+id)});
   document.querySelectorAll('.pop.open').forEach(function(p){p.classList.remove('open')});
-  /* Hide ALL widgets first, then show only the right one */
   document.querySelectorAll('.cw').forEach(function(c){c.style.display='none'});
-  if(id==='E'){
-    var isClassic=document.querySelectorAll('.cmp-toggle-btn')[1].classList.contains('active');
-    document.getElementById('cwE').style.display=isClassic?'none':'flex';
-    document.getElementById('cwEC').style.display=isClassic?'flex':'none';
-  } else if(id!=='S'){
+  if(id!=='S'){
     var cw=document.getElementById('cw'+id);
     if(cw) cw.style.display='flex';
   }
@@ -927,13 +753,12 @@ function chipSend(chip, variant){
 /* Save initial body HTML on load, restore on reset */
 var initHTML = {};
 document.addEventListener('DOMContentLoaded', function(){
-  ['A','B','C','D','E','EC'].forEach(function(v){
+  ['A','D','E'].forEach(function(v){
     var b = document.getElementById('body'+v);
     if(b) initHTML[v] = b.innerHTML;
   });
-  /* On load, only show cwA (default active tab) */
   document.querySelectorAll('.cw').forEach(function(c){c.style.display='none'});
-  document.getElementById('cwA').style.display='flex';
+  document.getElementById('cwE').style.display='flex';
 });
 function resetChat(btn){
   var cw = btn.closest('.cw');
@@ -1039,27 +864,6 @@ function taskSendE(text){
   sendMsg(inp, 'E');
 }
 
-function compareE(mode){
-  var btns = document.querySelectorAll('.cmp-toggle-btn');
-  btns[0].classList.toggle('active', mode==='ai');
-  btns[1].classList.toggle('active', mode==='classic');
-  document.getElementById('cwE').style.display = mode==='ai' ? 'flex' : 'none';
-  document.getElementById('cwEC').style.display = mode==='classic' ? 'flex' : 'none';
-  document.getElementById('infoE-ai').style.display = mode==='ai' ? 'block' : 'none';
-  document.getElementById('infoE-classic').style.display = mode==='classic' ? 'block' : 'none';
-}
-
-function togPrompt(v){
-  var base=document.getElementById('promptBaseline');
-  var enh=document.getElementById('promptEnhanced');
-  var polish=document.getElementById('promptPolished');
-  base.style.display='none';enh.style.display='none';polish.style.display='none';
-  if(v==='base') base.style.display='';
-  else if(v==='enh') enh.style.display='';
-  else polish.style.display='';
-  var map={base:'v1',enh:'v2',polish:'v3'};
-  document.querySelectorAll('.prompt-tog button').forEach(function(b){b.classList.toggle('active',b.textContent===map[v])});
-}
 function togMore(el){el.closest('.polished').classList.add('expanded')}
 
 /* ========== GUIDED CONVERSATION FLOW ========== */
