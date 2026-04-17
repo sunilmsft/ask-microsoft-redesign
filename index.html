@@ -715,6 +715,20 @@ var defaultReply = '<h4>How can I help your business?</h4><p>I can assist with M
 
 function findReply(text){
   var t = text.toLowerCase();
+  /* If org size already known, don't re-ask guided questions — give direct answers */
+  if(guidedAnswers.s1){
+    var size = guidedAnswers.s1;
+    /* Plans/compare → show comparison table */
+    if(t.match(/plan|pricing|price|cost|compare/)){
+      if(size==='enterprise') return '<h4>Microsoft 365 Enterprise Plans</h4><ul><li><strong>E3</strong> &#8212; Desktop apps, advanced compliance, information protection</li><li><strong>E5</strong> &#8212; Everything in E3 plus advanced security, analytics, voice</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/enterprise/compare-office-365-plans" target="_blank">Compare Enterprise plans</a></div>';
+      return '<h4>Microsoft 365 Business Plans</h4><ul><li><strong>Business Basic ($6/user/mo)</strong> &#8212; Email, storage, Teams, web/mobile apps</li><li><strong>Business Standard ($12.50/user/mo)</strong> &#8212; + desktop apps, webinars</li><li><strong>Business Premium ($22/user/mo)</strong> &#8212; + advanced security, Intune</li><li><strong>Copilot add-on ($30/user/mo)</strong> &#8212; AI across all apps</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans" target="_blank">Compare all plans</a></div>';
+    }
+    /* Trial → direct to trial based on size */
+    if(t.match(/trial|try|free/)){
+      if(size==='enterprise') return '<p>Enterprise trials are available for E3 and E5. A Microsoft specialist can help set up the right trial for your organization.</p><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/enterprise/compare-office-365-plans" target="_blank">Enterprise plans</a></div>';
+      return '<p>You can try any Business plan free for 1 month:</p><ul><li><strong>Business Basic</strong> &#8212; email, storage, Teams</li><li><strong>Business Standard</strong> &#8212; + desktop apps</li><li><strong>Business Premium</strong> &#8212; + advanced security</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-standard" target="_blank">Try Standard free</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans" target="_blank">See all trials</a></div>';
+    }
+  }
   for(var i=0;i<KB.length;i++){
     for(var j=0;j<KB[i].k.length;j++){
       if(t.indexOf(KB[i].k[j]) !== -1) return KB[i].a;
