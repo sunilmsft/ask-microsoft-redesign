@@ -317,6 +317,15 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .email-capture-card .ecc-skip:hover{color:#0F6CBD;text-decoration:underline}
 .email-sent-confirm{display:flex;align-items:center;gap:6px;padding:8px 10px;background:#e6f4e6;border:1px solid #a3d9a3;border-radius:8px;margin-top:6px;font-size:12px;color:#107c10;font-weight:600;animation:fu .2s ease}
 
+/* FAQ link (between greeting and prompts) */
+.faq-sub{font-size:10.5px;color:#999;display:inline-flex;align-items:center;gap:4px;margin-top:4px;margin-bottom:6px}
+.faq-sub a{color:#999;text-decoration:none;font-weight:400}
+.faq-sub a:hover{color:#0F6CBD;text-decoration:underline}
+/* Compliance footer */
+.compliance-foot{font-size:10px;color:#aaa;text-align:right;margin-bottom:3px}
+.compliance-foot a{color:#aaa;text-decoration:none}
+.compliance-foot a:hover{color:#c42b1c;text-decoration:underline}
+
 /* Passive save icon in header */
 .save-btn{background:none;border:none;cursor:pointer;color:#616161;padding:0;display:none;align-items:center;gap:4px;font-size:11px;font-family:inherit;transition:color .15s}
 .save-btn:hover{color:#0F6CBD}
@@ -364,11 +373,12 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
     </div>
     <div class="cw-main"><div class="cw-bar"></div>
       <div class="cw-body" id="bodyA">
-        <div class="m mb">Hi. I'm an AI agent, I can help you compare plans and features, start a free trial, or answer support questions. What can I do for you?<div class="tr-note"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#999"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> <a href="#">Transparency FAQ &#8599;</a></div><div class="opt-row">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out &#8212; this conversation will not be saved.';this.parentElement.style.color='#a4262c';this.parentElement.style.fontWeight='600';return false">Opt out</a></div><div class="fb"><button class="tb" onclick="voteFb(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 22V11M2 13V20a2 2 0 002 2h13.4a2 2 0 002-1.7l1.4-9a2 2 0 00-2-2.3H15V4a2 2 0 00-2-2h0a2 2 0 00-2 1.6L9 11H4a2 2 0 00-2 2z"/></svg></button><button class="tb" onclick="voteFb(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2V13M22 11V4a2 2 0 00-2-2H6.6a2 2 0 00-2 1.7L3.2 12.7A2 2 0 005.2 15H9v3a2 2 0 002 2h0a2 2 0 002-1.6L15 13h5a2 2 0 002-2z"/></svg></button></div><span class="ts">just now</span></div>
+        <div class="m mb">Hi. I'm an AI agent, I can help you compare plans and features, start a free trial, or answer support questions. What can I do for you?<div class="faq-sub"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 20 20" fill="#bbb"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-.75 4.5a.75.75 0 011.5 0v4a.75.75 0 01-1.5 0v-4zm.75 7.5a.75.75 0 110-1.5.75.75 0 010 1.5z"/></svg> <a href="#">Transparency FAQ &#8599;</a></div><div class="fb"><button class="tb" onclick="voteFb(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 22V11M2 13V20a2 2 0 002 2h13.4a2 2 0 002-1.7l1.4-9a2 2 0 00-2-2.3H15V4a2 2 0 00-2-2h0a2 2 0 00-2 1.6L9 11H4a2 2 0 00-2 2z"/></svg></button><button class="tb" onclick="voteFb(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2V13M22 11V4a2 2 0 00-2-2H6.6a2 2 0 00-2 1.7L3.2 12.7A2 2 0 005.2 15H9v3a2 2 0 002 2h0a2 2 0 002-1.6L15 13h5a2 2 0 002-2z"/></svg></button></div><span class="ts">just now</span></div>
       </div>
     </div>
     <div class="cw-foot">
       <div class="disc">AI-generated content may be incorrect</div>
+      <div class="compliance-foot">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out';this.parentElement.style.color='#a4262c';return false">Opt out</a></div>
       <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'A')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'A')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
     </div>
   </div>
@@ -404,6 +414,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
     <div class="cw-main"><div class="cw-bar"></div>
       <div class="cw-body" id="bodyD">
         <div class="m mb">Hi. I'm an AI agent here to help with Microsoft 365. What can I do for you?
+          <div class="faq-sub"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 20 20" fill="#bbb"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-.75 4.5a.75.75 0 011.5 0v4a.75.75 0 01-1.5 0v-4zm.75 7.5a.75.75 0 110-1.5.75.75 0 010 1.5z"/></svg> <a href="#">Transparency FAQ &#8599;</a></div>
           <div class="chips" id="chipsD">
             <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4zm-12 4h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2z"/></svg> Which plan fits me?</span>
             <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Start a free trial</span>
@@ -412,13 +423,12 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
             <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> Set up email</span>
             <span class="chip" onclick="chipSend(this,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19H12v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg> Get help</span>
           </div>
-          <div class="tr-note"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#999"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> <a href="#">Transparency FAQ &#8599;</a></div>
-          <div class="opt-row">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out &#8212; this conversation will not be saved.';this.parentElement.style.color='#a4262c';this.parentElement.style.fontWeight='600';return false">Opt out</a></div>
         <div class="fb"><button class="tb" onclick="voteFb(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 22V11M2 13V20a2 2 0 002 2h13.4a2 2 0 002-1.7l1.4-9a2 2 0 00-2-2.3H15V4a2 2 0 00-2-2h0a2 2 0 00-2 1.6L9 11H4a2 2 0 00-2 2z"/></svg></button><button class="tb" onclick="voteFb(this)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2V13M22 11V4a2 2 0 00-2-2H6.6a2 2 0 00-2 1.7L3.2 12.7A2 2 0 005.2 15H9v3a2 2 0 002 2h0a2 2 0 002-1.6L15 13h5a2 2 0 002-2z"/></svg></button></div><span class="ts">just now</span></div>
       </div>
     </div>
     <div class="cw-foot">
       <div class="disc">AI-generated content may be incorrect</div>
+      <div class="compliance-foot">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out';this.parentElement.style.color='#a4262c';return false">Opt out</a></div>
       <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'D')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
     </div>
   </div>
@@ -473,6 +483,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
         <!-- POLISHED VARIANT (only variant shown) -->
         <div class="ai-welcome polished" id="promptPolished">
           <div class="ai-welcome-text">I'm an AI agent for Microsoft 365 Business. How can I help today?</div>
+          <div class="faq-sub"><svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 20 20" fill="#bbb"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-.75 4.5a.75.75 0 011.5 0v4a.75.75 0 01-1.5 0v-4zm.75 7.5a.75.75 0 110-1.5.75.75 0 010 1.5z"/></svg> <a href="#">Transparency FAQ &#8599;</a></div>
           <div class="task-grid">
             <div class="task-card primary" onclick="taskSendE('Help me compare Microsoft 365 Business plans and pick the right one')">
               <div class="tc-label">Compare business plans</div>
@@ -495,12 +506,11 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
           </div>
           <div class="more-link" onclick="togMore(this)">Show more topics</div>
         </div>
-        <div class="tr-note" style="margin-top:8px"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 20 20" fill="#999"><path d="M10 2a8 8 0 100 16 8 8 0 000-16zm-.75 4.5a.75.75 0 011.5 0v4a.75.75 0 01-1.5 0v-4zm.75 7.5a.75.75 0 110-1.5.75.75 0 010 1.5z"/></svg> <a href="#">Transparency FAQ &#8599;</a></div>
-        <div class="opt-row">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out &#8212; this conversation will not be saved.';this.parentElement.style.color='#a4262c';this.parentElement.style.fontWeight='600';return false">Opt out</a></div>
       </div>
     </div>
     <div class="cw-foot">
       <div class="disc" style="display:flex;justify-content:space-between;align-items:center">AI-generated content may be incorrect<button class="save-btn" id="saveBtn" onclick="showEmailCapture()"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 20 20" fill="currentColor"><path d="M2 5.5A2.5 2.5 0 014.5 3h11A2.5 2.5 0 0118 5.5v9a2.5 2.5 0 01-2.5 2.5h-11A2.5 2.5 0 012 14.5v-9zm2.02.87l5.44 3.27a.5.5 0 00.52 0L15.4 6.4A1.5 1.5 0 0015.5 4h-11c-.56 0-1.05.31-1.31.76l.83.61z"/></svg> Email me a copy</button></div>
+      <div class="compliance-foot">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out';this.parentElement.style.color='#a4262c';return false">Opt out</a></div>
       <div class="cw-input">
         <input placeholder="Ask about plans, billing, setup..." onkeydown="if(event.key==='Enter')sendMsg(this,'E')">
         <button class="mic-btn" onclick="micToggle(this)" title="Voice input"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a3 3 0 00-3 3v5a3 3 0 106 0V5a3 3 0 00-3-3zM5 9.5a.5.5 0 00-1 0V10a6 6 0 005.5 5.98V18a.5.5 0 001 0v-2.02A6 6 0 0016 10v-.5a.5.5 0 00-1 0v.5a5 5 0 01-10 0v-.5z"/></svg></button>

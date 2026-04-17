@@ -22,7 +22,8 @@ A quick overview of how the prototype evolved. Scroll down for the detailed chan
 | **v4** | `v4` | Apr 16 | Starter prompt redesign, guided Q&A flows for plans/trial/Copilot, handoff bar |
 | **v5** | `v5` | Apr 17 | Consolidate to 3 tabs, add email transcript capture, sequence system nudges |
 | **v6** | `v6` | Apr 17 | Business-only focus, intent-based handoff gate, context-aware replies |
-| **v6-baseline** | `v6-baseline` | Apr 17 | Current deployed state — safe revert point |
+| **v6-baseline** | `v6-baseline` | Apr 17 | Baseline snapshot before layout refinements |
+| **v7** | `v7` | Apr 17 | Layout and compliance refinement — reduce bottom clutter, preserve compliance |
 
 ---
 
@@ -107,10 +108,24 @@ A quick overview of how the prototype evolved. Scroll down for the detailed chan
 
 ---
 
-### v6-baseline — Current Deployed State (Apr 17)
+### v7 — Layout and Compliance Refinement (Apr 17)
+*Tag: `v7`*
+
+| Area | What changed | Why |
+|------|-------------|-----|
+| Transparency FAQ | Moved from bottom of chat to just below the greeting, above starter prompts/chips | Reduce bottom clutter — FAQ was buried below opt-out and competing with the input area |
+| FAQ styling | Smaller text (10.5px), lighter color (#999), info circle icon | Secondary element — visible but not competing with the greeting or prompts |
+| Bottom cleanup | Removed Transparency FAQ and opt-out text from the chat body bottom | Only input field, mic, and send button remain below the conversation |
+| Compliance text | "AI-generated content may be incorrect" stays just above input; "We may save conversations" moved to footer as subtle line | Both compliance elements preserved and visible, but no longer cluttering the chat area |
+| Opt-out | Moved from chat body to footer — same click behavior, lighter styling | Keeps opt-out accessible without visual noise in the conversation |
+| All 3 widgets | Same refinement applied to Recommended (A), Baseline (B), and Chips (C) | Consistent layout across all variants |
+
+---
+
+### v6-baseline — Pre-Refinement Snapshot (Apr 17)
 *Tag: `v6-baseline` · Commit: `60fc864`*
 
-Same UI as v6. This tag marks the exact deployed state including this changelog. Use this as the safe revert point.
+Same UI as v6. This tag marks the deployed state before the v7 layout refinement. Use this to revert if needed.
 
 ```
 git checkout v6-baseline -- index.html
@@ -128,7 +143,8 @@ git checkout v6-baseline -- index.html
 | `v4` | `4203e1d` | Starter prompt iterations, guided flows, handoff bar |
 | `v5` | `66f0463` | 3-tab consolidation, email capture, sequenced nudges |
 | `v6` | `bf59346` | Business-only focus, intent-based handoff gate |
-| `v6-baseline` | `60fc864` | Current deployed state — safe revert point |
+| `v6-baseline` | `60fc864` | Pre-refinement snapshot — safe revert point |
+| `v7` | *(pending)* | Layout and compliance refinement |
 
 ---
 
