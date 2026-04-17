@@ -24,6 +24,7 @@ A quick overview of how the prototype evolved. Scroll down for the detailed chan
 | **v6** | `v6` | Apr 17 | Business-only focus, intent-based handoff gate, context-aware replies |
 | **v6-baseline** | `v6-baseline` | Apr 17 | Baseline snapshot before layout refinements |
 | **v7** | `v7` | Apr 17 | Layout and compliance refinement — reduce bottom clutter, preserve compliance |
+| **v7.2** | `v7.2` | Apr 17 | Bottom area declutter — focused input, email moved to inline, data usage below input |
 
 ---
 
@@ -122,6 +123,20 @@ A quick overview of how the prototype evolved. Scroll down for the detailed chan
 
 ---
 
+### v7.2 — Bottom Area Declutter (Apr 17)
+*Tag: `v7.2`*
+
+| Area | What changed | Why |
+|------|-------------|-----|
+| Footer hierarchy | Reordered to: AI disclaimer → input field → data usage line | Input is now the focal point — nothing competes with it |
+| AI disclaimer | "AI-generated content may be incorrect" centered above input, 10px, lighter color | Visible but minimal — sets context without dominating |
+| Data usage text | "We may save conversations... Opt out" moved below input | Footer-like treatment (9.5px, #bbb) — present but unobtrusive |
+| Email me a copy | Removed from initial footer area | Was competing for attention next to the input field |
+| Passive email mode | Now shows inline card after first bot response instead of in footer | Appears only when there’s content worth saving — not on empty screen |
+| Dead CSS removed | Removed `.save-btn` styles (button no longer in footer) | Cleanup unused code |
+
+---
+
 ### v6-baseline — Pre-Refinement Snapshot (Apr 17)
 *Tag: `v6-baseline` · Commit: `60fc864`*
 
@@ -145,6 +160,7 @@ git checkout v6-baseline -- index.html
 | `v6` | `bf59346` | Business-only focus, intent-based handoff gate |
 | `v6-baseline` | `60fc864` | Pre-refinement snapshot — safe revert point |
 | `v7` | `3a37a3b` | Layout and compliance refinement |
+| `v7.2` | *(pending)* | Bottom area declutter |
 
 ---
 

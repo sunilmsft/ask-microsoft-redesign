@@ -65,8 +65,8 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .cw-main{flex:1;display:flex;overflow:hidden;min-height:0}
 .cw-bar{width:4px;background:linear-gradient(180deg,#0F6CBD,#62ABF5,#0F6CBD);flex-shrink:0}
 .cw-body{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:#fafafa;min-height:0;justify-content:flex-end}
-.cw-foot{padding:6px 10px 10px;background:#fff;flex-shrink:0;border-top:1px solid #e0e0e0}
-.cw-foot .disc{font-size:11px;color:#707070;text-align:right;margin-bottom:4px;font-weight:400}
+.cw-foot{padding:6px 10px 6px;background:#fff;flex-shrink:0;border-top:1px solid #e0e0e0}
+.cw-foot .disc{font-size:10px;color:#aaa;text-align:center;margin-bottom:3px;font-weight:400}
 .cw-input{display:flex;gap:6px;align-items:center;background:#fff;border:1px solid #d1d1d1;border-radius:8px;padding:4px 10px;position:relative;overflow:hidden;transition:border-color .1s}
 .cw-input:focus-within{border-color:#0F6CBD}
 .cw-input::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#0F6CBD,#62ABF5,#96C6F7,#62ABF5,#0F6CBD);border-radius:0 0 8px 8px}
@@ -321,16 +321,10 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .faq-sub{font-size:10.5px;color:#999;display:inline-flex;align-items:center;gap:4px;margin-top:4px;margin-bottom:6px}
 .faq-sub a{color:#999;text-decoration:none;font-weight:400}
 .faq-sub a:hover{color:#0F6CBD;text-decoration:underline}
-/* Compliance footer */
-.compliance-foot{font-size:10px;color:#aaa;text-align:right;margin-bottom:3px}
-.compliance-foot a{color:#aaa;text-decoration:none}
-.compliance-foot a:hover{color:#c42b1c;text-decoration:underline}
-
-/* Passive save icon in header */
-.save-btn{background:none;border:none;cursor:pointer;color:#616161;padding:0;display:none;align-items:center;gap:4px;font-size:11px;font-family:inherit;transition:color .15s}
-.save-btn:hover{color:#0F6CBD}
-.save-btn.saved{color:#107c10}
-.save-btn svg{flex-shrink:0}
+/* Compliance footer — below input */
+.compliance-foot{font-size:9.5px;color:#bbb;text-align:center;margin-top:4px;line-height:1.3}
+.compliance-foot a{color:#bbb;text-decoration:none}
+.compliance-foot a:hover{color:#a4262c;text-decoration:underline}
 </style>
 </head>
 <body>
@@ -378,8 +372,8 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
     </div>
     <div class="cw-foot">
       <div class="disc">AI-generated content may be incorrect</div>
-      <div class="compliance-foot">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out';this.parentElement.style.color='#a4262c';return false">Opt out</a></div>
       <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'A')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'A')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
+      <div class="compliance-foot">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out';this.parentElement.style.color='#a4262c';return false">Opt out</a></div>
     </div>
   </div>
 </div>
@@ -428,8 +422,8 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
     </div>
     <div class="cw-foot">
       <div class="disc">AI-generated content may be incorrect</div>
-      <div class="compliance-foot">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out';this.parentElement.style.color='#a4262c';return false">Opt out</a></div>
       <div class="cw-input"><input placeholder="Ask a work question or make a request..." onkeydown="if(event.key==='Enter')sendMsg(this,'D')"><button class="snd" onclick="sendMsg(this.previousElementSibling,'D')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button></div>
+      <div class="compliance-foot">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out';this.parentElement.style.color='#a4262c';return false">Opt out</a></div>
     </div>
   </div>
 </div>
@@ -509,13 +503,13 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
       </div>
     </div>
     <div class="cw-foot">
-      <div class="disc" style="display:flex;justify-content:space-between;align-items:center">AI-generated content may be incorrect<button class="save-btn" id="saveBtn" onclick="showEmailCapture()"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 20 20" fill="currentColor"><path d="M2 5.5A2.5 2.5 0 014.5 3h11A2.5 2.5 0 0118 5.5v9a2.5 2.5 0 01-2.5 2.5h-11A2.5 2.5 0 012 14.5v-9zm2.02.87l5.44 3.27a.5.5 0 00.52 0L15.4 6.4A1.5 1.5 0 0015.5 4h-11c-.56 0-1.05.31-1.31.76l.83.61z"/></svg> Email me a copy</button></div>
-      <div class="compliance-foot">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out';this.parentElement.style.color='#a4262c';return false">Opt out</a></div>
+      <div class="disc">AI-generated content may be incorrect</div>
       <div class="cw-input">
         <input placeholder="Ask about plans, billing, setup..." onkeydown="if(event.key==='Enter')sendMsg(this,'E')">
         <button class="mic-btn" onclick="micToggle(this)" title="Voice input"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a3 3 0 00-3 3v5a3 3 0 106 0V5a3 3 0 00-3-3zM5 9.5a.5.5 0 00-1 0V10a6 6 0 005.5 5.98V18a.5.5 0 001 0v-2.02A6 6 0 0016 10v-.5a.5.5 0 00-1 0v.5a5 5 0 01-10 0v-.5z"/></svg></button>
         <button class="snd" onclick="sendMsg(this.closest('.cw-input').querySelector('input'),'E')"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="#0F6CBD"><path d="M2.72 2.05a.5.5 0 01.53-.05l15 8a.5.5 0 010 .88l-15 8.01a.5.5 0 01-.72-.48V11.5a.5.5 0 01.4-.49L9.5 10l-6.57-1.01a.5.5 0 01-.4-.49V2.5a.5.5 0 01.2-.45z"/></svg></button>
       </div>
+      <div class="compliance-foot">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out';this.parentElement.style.color='#a4262c';return false">Opt out</a></div>
     </div>
   </div>
 
@@ -817,6 +811,7 @@ function sendMsg(input, variant){
         addContextChips(body, topic);
       }
       if(handoffDismissed) addProactiveEmailCapture(body);
+      if(emailMode === 'passive' && eTotalTurns === 1) addPassiveEmailCapture(body);
     } else {
       addMsg(body, reply, 'mb');
     }
@@ -919,12 +914,7 @@ function setEmailMode(mode){
   if(mode==='proactive'){
     detail.innerHTML = '<strong>Proactive:</strong> After the handoff bar, the next exchange triggers an inline card: &#8220;Want a copy of this conversation?&#8221; &#8212; customer enters email or ignores it.';
   } else {
-    detail.innerHTML = '<strong>Passive:</strong> An &#8220;Email me a copy&#8221; link appears below the welcome area. Customer taps it whenever they want a transcript emailed &#8212; or not at all. Zero system prompts.';
-  }
-  var saveBtn = document.getElementById('saveBtn');
-  if(saveBtn){
-    saveBtn.style.display = mode==='passive' ? 'flex' : 'none';
-    saveBtn.classList.remove('saved');
+    detail.innerHTML = '<strong>Passive:</strong> An inline &#8220;Email me a copy&#8221; card appears after the first bot response. Customer taps it whenever ready &#8212; or ignores it. Zero system prompts.';
   }
   /* Reset chat to show mode change */
   var body = document.getElementById('bodyE');
@@ -956,8 +946,6 @@ function sendTranscript(input){
   confirm.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20" fill="#107c10"><path d="M10 2a8 8 0 110 16 8 8 0 010-16zm3.36 5.65a.5.5 0 00-.72 0L9 11.29 7.36 9.65a.5.5 0 00-.72.7l2 2a.5.5 0 00.72 0l4-4a.5.5 0 000-.7z"/></svg> Summary sent to ' + email.replace(/</g,'&lt;');
   card.parentNode.insertBefore(confirm, card.nextSibling);
   card.remove();
-  var saveBtn = document.getElementById('saveBtn');
-  if(saveBtn){ saveBtn.classList.add('saved'); }
   var body = document.getElementById('bodyE');
   body.scrollTop = body.scrollHeight;
 }
@@ -974,6 +962,13 @@ function addProactiveEmailCapture(body){
   setTimeout(function(){
     showEmailCapture();
   }, 1500);
+}
+
+function addPassiveEmailCapture(body){
+  if(emailCaptureShown) return;
+  setTimeout(function(){
+    showEmailCapture();
+  }, 1200);
 }
 
 function handoffAccepted(){
@@ -1097,6 +1092,7 @@ function guidedChoice(step, value, label){
       addContextChips(body, detectTopic(label));
     }
     if(handoffDismissed) addProactiveEmailCapture(body);
+    if(emailMode === 'passive' && eTotalTurns === 1) addPassiveEmailCapture(body);
     body.scrollTop = body.scrollHeight;
   }, 600 + Math.random()*400);
 }
