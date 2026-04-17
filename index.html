@@ -261,6 +261,12 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .ctx-chip{padding:5px 10px;background:#f8fbff;border:1px solid #BFD4EA;border-radius:14px;font-size:11px;color:#0F6CBD;font-weight:500;cursor:pointer;transition:all .15s;white-space:nowrap}
 .ctx-chip:hover{background:#EBF3FC;border-color:#0F6CBD}
 
+.choice-btns{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.choice-btn{padding:7px 14px;background:#fff;border:1.5px solid #d9d9d9;border-radius:18px;font-family:inherit;font-size:12px;font-weight:600;color:#333;cursor:pointer;transition:all .15s}
+.choice-btn:hover{border-color:#0F6CBD;color:#0F6CBD;background:#f5f9ff}
+.choice-btn:active{background:#eef4fb}
+.choice-btns.answered{opacity:.45;pointer-events:none}
+
 .handoff-bar{display:flex;align-items:center;gap:10px;padding:10px 12px;background:linear-gradient(135deg,#f8fbff,#fff);border:1px solid #BFD4EA;border-radius:8px;margin-top:6px;animation:fu .2s ease}
 .handoff-bar .ho-text{flex:1;font-size:12px;color:#444;line-height:1.4}
 .handoff-bar .ho-text strong{color:#0F6CBD}
@@ -797,7 +803,7 @@ document.querySelectorAll('.pop').forEach(function(p){p.addEventListener('click'
 /* M365 Knowledge Base sourced from microsoft.com/en-us/microsoft-365/ */
 var KB = [
   {k:['plan','plans','pricing','price','cost','compare','comparison','difference','which plan','what plan'],
-   a:'<h4>Microsoft 365 Plans</h4><div class="plan-row"><span class="plan-name">Free</span><span class="plan-price">$0</span></div><ul><li>Web and mobile apps, 5 GB storage</li></ul><div class="plan-row"><span class="plan-name">Basic</span><span class="plan-price">$19.99/yr</span></div><ul><li>100 GB storage, ad-free Outlook, ransomware protection</li></ul><div class="plan-row"><span class="plan-name">Personal</span><span class="plan-price">$99.99/yr</span></div><ul><li>Desktop apps, 1 TB storage, Copilot AI, Defender, Teams</li></ul><div class="plan-row"><span class="plan-name">Family</span><span class="plan-price">$129.99/yr</span></div><ul><li>Everything in Personal for up to 6 people, up to 6 TB</li></ul><div class="plan-row"><span class="plan-name">Premium</span><span class="plan-price">$199.99/yr</span></div><ul><li>Everything in Family + extensive Copilot and exclusive AI features</li></ul><hr>Would you like help choosing the right plan?'},
+   a:'<p>I can help you find the right plan! First, who will be using Microsoft 365?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(1,\'personal\',this.textContent)">Just me</button><button class="choice-btn" onclick="guidedChoice(1,\'family\',this.textContent)">My family</button><button class="choice-btn" onclick="guidedChoice(1,\'business\',this.textContent)">My business or school</button></div>'},
   {k:['free trial','try','trial','test','try free','start trial','free'],
    a:'<h4>Free Trials Available</h4><p>Try any plan free with full access to desktop apps, 1 TB storage, and Copilot AI.</p><ul><li><a href="https://www.microsoft.com/en-us/microsoft-365/try-prs" target="_blank">Try Personal free &#8599;</a></li><li><a href="https://www.microsoft.com/en-us/microsoft-365/try" target="_blank">Try Family free &#8599;</a></li><li><a href="https://www.microsoft.com/en-us/microsoft-365/try-premium" target="_blank">Try Premium free &#8599;</a></li></ul>'},
   {k:['copilot','ai','artificial intelligence','ai features','copilot features'],
@@ -892,13 +898,15 @@ function sendMsg(input, variant){
     addMsg(body, reply, 'mb');
     if(variant === 'E'){
       eMsgCount++;
-      var topic = detectTopic(text);
-      var old = body.querySelectorAll('.ctx-chips');
-      old.forEach(function(c){ c.remove(); });
-      addInlineActions(body, topic);
-      addContextChips(body, topic);
-      if(eMsgCount === 2) addHandoffBar(body);
       body.querySelectorAll('.ai-welcome').forEach(function(w){ w.style.display = 'none'; });
+      if(reply.indexOf('choice-btns') === -1){
+        var topic = detectTopic(text);
+        var old = body.querySelectorAll('.ctx-chips');
+        old.forEach(function(c){ c.remove(); });
+        addInlineActions(body, topic);
+        addContextChips(body, topic);
+        if(eMsgCount === 2) addHandoffBar(body);
+      }
     }
   }, 800 + Math.random() * 600);
 }
@@ -933,7 +941,7 @@ function resetChat(btn){
   var v = id.replace('body','');
   if(initHTML[v]) body.innerHTML = initHTML[v];
   body.scrollTop = body.scrollHeight;
-  if(v === 'E') eMsgCount = 0;
+  if(v === 'E'){ eMsgCount = 0; guidedAnswers = {}; }
 }
 
 /* ========== AI-NATIVE VARIANT (E) FEATURES ========== */
@@ -1046,6 +1054,48 @@ function togPrompt(v){
   document.querySelectorAll('.prompt-tog button').forEach(function(b){b.classList.toggle('active',b.textContent===map[v])});
 }
 function togMore(el){el.closest('.polished').classList.add('expanded')}
+
+/* ========== GUIDED CONVERSATION FLOW ========== */
+var guidedAnswers = {};
+function guidedChoice(step, value, label){
+  var body = document.getElementById('bodyE');
+  body.querySelectorAll('.choice-btns:not(.answered)').forEach(function(g){g.classList.add('answered')});
+  addMsg(body, label, 'mu');
+  guidedAnswers['s'+step] = value;
+  body.querySelectorAll('.ctx-chips').forEach(function(c){c.remove()});
+  var typing = addTyping(body);
+  setTimeout(function(){
+    typing.remove();
+    var reply = guidedReply(step, value);
+    addMsg(body, reply, 'mb');
+    if(reply.indexOf('choice-btns') === -1){
+      eMsgCount++;
+      addContextChips(body, detectTopic(label));
+      if(eMsgCount === 2) addHandoffBar(body);
+    }
+    body.scrollTop = body.scrollHeight;
+  }, 600 + Math.random()*400);
+}
+function guidedReply(step, value){
+  if(step===1){
+    if(value==='personal') return '<p>What matters most to you?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(2,\'ai\',this.textContent)">AI &#38; Copilot features</button><button class="choice-btn" onclick="guidedChoice(2,\'storage\',this.textContent)">Email &#38; cloud storage</button><button class="choice-btn" onclick="guidedChoice(2,\'apps\',this.textContent)">Full desktop apps</button></div>';
+    if(value==='family') return '<p>For families, we have two great options. What\'s more important?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(2,\'value\',this.textContent)">Best value</button><button class="choice-btn" onclick="guidedChoice(2,\'ai\',this.textContent)">Most AI features</button></div>';
+    if(value==='business') return '<h4>Business &#38; Enterprise Plans</h4><p>Microsoft 365 offers plans with admin controls, compliance, and enterprise security.</p><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/microsoft-365-business" target="_blank">Business plans</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/microsoft-365-enterprise" target="_blank">Enterprise plans</a></div>';
+  }
+  if(step===2){
+    var who = guidedAnswers.s1;
+    if(who==='personal'){
+      if(value==='ai') return '<h4>Recommended: Personal or Premium</h4><p><strong>Personal ($99.99/yr)</strong> includes Copilot AI across Word, Excel, PowerPoint, and Outlook.</p><p>Want the highest AI limits? <strong>Premium ($199.99/yr)</strong> adds extensive Copilot usage and exclusive features.</p><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try-prs" target="_blank">Try Personal free</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/try-premium" target="_blank">Try Premium free</a></div>';
+      if(value==='storage') return '<h4>Recommended: Basic</h4><p><strong>Basic ($19.99/yr)</strong> &#8212; ad-free Outlook with 100 GB storage and ransomware protection.</p><p>Need more? <strong>Personal ($99.99/yr)</strong> bumps storage to 1 TB and adds desktop apps.</p><div class="inline-act"><a href="https://go.microsoft.com/fwlink/p/?LinkID=2186361" target="_blank">Get Basic</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/try-prs" target="_blank">Try Personal free</a></div>';
+      if(value==='apps') return '<h4>Recommended: Personal</h4><p><strong>Personal ($99.99/yr)</strong> &#8212; full desktop Word, Excel, PowerPoint, Outlook, and OneNote on up to 5 devices.</p><ul><li>1 TB cloud storage</li><li>Copilot AI included</li><li>Works on PC, Mac, and mobile</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try-prs" target="_blank">Try Personal free</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365" target="_blank">See all plans</a></div>';
+    }
+    if(who==='family'){
+      if(value==='value') return '<h4>Recommended: Family</h4><p><strong>Family ($129.99/yr)</strong> for up to 6 people &#8212; as little as $21.67 per person.</p><ul><li>Each person gets their own account</li><li>Up to 6 TB storage (1 TB each)</li><li>All desktop apps + Copilot</li><li>Microsoft Defender for everyone</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try" target="_blank">Try Family free</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365" target="_blank">Compare plans</a></div>';
+      if(value==='ai') return '<h4>Recommended: Premium</h4><p><strong>Premium ($199.99/yr)</strong> &#8212; everything in Family plus the most Copilot AI.</p><ul><li>Up to 6 people</li><li>Extensive Copilot usage limits</li><li>Exclusive AI features</li><li>Extensive AI image creation</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try-premium" target="_blank">Try Premium free</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365" target="_blank">Compare plans</a></div>';
+    }
+  }
+  return '';
+}
 
 function micToggle(btn){
   btn.classList.toggle('listening');
