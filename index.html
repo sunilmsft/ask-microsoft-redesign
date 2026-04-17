@@ -511,7 +511,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
       <div class="cw-body" id="bodyE">
         <!-- BASELINE STARTER PROMPTS (original, preserved) -->
         <div class="ai-welcome" id="promptBaseline" style="display:none">
-          <div class="ai-welcome-text">Hi, I'm an AI assistant. Here are some things I can help with, or feel free to ask me anything below. <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button class="active" onclick="togPrompt('base')">v1</button><button onclick="togPrompt('polish')">v3</button></span></div>
+          <div class="ai-welcome-text">Hi, I'm your AI assistant for Microsoft 365. <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button class="active" onclick="togPrompt('base')">v1</button><button onclick="togPrompt('polish')">v3</button></span></div>
           <div class="task-grid">
             <div class="task-card" onclick="taskSendE('Which Microsoft 365 plan is right for me?')">
               <div class="tc-label">Find my plan<span class="tc-sub">Compare pricing &#38; features</span></div>
@@ -535,7 +535,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
         </div>
         <!-- ENHANCED STARTER PROMPTS -->
         <div class="ai-welcome enh" id="promptEnhanced" style="display:none">
-          <div class="ai-welcome-text">Hi, I'm an AI assistant. Pick a topic or type your own question. <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button onclick="togPrompt('polish')">v3</button></span></div>
+          <div class="ai-welcome-text">Hi, I'm an AI assistant. I'm here to help with Microsoft 365. <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button onclick="togPrompt('polish')">v3</button></span></div>
           <div class="task-grid">
             <div class="task-card hero" onclick="taskSendE('Help me pick the best Microsoft 365 plan for my needs')">
               <div class="tc-label">Which plan is best for me?</div>
@@ -559,8 +559,8 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
         </div>
         <!-- POLISHED VARIANT -->
         <div class="ai-welcome polished" id="promptPolished">
-          <div class="ai-welcome-text">Hi, I'm an AI assistant. Pick a topic or type your own question. <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button class="active" onclick="togPrompt('polish')">v3</button></span></div>
-          <div class="grid-label">Most people start here</div>
+          <div class="ai-welcome-text">Hi, I'm an AI assistant ready to help. <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button class="active" onclick="togPrompt('polish')">v3</button></span></div>
+          <div class="grid-label">Popular right now</div>
           <div class="task-grid">
             <div class="task-card primary" onclick="taskSendE('Help me compare Microsoft 365 plans and pick the right one')">
               <div class="tc-label">Compare plans &#38; pricing</div>
@@ -590,7 +590,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
     <div class="cw-foot">
       <div class="disc">AI-generated content may be incorrect</div>
       <div class="cw-input">
-        <input placeholder="Or just type your question..." onkeydown="if(event.key==='Enter')sendMsg(this,'E')">
+        <input placeholder="Ask me anything..." onkeydown="if(event.key==='Enter')sendMsg(this,'E')">
         <button class="mic-btn" onclick="micToggle(this)" title="Voice input"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15a.998.998 0 00-.98-.85c-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08a6.993 6.993 0 005.91-5.78c.1-.6-.39-1.14-1-1.14z"/></svg></button>
         <button class="snd" onclick="sendMsg(this.closest('.cw-input').querySelector('input'),'E')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
       </div>
