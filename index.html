@@ -267,9 +267,10 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .choice-btn:active{background:#eef4fb}
 .choice-btns.answered{opacity:.45;pointer-events:none}
 
-.handoff-bar{display:flex;align-items:center;gap:10px;padding:10px 12px;background:linear-gradient(135deg,#f8fbff,#fff);border:1px solid #BFD4EA;border-radius:8px;margin-top:6px;animation:fu .2s ease}
-.handoff-bar .ho-text{flex:1;font-size:12px;color:#444;line-height:1.4}
+.handoff-bar{display:flex;flex-direction:column;gap:8px;padding:10px 12px;background:linear-gradient(135deg,#f8fbff,#fff);border:1px solid #BFD4EA;border-radius:8px;margin-top:6px;animation:fu .2s ease}
+.handoff-bar .ho-text{font-size:12px;color:#444;line-height:1.4}
 .handoff-bar .ho-text strong{color:#0F6CBD}
+.handoff-bar .ho-actions{display:flex;gap:6px}
 .ho-btn{font-family:inherit;font-size:12px;font-weight:600;padding:6px 12px;border-radius:6px;cursor:pointer;transition:all .12s;white-space:nowrap}
 .ho-btn-primary{background:#0F6CBD;color:#fff;border:1px solid #0F6CBD}
 .ho-btn-primary:hover{background:#115EA3}
@@ -995,7 +996,7 @@ function addContextChips(body, topic){
 function addHandoffBar(body){
   var div = document.createElement('div');
   div.className = 'handoff-bar';
-  div.innerHTML = '<div class="ho-text"><strong>Want to talk to someone?</strong> A sales specialist can pick up right where we left off.</div><button class="ho-btn ho-btn-secondary" onclick="this.closest(\'.handoff-bar\').remove()">Continue with AI</button><button class="ho-btn ho-btn-primary" onclick="handoffAccepted()">Talk to a person</button>';
+  div.innerHTML = '<div class="ho-text"><strong>Want to talk to someone?</strong> A sales specialist can pick up right where we left off.</div><div class="ho-actions"><button class="ho-btn ho-btn-secondary" onclick="this.closest(\'.handoff-bar\').remove()">Continue with AI</button><button class="ho-btn ho-btn-primary" onclick="handoffAccepted()">Talk to a person</button></div>';
   body.appendChild(div);
   body.scrollTop = body.scrollHeight;
 }
