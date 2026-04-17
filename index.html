@@ -775,6 +775,7 @@ function sendMsg(input, variant){
     addMsg(body, reply, 'mb');
     if(variant === 'E'){
       eMsgCount++;
+      eTotalTurns++;
       body.querySelectorAll('.ai-welcome').forEach(function(w){ w.style.display = 'none'; });
       if(reply.indexOf('choice-btns') === -1){
         var topic = detectTopic(text);
@@ -783,8 +784,8 @@ function sendMsg(input, variant){
         addInlineActions(body, topic);
         addContextChips(body, topic);
         if(eMsgCount === 2) addHandoffBar(body);
-        if(eMsgCount === 3) addProactiveEmailCapture(body);
       }
+      if(eTotalTurns >= 3) addProactiveEmailCapture(body);
     }
   }, 800 + Math.random() * 600);
 }
@@ -818,11 +819,12 @@ function resetChat(btn){
   var v = id.replace('body','');
   if(initHTML[v]) body.innerHTML = initHTML[v];
   body.scrollTop = body.scrollHeight;
-  if(v === 'E'){ eMsgCount = 0; guidedAnswers = {}; emailCaptureShown = false; var sb = document.getElementById('saveBtn'); if(sb) sb.classList.remove('saved'); }
+  if(v === 'E'){ eMsgCount = 0; eTotalTurns = 0; guidedAnswers = {}; emailCaptureShown = false; var sb = document.getElementById('saveBtn'); if(sb) sb.classList.remove('saved'); }
 }
 
 /* ========== AI-NATIVE VARIANT (E) FEATURES ========== */
 var eMsgCount = 0;
+var eTotalTurns = 0;
 
 var ctxChipMap = {
   plan: ['Start a free trial', 'Which plan for families?', 'Business plans'],
@@ -1001,12 +1003,13 @@ function guidedChoice(step, value, label){
     typing.remove();
     var reply = guidedReply(step, value) || guidedReplyTrial(step, value) || guidedReplyCopilot(step, value) || guidedReplyHelp(step, value);
     addMsg(body, reply, 'mb');
+    eTotalTurns++;
     if(reply.indexOf('choice-btns') === -1){
       eMsgCount++;
       addContextChips(body, detectTopic(label));
       if(eMsgCount === 2) addHandoffBar(body);
-      if(eMsgCount === 3) addProactiveEmailCapture(body);
     }
+    if(eTotalTurns >= 3) addProactiveEmailCapture(body);
     body.scrollTop = body.scrollHeight;
   }, 600 + Math.random()*400);
 }
