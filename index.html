@@ -994,11 +994,17 @@ function addContextChips(body, topic){
 }
 
 function addHandoffBar(body){
-  var div = document.createElement('div');
-  div.className = 'handoff-bar';
-  div.innerHTML = '<div class="ho-text"><strong>Want to talk to someone?</strong> A sales specialist can pick up right where we left off.</div><div class="ho-actions"><button class="ho-btn ho-btn-secondary" onclick="this.closest(\'.handoff-bar\').remove()">Continue with AI</button><button class="ho-btn ho-btn-primary" onclick="handoffAccepted()">Talk to a person</button></div>';
-  body.appendChild(div);
-  body.scrollTop = body.scrollHeight;
+  setTimeout(function(){
+    var div = document.createElement('div');
+    div.className = 'handoff-bar';
+    div.style.opacity = '0';
+    div.style.transform = 'translateY(6px)';
+    div.style.transition = 'opacity .3s ease, transform .3s ease';
+    div.innerHTML = '<div class="ho-text"><strong>Want to talk to someone?</strong> A sales specialist can pick up right where we left off.</div><div class="ho-actions"><button class="ho-btn ho-btn-secondary" onclick="this.closest(\'.handoff-bar\').remove()">Continue with AI</button><button class="ho-btn ho-btn-primary" onclick="handoffAccepted()">Talk to a person</button></div>';
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+    requestAnimationFrame(function(){ div.style.opacity = '1'; div.style.transform = 'translateY(0)'; });
+  }, 1500);
 }
 
 function handoffAccepted(){
