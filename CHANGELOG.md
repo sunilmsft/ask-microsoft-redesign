@@ -124,7 +124,7 @@ A quick overview of how the prototype evolved. Scroll down for the detailed chan
 ---
 
 ### v7.2 — Bottom Area Declutter (Apr 17)
-*Tag: `v7.2`*
+*Tag: `v7.2` · Commit: `4a38937`*
 
 | Area | What changed | Why |
 |------|-------------|-----|
@@ -160,7 +160,7 @@ git checkout v6-baseline -- index.html
 | `v6` | `bf59346` | Business-only focus, intent-based handoff gate |
 | `v6-baseline` | `60fc864` | Pre-refinement snapshot — safe revert point |
 | `v7` | `3a37a3b` | Layout and compliance refinement |
-| `v7.2` | *(pending)* | Bottom area declutter |
+| `v7.2` | `4a38937` | Bottom area declutter |
 
 ---
 
