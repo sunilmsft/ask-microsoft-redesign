@@ -805,9 +805,9 @@ var KB = [
   {k:['plan','plans','pricing','price','cost','compare','comparison','difference','which plan','what plan'],
    a:'<p>I can help you find the right plan! First, who will be using Microsoft 365?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(1,\'personal\',this.textContent)">Just me</button><button class="choice-btn" onclick="guidedChoice(1,\'family\',this.textContent)">My family</button><button class="choice-btn" onclick="guidedChoice(1,\'business\',this.textContent)">My business or school</button></div>'},
   {k:['free trial','try','trial','test','try free','start trial','free'],
-   a:'<h4>Free Trials Available</h4><p>Try any plan free with full access to desktop apps, 1 TB storage, and Copilot AI.</p><ul><li><a href="https://www.microsoft.com/en-us/microsoft-365/try-prs" target="_blank">Try Personal free &#8599;</a></li><li><a href="https://www.microsoft.com/en-us/microsoft-365/try" target="_blank">Try Family free &#8599;</a></li><li><a href="https://www.microsoft.com/en-us/microsoft-365/try-premium" target="_blank">Try Premium free &#8599;</a></li></ul>'},
+   a:'<p>Great choice! Which plan would you like to try?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(10,\'personal\',this.textContent)">Personal</button><button class="choice-btn" onclick="guidedChoice(10,\'family\',this.textContent)">Family</button><button class="choice-btn" onclick="guidedChoice(10,\'premium\',this.textContent)">Premium</button><button class="choice-btn" onclick="guidedChoice(10,\'unsure\',this.textContent)">Not sure yet</button></div>'},
   {k:['copilot','ai','artificial intelligence','ai features','copilot features'],
-   a:'<h4>Copilot &#8212; Your AI Companion</h4><p>Built right into Microsoft 365, Copilot helps you work smarter:</p><ul><li><strong>Research with ease</strong> &#8212; AI-powered tips and brainstorming</li><li><strong>Plan with precision</strong> &#8212; Organize tasks and schedules</li><li><strong>Create with confidence</strong> &#8212; Draft docs, presentations, and more</li><li><strong>Protect what matters</strong> &#8212; Security insights</li></ul><p>Available in Personal, Family, and Premium. <strong>Premium</strong> has the highest AI usage limits.</p>'},
+   a:'<p>Copilot is your AI companion in Microsoft 365. What do you use most?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(30,\'writing\',this.textContent)">Writing &#38; documents</button><button class="choice-btn" onclick="guidedChoice(30,\'data\',this.textContent)">Spreadsheets &#38; data</button><button class="choice-btn" onclick="guidedChoice(30,\'presenting\',this.textContent)">Presentations</button><button class="choice-btn" onclick="guidedChoice(30,\'general\',this.textContent)">A bit of everything</button></div>'},
   {k:['word','document','write','writing','doc'],
    a:'<h4>Microsoft Word</h4><p>Elevate your writing and create beautiful documents anywhere.</p><ul><li>AI-powered writing with Copilot</li><li>Real-time collaboration</li><li>Desktop, web, and mobile versions</li></ul><p>Included in <strong>Personal</strong>, <strong>Family</strong>, and <strong>Premium</strong>. Web/mobile versions are free.</p>'},
   {k:['excel','spreadsheet','data','number'],
@@ -839,7 +839,7 @@ var KB = [
   {k:['business','enterprise','work','company','organization'],
    a:'<h4>Business &#38; Enterprise Plans</h4><p>Microsoft 365 offers specialized business solutions:</p><ul><li><a href="https://www.microsoft.com/en-us/microsoft-365/microsoft-365-business" target="_blank">Microsoft 365 for Business &#8599;</a></li><li><a href="https://www.microsoft.com/en-us/microsoft-365/microsoft-365-enterprise" target="_blank">Microsoft 365 for Enterprise &#8599;</a></li><li><a href="https://www.microsoft.com/en-us/microsoft-365-copilot" target="_blank">Microsoft 365 Copilot for Business &#8599;</a></li></ul><p>Includes advanced admin controls, compliance tools, and enterprise-grade security.</p>'},
   {k:['help','support','issue','problem','trouble','not working','fix','broken'],
-   a:'<h4>Need Help?</h4><ul><li><a href="https://support.microsoft.com/" target="_blank">Microsoft Support &#8599;</a></li><li>Call <strong>(800) 642-7676</strong> Mon-Fri 6 AM - 6 PM PT</li><li>Use the phone icon in the header to call directly</li></ul><p>Or describe your issue and I\'ll do my best to help!</p>'}
+   a:'<p>I\'ll do my best to help. What are you having trouble with?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(50,\'install\',this.textContent)">Installation or setup</button><button class="choice-btn" onclick="guidedChoice(50,\'account\',this.textContent)">Account or billing</button><button class="choice-btn" onclick="guidedChoice(50,\'app\',this.textContent)">An app isn\'t working</button><button class="choice-btn" onclick="guidedChoice(50,\'other\',this.textContent)">Something else</button></div>'}
 ];
 var defaultReply = '<h4>How can I help?</h4><p>I can assist with Microsoft 365 plans, features, and getting started. Try asking about:</p><ul><li>Plan comparisons and pricing</li><li>Starting a free trial</li><li>Copilot AI features</li><li>Specific apps (Word, Excel, PowerPoint, etc.)</li><li>Student offers</li><li>Security with Defender</li></ul><p>What would you like to know?</p>';
 
@@ -1066,7 +1066,7 @@ function guidedChoice(step, value, label){
   var typing = addTyping(body);
   setTimeout(function(){
     typing.remove();
-    var reply = guidedReply(step, value);
+    var reply = guidedReply(step, value) || guidedReplyTrial(step, value) || guidedReplyCopilot(step, value) || guidedReplyHelp(step, value);
     addMsg(body, reply, 'mb');
     if(reply.indexOf('choice-btns') === -1){
       eMsgCount++;
@@ -1093,6 +1093,50 @@ function guidedReply(step, value){
       if(value==='value') return '<h4>Recommended: Family</h4><p><strong>Family ($129.99/yr)</strong> for up to 6 people &#8212; as little as $21.67 per person.</p><ul><li>Each person gets their own account</li><li>Up to 6 TB storage (1 TB each)</li><li>All desktop apps + Copilot</li><li>Microsoft Defender for everyone</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try" target="_blank">Try Family free</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365" target="_blank">Compare plans</a></div>';
       if(value==='ai') return '<h4>Recommended: Premium</h4><p><strong>Premium ($199.99/yr)</strong> &#8212; everything in Family plus the most Copilot AI.</p><ul><li>Up to 6 people</li><li>Extensive Copilot usage limits</li><li>Exclusive AI features</li><li>Extensive AI image creation</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try-premium" target="_blank">Try Premium free</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365" target="_blank">Compare plans</a></div>';
     }
+  }
+  return '';
+}
+/* Trial guided replies */
+function guidedReplyTrial(step, value){
+  if(step===10){
+    if(value==='personal') return '<h4>Try Personal Free</h4><p>Full access to desktop apps, 1 TB storage, and Copilot AI for 1 month.</p><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try-prs" target="_blank">Start Personal trial</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365" target="_blank">See all plans</a></div>';
+    if(value==='family') return '<h4>Try Family Free</h4><p>Everything in Personal for up to 6 people. Each person gets their own account and 1 TB storage.</p><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try" target="_blank">Start Family trial</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365" target="_blank">Compare plans</a></div>';
+    if(value==='premium') return '<h4>Try Premium Free</h4><p>The most feature-rich plan with extensive Copilot AI, exclusive features, and everything in Family.</p><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try-premium" target="_blank">Start Premium trial</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365" target="_blank">Compare plans</a></div>';
+    if(value==='unsure') return '<p>No problem! Here are all three options:</p><ul><li><strong>Personal ($99.99/yr)</strong> &#8212; 1 person, desktop apps, 1 TB, Copilot</li><li><strong>Family ($129.99/yr)</strong> &#8212; up to 6 people, up to 6 TB</li><li><strong>Premium ($199.99/yr)</strong> &#8212; everything + maximum AI</li></ul><p>All trials are free with full access. Which sounds closest?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(11,\'personal\',this.textContent)">Try Personal</button><button class="choice-btn" onclick="guidedChoice(11,\'family\',this.textContent)">Try Family</button><button class="choice-btn" onclick="guidedChoice(11,\'premium\',this.textContent)">Try Premium</button></div>';
+  }
+  if(step===11){
+    if(value==='personal') return '<div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try-prs" target="_blank">Start Personal trial</a></div>';
+    if(value==='family') return '<div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try" target="_blank">Start Family trial</a></div>';
+    if(value==='premium') return '<div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try-premium" target="_blank">Start Premium trial</a></div>';
+  }
+  return '';
+}
+/* Copilot guided replies */
+function guidedReplyCopilot(step, value){
+  if(step===30){
+    if(value==='writing') return '<h4>Copilot in Word</h4><p>Copilot helps you draft, rewrite, and refine documents in seconds.</p><ul><li>Generate a first draft from a prompt</li><li>Rewrite paragraphs for tone or clarity</li><li>Summarize long documents instantly</li></ul><p>Available in <strong>Personal</strong>, <strong>Family</strong>, and <strong>Premium</strong>. Premium has the highest usage limits.</p><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try-prs" target="_blank">Try it free</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/try-premium" target="_blank">Try Premium</a></div>';
+    if(value==='data') return '<h4>Copilot in Excel</h4><p>Turn raw data into insights without complex formulas.</p><ul><li>Analyze trends and patterns in plain English</li><li>Generate charts and summaries automatically</li><li>Create formulas by describing what you need</li></ul><p>Available in <strong>Personal</strong>, <strong>Family</strong>, and <strong>Premium</strong>.</p><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try-prs" target="_blank">Try it free</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/try-premium" target="_blank">Try Premium</a></div>';
+    if(value==='presenting') return '<h4>Copilot in PowerPoint</h4><p>Create polished presentations in minutes, not hours.</p><ul><li>Generate slides from a topic or outline</li><li>Design professional layouts automatically</li><li>Add speaker notes and talking points</li></ul><p>Available in <strong>Personal</strong>, <strong>Family</strong>, and <strong>Premium</strong>.</p><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try-prs" target="_blank">Try it free</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/try-premium" target="_blank">Try Premium</a></div>';
+    if(value==='general') return '<h4>Copilot Across Microsoft 365</h4><p>Copilot works across all your apps:</p><ul><li><strong>Word</strong> &#8212; Draft and rewrite documents</li><li><strong>Excel</strong> &#8212; Analyze data in plain English</li><li><strong>PowerPoint</strong> &#8212; Generate presentations</li><li><strong>Outlook</strong> &#8212; Summarize emails, draft replies</li><li><strong>Teams</strong> &#8212; Meeting summaries and action items</li></ul><p><strong>Premium ($199.99/yr)</strong> gets the highest AI usage limits and exclusive features.</p><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/try-premium" target="_blank">Try Premium free</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/buy/microsoft-365" target="_blank">See all plans</a></div>';
+  }
+  return '';
+}
+/* Troubleshoot guided replies */
+function guidedReplyHelp(step, value){
+  if(step===50){
+    if(value==='install') return '<h4>Installation &#38; Setup Help</h4><p>Here are the most common solutions:</p><ul><li>Sign in at <a href="https://www.microsoft.com/en-us/microsoft-365/setup" target="_blank">microsoft365.com/setup</a> to download apps</li><li>Make sure your subscription is active in your <a href="https://account.microsoft.com/services" target="_blank">account dashboard</a></li><li>Restart your device and try again</li></ul><p>Still stuck?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(51,\'agent\',this.textContent)">Talk to a person</button><button class="choice-btn" onclick="guidedChoice(51,\'call\',this.textContent)">Call support</button></div>';
+    if(value==='account') return '<h4>Account &#38; Billing</h4><p>You can manage most things from your account:</p><ul><li><a href="https://account.microsoft.com/services" target="_blank">View your subscriptions &#8599;</a></li><li><a href="https://account.microsoft.com/billing" target="_blank">Payment &#38; billing history &#8599;</a></li><li><a href="https://account.microsoft.com/" target="_blank">Update account details &#8599;</a></li></ul><p>Need more help?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(51,\'agent\',this.textContent)">Talk to a person</button><button class="choice-btn" onclick="guidedChoice(51,\'call\',this.textContent)">Call support</button></div>';
+    if(value==='app') return '<p>Which app is giving you trouble?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(51,\'word\',this.textContent)">Word</button><button class="choice-btn" onclick="guidedChoice(51,\'excel\',this.textContent)">Excel</button><button class="choice-btn" onclick="guidedChoice(51,\'outlook\',this.textContent)">Outlook</button><button class="choice-btn" onclick="guidedChoice(51,\'other_app\',this.textContent)">Other</button></div>';
+    if(value==='other') return '<p>No worries. Here are your best options:</p><ul><li><a href="https://support.microsoft.com/" target="_blank">Microsoft Support &#8599;</a></li><li>Call <strong>(800) 642-7676</strong> Mon&#8211;Fri 6 AM &#8211; 6 PM PT</li></ul><p>Or describe your issue below and I\'ll try to help.</p>';
+  }
+  if(step===51){
+    if(value==='agent') return '<h4>Connecting you with support</h4><p>A specialist can help with your specific issue.</p><div class="inline-act"><a href="https://support.microsoft.com/contactus" target="_blank">Contact support</a></div>';
+    if(value==='call') return '<p>Call us at <strong>(800) 642-7676</strong></p><p>Mon&#8211;Fri, 6 AM &#8211; 6 PM PT. Average wait under 2 minutes.</p>';
+    if(value==='word'||value==='excel'||value==='outlook'||value==='other_app') return '<p>Common fixes for most app issues:</p><ul><li>Make sure the app is updated to the latest version</li><li>Try restarting the app</li><li>Sign out and sign back in</li><li>Repair your installation: Settings &#8594; Apps &#8594; Microsoft 365 &#8594; Modify &#8594; Repair</li></ul><p>Still not working?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(52,\'agent\',this.textContent)">Talk to a person</button><button class="choice-btn" onclick="guidedChoice(52,\'call\',this.textContent)">Call support</button></div>';
+  }
+  if(step===52){
+    if(value==='agent') return '<div class="inline-act"><a href="https://support.microsoft.com/contactus" target="_blank">Contact support</a></div>';
+    if(value==='call') return '<p>Call us at <strong>(800) 642-7676</strong></p><p>Mon&#8211;Fri, 6 AM &#8211; 6 PM PT.</p>';
   }
   return '';
 }
