@@ -361,6 +361,10 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .q-form label .req{color:#d13438}
 .q-form input{padding:8px 10px;border:1px solid #d1d1d1;border-radius:6px;font-family:inherit;font-size:13px;outline:none;transition:border-color .15s}
 .q-form input:focus{border-color:#0F6CBD}
+.q-email-locked{display:flex;align-items:center;gap:8px;padding:8px 10px;background:#f5f5f5;border:1px solid #e0e0e0;border-radius:6px;font-size:13px;color:#242424}
+.q-email-locked .q-email-val{flex:1}
+.q-email-locked .q-email-change{color:#0F6CBD;font-size:12px;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap}
+.q-email-locked .q-email-change:hover{text-decoration:underline}
 
 /* FAQ link (between greeting and prompts) */
 .faq-sub{font-size:10.5px;color:#999;display:inline-flex;align-items:center;gap:4px;margin-top:4px;margin-bottom:6px}
@@ -1365,16 +1369,20 @@ function guidedReplyQuote(step, value){
     return html;
   }
   if(step===44){
-    /* If email was already captured via the transcript prompt, pre-fill and acknowledge */
     var prefillEmail = quoteState.capturedEmail || '';
-    var prefillNote = prefillEmail ? '<p style="font-size:12px;color:#107c10">We already have your email from the transcript request &#8212; we\'ll use it below.</p>' : '';
-    var html = prefillNote + '<p>I will need your first name and email address in order to send the email with your quote ID and next steps.</p>';
+    var html = '<p>I will need your first name and email address in order to send the email with your quote ID and next steps.</p>';
     html += '<p style="font-size:11px;color:#616161">The name and email provided here will be used to provide you the quote. Also, a Microsoft Sales representative may contact you to discuss the quote, and a copy of chat transcript will be provided to them. This quote capability only applies to US Market. <a href="https://privacy.microsoft.com/en-us/privacystatement" target="_blank">Microsoft Privacy Statement</a></p>';
     html += '<div class="q-form" id="qForm">';
     html += '<label>First Name <span class="req">*</span></label>';
     html += '<input type="text" id="qName" placeholder="John">';
-    html += '<label>Email <span class="req">*</span></label>';
-    html += '<input type="email" id="qEmail" placeholder="john.doe@example.com" value="'+prefillEmail+'">';
+    if(prefillEmail){
+      html += '<label>Email <span class="req">*</span></label>';
+      html += '<div class="q-email-locked" id="qEmailLocked"><span class="q-email-val">' + prefillEmail.replace(/</g,'&lt;') + '</span> <a class="q-email-change" onclick="document.getElementById(\'qEmailLocked\').style.display=\'none\';document.getElementById(\'qEmailEdit\').style.display=\'block\';document.getElementById(\'qEmail\').focus();">Change</a></div>';
+      html += '<div id="qEmailEdit" style="display:none"><input type="email" id="qEmail" placeholder="john.doe@example.com" value="'+prefillEmail+'"></div>';
+    } else {
+      html += '<label>Email <span class="req">*</span></label>';
+      html += '<input type="email" id="qEmail" placeholder="john.doe@example.com">';
+    }
     html += '</div>';
     html += '<div class="q-actions" style="margin-top:10px"><button class="q-btn-primary" onclick="submitQuoteEmail()">Submit</button><button class="q-btn-secondary" onclick="guidedChoice(43,\''+quoteState.qty+'\',\''+quoteState.qty+' users\')">Change previous info</button></div>';
     return html;
@@ -1409,7 +1417,14 @@ function submitQuotePlan(){
 
 function submitQuoteEmail(){
   var name = document.getElementById('qName').value.trim();
-  var email = document.getElementById('qEmail').value.trim();
+  var emailEl = document.getElementById('qEmail');
+  var lockedEl = document.getElementById('qEmailLocked');
+  var email = '';
+  if(lockedEl && lockedEl.style.display !== 'none'){
+    email = lockedEl.querySelector('.q-email-val').textContent.trim();
+  } else if(emailEl){
+    email = emailEl.value.trim();
+  }
   if(!name || !email){ alert('Please fill in all required fields.'); return; }
   var body = document.getElementById('bodyE');
   addMsg(body, name + ' / ' + email, 'mu');
