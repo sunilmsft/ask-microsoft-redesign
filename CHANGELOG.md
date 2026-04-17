@@ -25,6 +25,7 @@ A quick overview of how the prototype evolved. Scroll down for the detailed chan
 | **v6-baseline** | `v6-baseline` | Apr 17 | Baseline snapshot before layout refinements |
 | **v7** | `v7` | Apr 17 | Layout and compliance refinement — reduce bottom clutter, preserve compliance |
 | **v7.2** | `v7.2` | Apr 17 | Bottom area declutter — focused input, email moved to inline, data usage below input |
+| **v7.3** | `v7.3` | Apr 17 | Fixed Proactive vs Passive toggle regression — modes now behave correctly |
 
 ---
 
@@ -137,6 +138,19 @@ A quick overview of how the prototype evolved. Scroll down for the detailed chan
 
 ---
 
+### v7.3 — Fix Proactive vs Passive Toggle (Apr 17)
+*Tag: `v7.3`*
+
+| Area | What changed | Why |
+|------|-------------|-----|
+| Toggle reset | Switching modes now resets the chat to a clean state | Previously, old turns/state persisted so the new mode couldn’t demonstrate its behavior |
+| Passive trigger | Changed from `eTotalTurns === 1` to `eTotalTurns >= 1` with dedup guard | Old check only fired on the very first turn — switching mid-conversation meant passive never triggered |
+| State cleanup | `setEmailMode` now resets `eTotalTurns`, `eMsgCount`, `handoffDismissed`, `handoffGateShown`, `guidedAnswers`, and `emailCaptureShown` | All email and handoff state must be fresh for the mode switch to take effect |
+| Dead code | Removed `saveBtn` reference from `resetChat` | Button was removed in v7.2 but reference lingered |
+| Mode behavior | **Proactive**: email card appears after handoff is dismissed + next exchange. **Passive**: email card appears inline after the first bot response. | Two clearly distinct experiences that stakeholders can toggle and compare |
+
+---
+
 ### v6-baseline — Pre-Refinement Snapshot (Apr 17)
 *Tag: `v6-baseline` · Commit: `60fc864`*
 
@@ -161,6 +175,7 @@ git checkout v6-baseline -- index.html
 | `v6-baseline` | `60fc864` | Pre-refinement snapshot — safe revert point |
 | `v7` | `3a37a3b` | Layout and compliance refinement |
 | `v7.2` | `4a38937` | Bottom area declutter |
+| `v7.3` | *(pending)* | Fix Proactive vs Passive toggle |
 
 ---
 

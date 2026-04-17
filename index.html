@@ -811,7 +811,7 @@ function sendMsg(input, variant){
         addContextChips(body, topic);
       }
       if(handoffDismissed) addProactiveEmailCapture(body);
-      if(emailMode === 'passive' && eTotalTurns === 1) addPassiveEmailCapture(body);
+      if(emailMode === 'passive' && eTotalTurns >= 1 && !emailCaptureShown) addPassiveEmailCapture(body);
     } else {
       addMsg(body, reply, 'mb');
     }
@@ -847,7 +847,7 @@ function resetChat(btn){
   var v = id.replace('body','');
   if(initHTML[v]) body.innerHTML = initHTML[v];
   body.scrollTop = body.scrollHeight;
-  if(v === 'E'){ eMsgCount = 0; eTotalTurns = 0; handoffDismissed = false; handoffGateShown = false; guidedAnswers = {}; emailCaptureShown = false; var sb = document.getElementById('saveBtn'); if(sb) sb.classList.remove('saved'); }
+  if(v === 'E'){ eMsgCount = 0; eTotalTurns = 0; handoffDismissed = false; handoffGateShown = false; guidedAnswers = {}; emailCaptureShown = false; }
 }
 
 /* ========== AI-NATIVE VARIANT (E) FEATURES ========== */
@@ -916,10 +916,11 @@ function setEmailMode(mode){
   } else {
     detail.innerHTML = '<strong>Passive:</strong> An inline &#8220;Email me a copy&#8221; card appears after the first bot response. Customer taps it whenever ready &#8212; or ignores it. Zero system prompts.';
   }
-  /* Reset chat to show mode change */
+  /* Reset chat so user sees fresh behavior for the selected mode */
   var body = document.getElementById('bodyE');
-  var existingCards = body.querySelectorAll('.email-capture-card, .email-sent-confirm');
-  existingCards.forEach(function(c){ c.remove(); });
+  if(initHTML['E']) body.innerHTML = initHTML['E'];
+  eMsgCount = 0; eTotalTurns = 0; handoffDismissed = false; handoffGateShown = false; guidedAnswers = {};
+  body.scrollTop = body.scrollHeight;
 }
 
 function showEmailCapture(){
@@ -1092,7 +1093,7 @@ function guidedChoice(step, value, label){
       addContextChips(body, detectTopic(label));
     }
     if(handoffDismissed) addProactiveEmailCapture(body);
-    if(emailMode === 'passive' && eTotalTurns === 1) addPassiveEmailCapture(body);
+    if(emailMode === 'passive' && eTotalTurns >= 1 && !emailCaptureShown) addPassiveEmailCapture(body);
     body.scrollTop = body.scrollHeight;
   }, 600 + Math.random()*400);
 }
