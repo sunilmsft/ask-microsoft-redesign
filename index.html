@@ -558,7 +558,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
         <button class="snd" onclick="sendMsg(this.closest('.cw-input').querySelector('input'),'E')"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="#0F6CBD"><path d="M2.72 2.05a.5.5 0 01.53-.05l15 8a.5.5 0 010 .88l-15 8.01a.5.5 0 01-.72-.48V11.5a.5.5 0 01.4-.49L9.5 10l-6.57-1.01a.5.5 0 01-.4-.49V2.5a.5.5 0 01.2-.45z"/></svg></button>
       </div>
       <div class="compliance-foot">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out';this.parentElement.style.color='#a4262c';return false">Opt out</a></div>
-      <button class="save-btn" id="saveBtn" onclick="showEmailCapture()"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="currentColor"><path d="M2 5.5A2.5 2.5 0 014.5 3h11A2.5 2.5 0 0118 5.5v9a2.5 2.5 0 01-2.5 2.5h-11A2.5 2.5 0 012 14.5v-9zm2.02.87l5.44 3.27a.5.5 0 00.52 0L15.4 6.4A1.5 1.5 0 0015.5 4h-11c-.56 0-1.05.31-1.31.76l.83.61z"/></svg> Email me a copy</button>
+      <button class="save-btn" id="saveBtn" onclick="showEmailCapture()"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="currentColor"><path d="M2 5.5A2.5 2.5 0 014.5 3h11A2.5 2.5 0 0118 5.5v9a2.5 2.5 0 01-2.5 2.5h-11A2.5 2.5 0 012 14.5v-9zm2.02.87l5.44 3.27a.5.5 0 00.52 0L15.4 6.4A1.5 1.5 0 0015.5 4h-11c-.56 0-1.05.31-1.31.76l.83.61z"/></svg> Email this chat</button>
     </div>
   </div>
 
@@ -978,7 +978,7 @@ function setEmailMode(mode){
   if(mode==='proactive'){
     detail.innerHTML = '<strong>Proactive:</strong> The email capture card appears automatically when either: (1) the handoff gate is dismissed, or (2) the conversation reaches 4+ turns. Customer enters email or ignores it.<br><br><strong>How to trigger it:</strong> Either type &#8220;pricing&#8221;/&#8220;enterprise&#8221; and dismiss the gate, or just keep chatting &#8212; it appears after the 4th exchange.';
   } else {
-    detail.innerHTML = '<strong>Passive:</strong> A persistent &#8220;Email me a copy&#8221; button appears in the footer after the first exchange. Customer taps it whenever ready &#8212; or not at all. Zero system prompts.<br><br><strong>How to trigger it:</strong> Send any message. The &#8220;Email me a copy&#8221; button appears in the footer after the first response.';
+    detail.innerHTML = '<strong>Passive:</strong> A persistent &#8220;Email this chat&#8221; button appears in the footer after the first exchange. Customer taps it whenever ready &#8212; or not at all. Zero system prompts.<br><br><strong>How to trigger it:</strong> Send any message. The &#8220;Email this chat&#8221; button appears in the footer after the first response.';
   }
   /* Show/hide the always-on save button based on mode */
   var saveBtn = document.getElementById('saveBtn');
@@ -999,7 +999,7 @@ function showEmailCapture(){
   card.style.opacity = '0';
   card.style.transform = 'translateY(6px)';
   card.style.transition = 'opacity .3s ease, transform .3s ease';
-  card.innerHTML = '<div class="ecc-head"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20" fill="#0F6CBD"><path d="M2 5.5A2.5 2.5 0 014.5 3h11A2.5 2.5 0 0118 5.5v9a2.5 2.5 0 01-2.5 2.5h-11A2.5 2.5 0 012 14.5v-9zm2.02.87l5.44 3.27a.5.5 0 00.52 0L15.4 6.4A1.5 1.5 0 0015.5 4h-11c-.56 0-1.05.31-1.31.76l.83.61z"/></svg> Want a copy of this conversation?</div><div class="ecc-sub">We\'ll email you a summary you can reference later.</div><div class="ecc-input-row"><input class="ecc-input" type="email" placeholder="you@email.com" onkeydown="if(event.key===\'Enter\')sendTranscript(this)"><button class="ecc-send" onclick="sendTranscript(this.previousElementSibling)">Send summary</button></div><div class="ecc-skip" onclick="skipEmailCapture(this)">No thanks, keep chatting</div>';
+  card.innerHTML = '<div class="ecc-head"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20" fill="#0F6CBD"><path d="M2 5.5A2.5 2.5 0 014.5 3h11A2.5 2.5 0 0118 5.5v9a2.5 2.5 0 01-2.5 2.5h-11A2.5 2.5 0 012 14.5v-9zm2.02.87l5.44 3.27a.5.5 0 00.52 0L15.4 6.4A1.5 1.5 0 0015.5 4h-11c-.56 0-1.05.31-1.31.76l.83.61z"/></svg> Want this conversation emailed to you?</div><div class="ecc-sub">We\'ll send a copy of this chat to your inbox.</div><div class="ecc-input-row"><input class="ecc-input" type="email" placeholder="you@email.com" onkeydown="if(event.key===\'Enter\')sendTranscript(this)"><button class="ecc-send" onclick="sendTranscript(this.previousElementSibling)">Send</button></div><div class="ecc-skip" onclick="skipEmailCapture(this)">No thanks, keep chatting</div>';
   body.appendChild(card);
   body.scrollTop = body.scrollHeight;
   requestAnimationFrame(function(){ card.style.opacity = '1'; card.style.transform = 'translateY(0)'; });
@@ -1013,7 +1013,7 @@ function sendTranscript(input){
   var card = input.closest('.email-capture-card');
   var confirm = document.createElement('div');
   confirm.className = 'email-sent-confirm';
-  confirm.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20" fill="#107c10"><path d="M10 2a8 8 0 110 16 8 8 0 010-16zm3.36 5.65a.5.5 0 00-.72 0L9 11.29 7.36 9.65a.5.5 0 00-.72.7l2 2a.5.5 0 00.72 0l4-4a.5.5 0 000-.7z"/></svg> Summary sent to ' + email.replace(/</g,'&lt;');
+  confirm.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20" fill="#107c10"><path d="M10 2a8 8 0 110 16 8 8 0 010-16zm3.36 5.65a.5.5 0 00-.72 0L9 11.29 7.36 9.65a.5.5 0 00-.72.7l2 2a.5.5 0 00.72 0l4-4a.5.5 0 000-.7z"/></svg> Chat emailed to ' + email.replace(/</g,'&lt;');
   card.parentNode.insertBefore(confirm, card.nextSibling);
   card.remove();
   var body = document.getElementById('bodyE');
@@ -1378,8 +1378,8 @@ function submitQuoteEmail(){
   setTimeout(function(){
     typing.remove();
     var html = '<div class="email-sent-confirm"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#107c10"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Quote sent! Check your inbox for your quote ID and next steps.</div>';
-    html += '<p style="margin-top:8px">Would you also like a copy of this full chat transcript emailed to <strong>' + email.replace(/</g,'&lt;') + '</strong>?</p>';
-    html += '<div class="q-actions"><button class="q-btn-primary" onclick="sendTranscriptFromQuote(this,\''+email.replace(/'/g,"\\'")+'\')"  >Yes, send transcript too</button><button class="q-btn-secondary" onclick="this.closest(\'.q-actions\').innerHTML=\'<span style=color:#616161;font-size:12px>No problem. You can always ask later.</span>\'">No thanks</button></div>';
+    html += '<p style="margin-top:8px">Would you also like this chat emailed to <strong>' + email.replace(/</g,'&lt;') + '</strong>?</p>';
+    html += '<div class="q-actions"><button class="q-btn-primary" onclick="sendTranscriptFromQuote(this,\''+email.replace(/'/g,"\\'")+'\')"  >Yes, email this chat</button><button class="q-btn-secondary" onclick="this.closest(\'.q-actions\').innerHTML=\'<span style=color:#616161;font-size:12px>No problem. You can always ask later.</span>\'">No thanks</button></div>';
     addMsg(body, html, 'mb');
     eTotalTurns++;
     body.scrollTop = body.scrollHeight;
@@ -1388,7 +1388,7 @@ function submitQuoteEmail(){
 
 function sendTranscriptFromQuote(btn, email){
   var actions = btn.closest('.q-actions');
-  actions.innerHTML = '<div class="email-sent-confirm" style="margin:0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20" fill="#107c10"><path d="M10 2a8 8 0 110 16 8 8 0 010-16zm3.36 5.65a.5.5 0 00-.72 0L9 11.29 7.36 9.65a.5.5 0 00-.72.7l2 2a.5.5 0 00.72 0l4-4a.5.5 0 000-.7z"/></svg> Transcript sent to ' + email.replace(/</g,'&lt;') + '</div>';
+  actions.innerHTML = '<div class="email-sent-confirm" style="margin:0"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20" fill="#107c10"><path d="M10 2a8 8 0 110 16 8 8 0 010-16zm3.36 5.65a.5.5 0 00-.72 0L9 11.29 7.36 9.65a.5.5 0 00-.72.7l2 2a.5.5 0 00.72 0l4-4a.5.5 0 000-.7z"/></svg> Chat emailed to ' + email.replace(/</g,'&lt;') + '</div>';
   var body = document.getElementById('bodyE');
   body.scrollTop = body.scrollHeight;
 }
