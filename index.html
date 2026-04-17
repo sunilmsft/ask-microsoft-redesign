@@ -267,15 +267,14 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .choice-btn:active{background:#eef4fb}
 .choice-btns.answered{opacity:.45;pointer-events:none}
 
-.handoff-bar{display:flex;flex-direction:column;gap:8px;padding:10px 12px;background:linear-gradient(135deg,#f8fbff,#fff);border:1px solid #BFD4EA;border-radius:8px;margin-top:6px;animation:fu .2s ease}
-.handoff-bar .ho-text{font-size:12px;color:#444;line-height:1.4}
-.handoff-bar .ho-text strong{color:#0F6CBD}
-.handoff-bar .ho-actions{display:flex;gap:6px}
+.handoff-bar{display:flex;flex-direction:column;gap:6px;padding:9px 12px;background:#fafafa;border:1px solid #e8e8e8;border-radius:8px;margin-top:6px;animation:fu .2s ease}
+.handoff-bar .ho-text{font-size:11.5px;color:#888;line-height:1.4}
+.handoff-bar .ho-actions{display:flex;gap:6px;align-items:center}
 .ho-btn{font-family:inherit;font-size:12px;font-weight:600;padding:6px 12px;border-radius:6px;cursor:pointer;transition:all .12s;white-space:nowrap}
 .ho-btn-primary{background:#0F6CBD;color:#fff;border:1px solid #0F6CBD}
 .ho-btn-primary:hover{background:#115EA3}
-.ho-btn-secondary{background:#fff;color:#616161;border:1px solid #d1d1d1}
-.ho-btn-secondary:hover{background:#f5f5f5;color:#242424}
+.ho-btn-secondary{background:none;color:#888;border:none;font-weight:500;font-size:11.5px;padding:6px 4px;text-decoration:underline;text-underline-offset:2px}
+.ho-btn-secondary:hover{color:#0F6CBD}
 
 .inline-act{display:flex;gap:6px;margin-top:8px;padding-top:8px;border-top:1px solid #f0f0f0}
 .inline-act a{display:inline-flex;align-items:center;gap:4px;padding:5px 12px;background:#0F6CBD;color:#fff;border-radius:4px;text-decoration:none;font-size:12px;font-weight:600;transition:all .12s}
@@ -949,7 +948,7 @@ function addHandoffBar(body){
     div.style.opacity = '0';
     div.style.transform = 'translateY(6px)';
     div.style.transition = 'opacity .3s ease, transform .3s ease';
-    div.innerHTML = '<div class="ho-text"><strong>Want to talk to someone?</strong> A sales specialist can pick up right where we left off.</div><div class="ho-actions"><button class="ho-btn ho-btn-secondary" onclick="this.closest(\'.handoff-bar\').remove()">Continue with AI</button><button class="ho-btn ho-btn-primary" onclick="handoffAccepted()">Talk to a person</button></div>';
+    div.innerHTML = '<div class="ho-text">I can keep helping, or connect you with a specialist if you\'d prefer.</div><div class="ho-actions"><button class="ho-btn ho-btn-primary" onclick="this.closest(\'.handoff-bar\').remove()">Keep exploring with AI</button><button class="ho-btn ho-btn-secondary" onclick="handoffAccepted()">Talk to a person</button></div>';
     body.appendChild(div);
     body.scrollTop = body.scrollHeight;
     requestAnimationFrame(function(){ div.style.opacity = '1'; div.style.transform = 'translateY(0)'; });
