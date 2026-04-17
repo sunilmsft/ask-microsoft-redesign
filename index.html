@@ -318,8 +318,8 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .email-capture-card .ecc-send{padding:6px 12px;background:#0F6CBD;color:#fff;border:none;border-radius:6px;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap}
 .email-capture-card .ecc-send:hover{background:#115EA3}
 .email-capture-card .ecc-saved{display:none;margin-top:4px;font-size:11px;color:#107c10;font-weight:600}
-.email-capture-card .ecc-hint{font-size:10px;color:#999;margin-top:3px;padding-right:14px}
-.email-capture-card .ecc-hint kbd{background:#f0f0f0;border:1px solid #ddd;border-radius:3px;padding:0 4px;font-family:inherit;font-size:10px;color:#666}
+.email-capture-card .ecc-hint{font-size:11px;color:#888;margin-top:4px;padding-right:14px}
+.email-capture-card .ecc-hint kbd{background:#eef3f8;border:1px solid #d0dbe6;border-radius:3px;padding:1px 5px;font-family:inherit;font-size:10.5px;color:#0F6CBD}
 .email-capture-card.saved .ecc-nudge{display:none}
 .email-capture-card.saved .ecc-hint{display:none}
 .email-capture-card.saved .ecc-dismiss{display:none}
@@ -1020,7 +1020,7 @@ function showEmailCapture(force){
   card.style.opacity = '0';
   card.style.transform = 'translateY(6px)';
   card.style.transition = 'opacity .3s ease, transform .3s ease';
-  card.innerHTML = '<span class="ecc-dismiss" onclick="dismissEmailNudge(this)">&#10005;</span><div class="ecc-nudge">Want this chat emailed when you\'re done? <a onclick="expandEmailCapture(this)">Add email</a></div><div class="ecc-hint">Or type <kbd>email this chat</kbd> anytime</div><div class="ecc-expand"><input class="ecc-input" type="email" placeholder="you@email.com" onkeydown="if(event.key===\'Enter\')saveEmailForLater(this)"><button class="ecc-send" onclick="saveEmailForLater(this.previousElementSibling)">Save</button></div><div class="ecc-saved">&#10003; Saved &#8212; we\'ll email this chat when you\'re done.</div>';
+  card.innerHTML = '<span class="ecc-dismiss" onclick="dismissEmailNudge(this)">&#10005;</span><div class="ecc-nudge">Want this chat emailed when you\'re done? <a onclick="expandEmailCapture(this)">Add email</a></div><div class="ecc-hint">You can always click <kbd>Email this chat</kbd> below or type it anytime</div><div class="ecc-expand"><input class="ecc-input" type="email" placeholder="you@email.com" onkeydown="if(event.key===\'Enter\')saveEmailForLater(this)"><button class="ecc-send" onclick="saveEmailForLater(this.previousElementSibling)">Save</button></div><div class="ecc-saved">&#10003; Saved &#8212; we\'ll email this chat when you\'re done.</div>';
   body.appendChild(card);
   body.scrollTop = body.scrollHeight;
   requestAnimationFrame(function(){ card.style.opacity = '1'; card.style.transform = 'translateY(0)'; });
