@@ -571,7 +571,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
         <button class="snd" onclick="sendMsg(this.closest('.cw-input').querySelector('input'),'E')"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="#0F6CBD"><path d="M2.72 2.05a.5.5 0 01.53-.05l15 8a.5.5 0 010 .88l-15 8.01a.5.5 0 01-.72-.48V11.5a.5.5 0 01.4-.49L9.5 10l-6.57-1.01a.5.5 0 01-.4-.49V2.5a.5.5 0 01.2-.45z"/></svg></button>
       </div>
       <div class="compliance-foot">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out';this.parentElement.style.color='#a4262c';return false">Opt out</a></div>
-      <button class="save-btn" id="saveBtn" onclick="showEmailCapture()"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="currentColor"><path d="M2 5.5A2.5 2.5 0 014.5 3h11A2.5 2.5 0 0118 5.5v9a2.5 2.5 0 01-2.5 2.5h-11A2.5 2.5 0 012 14.5v-9zm2.02.87l5.44 3.27a.5.5 0 00.52 0L15.4 6.4A1.5 1.5 0 0015.5 4h-11c-.56 0-1.05.31-1.31.76l.83.61z"/></svg> Email this chat</button>
+      <button class="save-btn" id="saveBtn" onclick="showEmailCapture(true)"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="currentColor"><path d="M2 5.5A2.5 2.5 0 014.5 3h11A2.5 2.5 0 0118 5.5v9a2.5 2.5 0 01-2.5 2.5h-11A2.5 2.5 0 012 14.5v-9zm2.02.87l5.44 3.27a.5.5 0 00.52 0L15.4 6.4A1.5 1.5 0 0015.5 4h-11c-.56 0-1.05.31-1.31.76l.83.61z"/></svg> Email this chat</button>
     </div>
   </div>
 
@@ -863,8 +863,7 @@ function sendMsg(input, variant){
       }
       /* Handle "email this chat" command */
       if(text.toLowerCase().match(/email (this |my |the )?chat|email (this |my |the )?conversation|send (this |my |the )?chat/)){
-        if(!emailCaptureShown){ showEmailCapture(); }
-        else { addMsg(body, '<p>You can enter your email in the prompt above, or it\'s already saved &#8212; we\'ll send this chat when you\'re done.</p>', 'mb'); }
+        showEmailCapture(true);
         return;
       }
       /* Check if free-text has handoff intent and gate hasn't been shown */
@@ -1009,10 +1008,13 @@ function setEmailMode(mode){
   body.scrollTop = body.scrollHeight;
 }
 
-function showEmailCapture(){
-  if(emailCaptureShown) return;
+function showEmailCapture(force){
+  if(!force && emailCaptureShown) return;
   emailCaptureShown = true;
   var body = document.getElementById('bodyE');
+  /* Remove any existing nudge card to avoid duplicates */
+  var existing = body.querySelector('.email-capture-card');
+  if(existing) existing.remove();
   var card = document.createElement('div');
   card.className = 'email-capture-card';
   card.style.opacity = '0';
