@@ -236,19 +236,16 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .enh .task-card .tc-label{font-size:11.5px;font-weight:600;color:#333}
 .enh .task-card .tc-sub{display:none}
 
-/* Guided entry variant */
-.guided .gd-hero{display:flex;align-items:center;gap:10px;padding:12px 13px;background:linear-gradient(135deg,#EBF3FC 0%,#f8fbff 100%);border:1px solid #b8d4ea;border-radius:10px;cursor:pointer;transition:all .15s;margin-bottom:6px}
-.guided .gd-hero:hover{border-color:#0F6CBD;box-shadow:0 2px 10px rgba(15,108,189,.14);background:linear-gradient(135deg,#e0edfa 0%,#f0f7ff 100%)}
-.guided .gd-hero:active{transform:scale(.99)}
-.guided .gd-hero-icon{width:34px;height:34px;border-radius:8px;background:#0F6CBD;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.guided .gd-hero-icon svg{width:18px;height:18px}
-.guided .gd-hero-text{flex:1}
-.guided .gd-hero-title{font-size:13.5px;font-weight:700;color:#0F6CBD;line-height:1.2}
-.guided .gd-hero-desc{font-size:11px;color:#616161;margin-top:2px;line-height:1.3}
-.guided .gd-pills{display:flex;flex-wrap:wrap;gap:4px}
-.guided .gd-pill{padding:5px 10px;background:#fff;border:1px solid #d1d1d1;border-radius:14px;font-size:11px;font-weight:500;color:#444;cursor:pointer;transition:all .12s;white-space:nowrap}
-.guided .gd-pill:hover{border-color:#0F6CBD;color:#0F6CBD;background:#f8fbff}
-.guided .gd-pill:active{background:#eef4fb}
+/* Guided entry variant — same grid, styling-only hierarchy */
+.guided .task-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.guided .task-card{padding:8px 11px;background:#fff;border:1px solid #d1d1d1;border-radius:8px;cursor:pointer;transition:all .15s;line-height:1.35}
+.guided .task-card:hover{border-color:#0F6CBD;background:#f8fbff;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.guided .task-card:active{background:#eef4fb}
+.guided .task-card .tc-label{font-size:12px;font-weight:600;color:#242424}
+.guided .task-card .tc-sub{display:none}
+.guided .task-card.primary{background:#f5f9ff;border-color:#b8d4ea}
+.guided .task-card.primary .tc-label{color:#0F6CBD}
+.guided .task-card.primary:hover{border-color:#0F6CBD;background:#eef4fb;box-shadow:0 1px 6px rgba(15,108,189,.1)}
 
 .prompt-tog{display:inline-flex;align-items:center;gap:0;background:#f0f0f0;border-radius:5px;padding:2px;margin-left:8px;vertical-align:middle}
 .prompt-tog button{padding:3px 8px;border:none;background:none;font-family:inherit;font-size:10px;font-weight:600;color:#888;border-radius:4px;cursor:pointer;transition:all .12s;letter-spacing:.2px}
@@ -556,20 +553,26 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
         </div>
         <!-- GUIDED ENTRY VARIANT -->
         <div class="ai-welcome guided" id="promptGuided">
-          <div class="ai-welcome-text">Hi, I'm an AI assistant. <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button class="active" onclick="togPrompt('guide')">v3</button></span></div>
-          <div class="gd-hero" onclick="taskSendE('Help me compare Microsoft 365 plans and find the right one')">
-            <div class="gd-hero-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
-            <div class="gd-hero-text">
-              <div class="gd-hero-title">Compare plans &#38; pricing</div>
-              <div class="gd-hero-desc">I'll help you find the right Microsoft 365 plan</div>
+          <div class="ai-welcome-text">Hi, I'm an AI assistant. What can I help you with? <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button class="active" onclick="togPrompt('guide')">v3</button></span></div>
+          <div class="task-grid">
+            <div class="task-card primary" onclick="taskSendE('Help me compare Microsoft 365 plans and pick the right one')">
+              <div class="tc-label">Compare plans &#38; pricing</div>
             </div>
-          </div>
-          <div class="gd-pills">
-            <span class="gd-pill" onclick="taskSendE('I want to start a free trial')">Try free</span>
-            <span class="gd-pill" onclick="taskSendE('What can Copilot AI do for me?')">Copilot AI</span>
-            <span class="gd-pill" onclick="taskSendE('I need help fixing an issue')">Get help</span>
-            <span class="gd-pill" onclick="taskSendE('Show me student and education offers')">Students</span>
-            <span class="gd-pill" onclick="taskSendE('Help me set up Outlook email')">Outlook setup</span>
+            <div class="task-card" onclick="taskSendE('I want to try Microsoft 365 free')">
+              <div class="tc-label">Start a free trial</div>
+            </div>
+            <div class="task-card" onclick="taskSendE('What can Copilot AI do for me?')">
+              <div class="tc-label">What does Copilot do?</div>
+            </div>
+            <div class="task-card" onclick="taskSendE('I need help fixing an issue')">
+              <div class="tc-label">Troubleshoot an issue</div>
+            </div>
+            <div class="task-card" onclick="taskSendE('Show me student and education offers')">
+              <div class="tc-label">Student discounts</div>
+            </div>
+            <div class="task-card" onclick="taskSendE('Help me set up Outlook email')">
+              <div class="tc-label">Set up Outlook</div>
+            </div>
           </div>
         </div>
         <div class="tr-note" style="margin-top:8px"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#999"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> <a href="#">Transparency FAQ &#8599;</a></div>
