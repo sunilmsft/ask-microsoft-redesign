@@ -1319,7 +1319,8 @@ var quoteState = {};
 
 function guidedReplyQuote(step, value){
   if(step===40){
-    quoteState = {billing: value};
+    var savedEmail = quoteState.capturedEmail || '';
+    quoteState = {billing: value, capturedEmail: savedEmail};
     return '<p>Microsoft 365 Business plans are available with or without Teams. Would you like your plan to include Microsoft Teams?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(41,\'teams\',this.textContent)">Yes, include Teams</button><button class="choice-btn" onclick="guidedChoice(41,\'noteams\',this.textContent)">No Teams</button></div>';
   }
   if(step===41){
