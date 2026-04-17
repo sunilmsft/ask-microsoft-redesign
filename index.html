@@ -305,17 +305,23 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .email-mode-detail{margin-top:8px;font-size:12px;color:#616161;line-height:1.45;padding:8px 10px;background:#f8fbff;border-radius:6px;border-left:3px solid #0F6CBD}
 
 /* Email capture card — inline in chat */
-.email-capture-card{display:flex;flex-direction:column;gap:8px;padding:12px;background:linear-gradient(135deg,#f8fbff,#fff);border:1px solid #BFD4EA;border-radius:8px;margin-top:6px;animation:fu .2s ease}
-.email-capture-card .ecc-head{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#0F6CBD}
-.email-capture-card .ecc-head svg{flex-shrink:0}
-.email-capture-card .ecc-sub{font-size:11px;color:#666;line-height:1.4}
-.email-capture-card .ecc-input-row{display:flex;gap:6px}
+.email-capture-card{display:flex;flex-direction:column;gap:0;padding:8px 12px;background:#f8f9fa;border:1px solid #e0e0e0;border-radius:8px;margin-top:6px;animation:fu .2s ease}
+.email-capture-card .ecc-nudge{display:flex;align-items:center;gap:6px;font-size:11.5px;color:#616161;line-height:1.4}
+.email-capture-card .ecc-nudge svg{flex-shrink:0;opacity:.6}
+.email-capture-card .ecc-nudge a{color:#0F6CBD;font-weight:600;cursor:pointer;text-decoration:none}
+.email-capture-card .ecc-nudge a:hover{text-decoration:underline}
+.email-capture-card .ecc-hint{font-size:10.5px;color:#999;margin-top:4px}
+.email-capture-card .ecc-expand{display:none;margin-top:8px}
+.email-capture-card.expanded .ecc-expand{display:flex;gap:6px}
 .email-capture-card .ecc-input{flex:1;padding:6px 10px;border:1px solid #d1d1d1;border-radius:6px;font-family:inherit;font-size:12px;outline:none;transition:border-color .15s}
 .email-capture-card .ecc-input:focus{border-color:#0F6CBD}
 .email-capture-card .ecc-send{padding:6px 12px;background:#0F6CBD;color:#fff;border:none;border-radius:6px;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:background .12s;white-space:nowrap}
 .email-capture-card .ecc-send:hover{background:#115EA3}
-.email-capture-card .ecc-skip{font-size:11px;color:#888;cursor:pointer;text-align:center}
-.email-capture-card .ecc-skip:hover{color:#0F6CBD;text-decoration:underline}
+.email-capture-card .ecc-saved{display:none;align-items:center;gap:5px;margin-top:6px;font-size:11px;color:#107c10;font-weight:600}
+.email-capture-card.saved .ecc-saved{display:flex}
+.email-capture-card.saved .ecc-expand{display:none}
+.email-capture-card .ecc-dismiss{font-size:10px;color:#bbb;cursor:pointer;margin-left:auto;flex-shrink:0}
+.email-capture-card .ecc-dismiss:hover{color:#888}
 .email-sent-confirm{display:flex;align-items:center;gap:6px;padding:8px 10px;background:#e6f4e6;border:1px solid #a3d9a3;border-radius:8px;margin-top:6px;font-size:12px;color:#107c10;font-weight:600;animation:fu .2s ease}
 
 /* Quote flow */
@@ -848,6 +854,12 @@ function sendMsg(input, variant){
         if(handoffDismissed || eTotalTurns >= 4) addProactiveEmailCapture(body);
         return;
       }
+      /* Handle "email this chat" command */
+      if(text.toLowerCase().match(/email (this |my |the )?chat|email (this |my |the )?conversation|send (this |my |the )?chat/)){
+        if(!emailCaptureShown){ showEmailCapture(); }
+        else { addMsg(body, '<p>You can enter your email in the prompt above, or it\'s already saved &#8212; we\'ll send this chat when you\'re done.</p>', 'mb'); }
+        return;
+      }
       /* Check if free-text has handoff intent and gate hasn't been shown */
       if(!handoffGateShown && isHandoffIntent(text)){
         showHandoffGate(body, reply, function(r){
@@ -999,16 +1011,40 @@ function showEmailCapture(){
   card.style.opacity = '0';
   card.style.transform = 'translateY(6px)';
   card.style.transition = 'opacity .3s ease, transform .3s ease';
-  card.innerHTML = '<div class="ecc-head"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20" fill="#0F6CBD"><path d="M2 5.5A2.5 2.5 0 014.5 3h11A2.5 2.5 0 0118 5.5v9a2.5 2.5 0 01-2.5 2.5h-11A2.5 2.5 0 012 14.5v-9zm2.02.87l5.44 3.27a.5.5 0 00.52 0L15.4 6.4A1.5 1.5 0 0015.5 4h-11c-.56 0-1.05.31-1.31.76l.83.61z"/></svg> Want this conversation emailed to you?</div><div class="ecc-sub">We\'ll send a copy of this chat to your inbox.</div><div class="ecc-input-row"><input class="ecc-input" type="email" placeholder="you@email.com" onkeydown="if(event.key===\'Enter\')sendTranscript(this)"><button class="ecc-send" onclick="sendTranscript(this.previousElementSibling)">Send</button></div><div class="ecc-skip" onclick="skipEmailCapture(this)">No thanks, keep chatting</div>';
+  card.innerHTML = '<div class="ecc-nudge"><svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 20 20" fill="#616161"><path d="M2 5.5A2.5 2.5 0 014.5 3h11A2.5 2.5 0 0118 5.5v9a2.5 2.5 0 01-2.5 2.5h-11A2.5 2.5 0 012 14.5v-9zm2.02.87l5.44 3.27a.5.5 0 00.52 0L15.4 6.4A1.5 1.5 0 0015.5 4h-11c-.56 0-1.05.31-1.31.76l.83.61z"/></svg> Want this chat emailed to you when you\'re done? <a onclick="expandEmailCapture(this)">Add your email</a><span class="ecc-dismiss" onclick="dismissEmailNudge(this)">&#10005;</span></div><div class="ecc-hint">You can also type &#8220;email this chat&#8221; anytime.</div><div class="ecc-expand"><input class="ecc-input" type="email" placeholder="you@email.com" onkeydown="if(event.key===\'Enter\')saveEmailForLater(this)"><button class="ecc-send" onclick="saveEmailForLater(this.previousElementSibling)">Save</button></div><div class="ecc-saved"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 20 20" fill="#107c10"><path d="M10 2a8 8 0 110 16 8 8 0 010-16zm3.36 5.65a.5.5 0 00-.72 0L9 11.29 7.36 9.65a.5.5 0 00-.72.7l2 2a.5.5 0 00.72 0l4-4a.5.5 0 000-.7z"/></svg> Got it &#8212; we\'ll email this chat when you\'re done.</div>';
   body.appendChild(card);
   body.scrollTop = body.scrollHeight;
   requestAnimationFrame(function(){ card.style.opacity = '1'; card.style.transform = 'translateY(0)'; });
 }
 
+function expandEmailCapture(link){
+  var card = link.closest('.email-capture-card');
+  card.classList.add('expanded');
+  card.querySelector('.ecc-input').focus();
+}
+
+function saveEmailForLater(input){
+  var email = input.value.trim();
+  if(!email || email.indexOf('@') === -1) { input.style.borderColor = '#c42b1c'; return; }
+  quoteState.capturedEmail = email;
+  var card = input.closest('.email-capture-card');
+  card.classList.remove('expanded');
+  card.classList.add('saved');
+  card.querySelector('.ecc-hint').style.display = 'none';
+  var body = document.getElementById('bodyE');
+  body.scrollTop = body.scrollHeight;
+}
+
+function dismissEmailNudge(el){
+  var card = el.closest('.email-capture-card');
+  card.style.opacity = '0';
+  card.style.transform = 'translateY(-4px)';
+  setTimeout(function(){ card.remove(); }, 200);
+}
+
 function sendTranscript(input){
   var email = input.value.trim();
   if(!email || email.indexOf('@') === -1) { input.style.borderColor = '#c42b1c'; return; }
-  /* Store email so quote flow can pre-fill it */
   quoteState.capturedEmail = email;
   var card = input.closest('.email-capture-card');
   var confirm = document.createElement('div');
