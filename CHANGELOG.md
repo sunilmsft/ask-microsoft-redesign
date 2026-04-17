@@ -139,7 +139,7 @@ A quick overview of how the prototype evolved. Scroll down for the detailed chan
 ---
 
 ### v7.3 — Fix Proactive vs Passive Toggle (Apr 17)
-*Tag: `v7.3`*
+*Tag: `v7.3` · Commit: `41498b9`*
 
 | Area | What changed | Why |
 |------|-------------|-----|
@@ -175,7 +175,7 @@ git checkout v6-baseline -- index.html
 | `v6-baseline` | `60fc864` | Pre-refinement snapshot — safe revert point |
 | `v7` | `3a37a3b` | Layout and compliance refinement |
 | `v7.2` | `4a38937` | Bottom area declutter |
-| `v7.3` | *(pending)* | Fix Proactive vs Passive toggle |
+| `v7.3` | `41498b9` | Fix Proactive vs Passive toggle |
 
 ---
 
