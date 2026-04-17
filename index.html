@@ -244,9 +244,9 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .polished .task-card:active{background:#eef4fb}
 .polished .task-card .tc-label{font-size:11.5px;font-weight:600;color:#333}
 .polished .task-card .tc-sub{display:none}
-.polished .task-card.primary{background:#fff;border-color:#0F6CBD;border-width:1.5px}
-.polished .task-card.primary .tc-label{color:#0F6CBD}
-.polished .task-card.primary:hover{background:#f5f9ff;border-color:#115EA3;box-shadow:0 3px 10px rgba(15,108,189,.15)}
+.polished .task-card.primary{background:#0F6CBD;border-color:#0F6CBD}
+.polished .task-card.primary .tc-label{color:#fff}
+.polished .task-card.primary:hover{background:#115EA3;border-color:#115EA3;box-shadow:0 3px 10px rgba(15,108,189,.18)}
 .polished .task-card.xtra{display:none}
 .polished.expanded .task-card.xtra{display:block}
 .polished .more-link{text-align:center;margin-top:5px;font-size:11px;color:#0F6CBD;font-weight:500;cursor:pointer;transition:.15s}
@@ -559,7 +559,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
         </div>
         <!-- POLISHED VARIANT -->
         <div class="ai-welcome polished" id="promptPolished">
-          <div class="ai-welcome-text">Hi, I'm an AI agent ready to help. <span class="prompt-tog"><button onclick="togPrompt('base')">v1</button><button onclick="togPrompt('enh')">v2</button><button class="active" onclick="togPrompt('polish')">v3</button></span></div>
+          <div class="ai-welcome-text">I'm an AI agent for Microsoft 365. How can I help today? <span class="prompt-tog"><button onclick="togPrompt('base')">v1</button><button onclick="togPrompt('enh')">v2</button><button class="active" onclick="togPrompt('polish')">v3</button></span></div>
           <div class="task-grid">
             <div class="task-card primary" onclick="taskSendE('Help me compare Microsoft 365 plans and pick the right one')">
               <div class="tc-label">Compare plans &#38; pricing</div>
@@ -580,7 +580,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
               <div class="tc-label">Set up Outlook</div>
             </div>
           </div>
-          <div class="more-link" onclick="togMore(this)">More options</div>
+          <div class="more-link" onclick="togMore(this)">Show more topics</div>
         </div>
         <div class="tr-note" style="margin-top:8px"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#999"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> <a href="#">Transparency FAQ &#8599;</a></div>
         <div class="opt-row">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out &#8212; this conversation will not be saved.';this.parentElement.style.color='#a4262c';this.parentElement.style.fontWeight='600';return false">Opt out</a></div>
@@ -589,7 +589,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
     <div class="cw-foot">
       <div class="disc">AI-generated content may be incorrect</div>
       <div class="cw-input">
-        <input placeholder="Ask me anything..." onkeydown="if(event.key==='Enter')sendMsg(this,'E')">
+        <input placeholder="Ask about plans, billing, setup..." onkeydown="if(event.key==='Enter')sendMsg(this,'E')">
         <button class="mic-btn" onclick="micToggle(this)" title="Voice input"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 14.2 14.47 16 12 16s-4.52-1.8-4.93-4.15a.998.998 0 00-.98-.85c-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V20c0 .55.45 1 1 1s1-.45 1-1v-2.08a6.993 6.993 0 005.91-5.78c.1-.6-.39-1.14-1-1.14z"/></svg></button>
         <button class="snd" onclick="sendMsg(this.closest('.cw-input').querySelector('input'),'E')"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
       </div>
