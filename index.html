@@ -318,6 +318,41 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .email-capture-card .ecc-skip:hover{color:#0F6CBD;text-decoration:underline}
 .email-sent-confirm{display:flex;align-items:center;gap:6px;padding:8px 10px;background:#e6f4e6;border:1px solid #a3d9a3;border-radius:8px;margin-top:6px;font-size:12px;color:#107c10;font-weight:600;animation:fu .2s ease}
 
+/* Quote flow */
+.q-plan-grid{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.q-plan-card{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border:1.5px solid #d1d1d1;border-radius:8px;background:#fff;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.q-plan-card:hover{border-color:#0F6CBD;box-shadow:0 1px 4px rgba(15,108,189,.12)}
+.q-plan-card.selected{border-color:#0F6CBD;box-shadow:0 0 0 1.5px #0F6CBD}
+.q-plan-card .qpc-check{width:18px;height:18px;border:1.5px solid #999;border-radius:3px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all .12s}
+.q-plan-card.selected .qpc-check{background:#0F6CBD;border-color:#0F6CBD}
+.q-plan-card.selected .qpc-check::after{content:'';display:block;width:5px;height:9px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);margin-top:-2px}
+.q-plan-card .qpc-info{flex:1}
+.q-plan-card .qpc-label{font-size:10px;color:#666;font-weight:500;margin-bottom:2px}
+.q-plan-card .qpc-name{font-size:13px;font-weight:600;color:#242424;line-height:1.35}
+.q-plan-card .qpc-billing{font-size:11px;color:#616161;margin-top:2px}
+.q-plan-card .qpc-price{font-size:18px;font-weight:700;color:#242424;margin-top:4px}
+.q-plan-card .qpc-unit{font-size:11px;font-weight:400;color:#616161}
+.q-actions{display:flex;gap:8px;margin-top:10px}
+.q-btn-primary{padding:7px 18px;background:#0F6CBD;color:#fff;border:none;border-radius:4px;font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
+.q-btn-primary:hover{background:#115EA3}
+.q-btn-secondary{padding:7px 18px;background:#fff;color:#424242;border:1px solid #d1d1d1;border-radius:4px;font-family:inherit;font-size:12.5px;font-weight:500;cursor:pointer}
+.q-btn-secondary:hover{background:#f5f5f5}
+.q-summary{border:1.5px solid #d1d1d1;border-radius:8px;padding:14px 16px;background:#fff;margin:8px 0}
+.q-summary .qs-name{font-size:14px;font-weight:700;color:#242424;margin-bottom:8px}
+.q-summary table{width:100%;font-size:12px;color:#424242;border-collapse:collapse}
+.q-summary th{text-align:left;font-weight:600;color:#616161;padding-bottom:4px;font-size:11px}
+.q-summary td{padding:2px 0}
+.q-summary .qs-note{font-size:10.5px;color:#888;margin-top:4px}
+.q-summary .qs-total{border-top:1px solid #e0e0e0;margin-top:10px;padding-top:10px;text-align:right}
+.q-summary .qs-total-label{font-size:12px;color:#616161}
+.q-summary .qs-total-amount{font-size:22px;font-weight:700;color:#242424}
+.q-summary .qs-total-sub{font-size:10.5px;color:#888}
+.q-form{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.q-form label{font-size:12px;font-weight:600;color:#242424}
+.q-form label .req{color:#d13438}
+.q-form input{padding:8px 10px;border:1px solid #d1d1d1;border-radius:6px;font-family:inherit;font-size:13px;outline:none;transition:border-color .15s}
+.q-form input:focus{border-color:#0F6CBD}
+
 /* FAQ link (between greeting and prompts) */
 .faq-sub{font-size:10.5px;color:#999;display:inline-flex;align-items:center;gap:4px;margin-top:4px;margin-bottom:6px}
 .faq-sub a{color:#999;text-decoration:none;font-weight:400}
@@ -498,8 +533,8 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
             <div class="task-card" onclick="taskSendE('I want to start a free trial for my team')">
               <div class="tc-label">Start a free trial</div>
             </div>
-            <div class="task-card" onclick="taskSendE('What can Copilot AI do for my business?')">
-              <div class="tc-label">Copilot for business</div>
+            <div class="task-card" onclick="taskSendE('I would like to get a quote for my team')">
+              <div class="tc-label">Get a quote</div>
             </div>
             <div class="task-card" onclick="taskSendE('I need help fixing an issue')">
               <div class="tc-label">Troubleshoot an issue</div>
@@ -698,6 +733,8 @@ var KB = [
    a:'<p>I can help you find the right plan. How large is your organization?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(1,\'small\',this.textContent)">Small (1&#8211;25 people)</button><button class="choice-btn" onclick="guidedChoice(1,\'mid\',this.textContent)">Mid-size (25&#8211;300)</button><button class="choice-btn" onclick="guidedChoice(1,\'enterprise\',this.textContent)">Large / Enterprise (300+)</button></div>'},
   {k:['free trial','try','trial','test','try free','start trial','free'],
    a:'<p>Which type of plan are you looking to try?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(10,\'basic\',this.textContent)">Business Basic</button><button class="choice-btn" onclick="guidedChoice(10,\'standard\',this.textContent)">Business Standard</button><button class="choice-btn" onclick="guidedChoice(10,\'premium\',this.textContent)">Business Premium</button><button class="choice-btn" onclick="guidedChoice(10,\'unsure\',this.textContent)">Not sure yet</button></div>'},
+  {k:['quote','get a quote','request a quote','custom quote','quote for my team','need a quote'],
+   a:'<p>Are you interested in monthly or yearly subscription plans? If you\'re not sure, you can ask what the difference is.</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(40,\'monthly\',this.textContent)">Monthly</button><button class="choice-btn" onclick="guidedChoice(40,\'yearly\',this.textContent)">Yearly (save ~16%)</button></div>'},
   {k:['copilot','ai','artificial intelligence','ai features','copilot features'],
    a:'<p>Copilot is your AI assistant across Microsoft 365 for business. What matters most to your team?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(30,\'writing\',this.textContent)">Documents &#38; content</button><button class="choice-btn" onclick="guidedChoice(30,\'data\',this.textContent)">Data &#38; analytics</button><button class="choice-btn" onclick="guidedChoice(30,\'meetings\',this.textContent)">Meetings &#38; collaboration</button><button class="choice-btn" onclick="guidedChoice(30,\'general\',this.textContent)">All of the above</button></div>'},
   {k:['word','document','write','writing','doc'],
@@ -799,6 +836,18 @@ function sendMsg(input, variant){
     typing.remove();
     if(variant === 'E'){
       body.querySelectorAll('.ai-welcome').forEach(function(w){ w.style.display = 'none'; });
+      /* Quote flow: intercept quantity input */
+      if(quoteState.awaitQty){
+        quoteState.awaitQty = false;
+        var qtyVal = parseInt(text) || 1;
+        guidedAnswers['s43'] = qtyVal;
+        var qReply = guidedReplyQuote(43, String(qtyVal));
+        addMsg(body, qReply, 'mb');
+        eTotalTurns++;
+        body.scrollTop = body.scrollHeight;
+        if(handoffDismissed || eTotalTurns >= 4) addProactiveEmailCapture(body);
+        return;
+      }
       /* Check if free-text has handoff intent and gate hasn't been shown */
       if(!handoffGateShown && isHandoffIntent(text)){
         showHandoffGate(body, reply, function(r){
@@ -862,7 +911,7 @@ function resetChat(btn){
   var v = id.replace('body','');
   if(initHTML[v]) body.innerHTML = initHTML[v];
   body.scrollTop = body.scrollHeight;
-  if(v === 'E'){ eMsgCount = 0; eTotalTurns = 0; handoffDismissed = false; handoffGateShown = false; guidedAnswers = {}; emailCaptureShown = false; var sb = document.getElementById('saveBtn'); if(sb) sb.style.display = 'none'; }
+  if(v === 'E'){ eMsgCount = 0; eTotalTurns = 0; handoffDismissed = false; handoffGateShown = false; guidedAnswers = {}; emailCaptureShown = false; quoteState = {}; var sb = document.getElementById('saveBtn'); if(sb) sb.style.display = 'none'; }
 }
 
 /* ========== AI-NATIVE VARIANT (E) FEATURES ========== */
@@ -871,7 +920,7 @@ var eTotalTurns = 0;
 var handoffDismissed = false;
 
 var ctxChipMap = {
-  plan: ['Start a free trial', 'Security features', 'Copilot for business'],
+  plan: ['Start a free trial', 'Security features', 'Get a quote'],
   trial: ['Compare all plans', 'What is included?', 'Business Premium features'],
   copilot: ['Which plan includes Copilot?', 'Try it free', 'See all features'],
   help: ['Request a callback', 'Browse business plans', 'Copilot features'],
@@ -879,7 +928,7 @@ var ctxChipMap = {
   enterprise: ['Compare E3 vs E5', 'Talk to sales', 'Business plans'],
   outlook: ['Compare plans', 'Try Business Basic', 'Teams features'],
   licensing: ['Compare all plans', 'Start a free trial', 'Talk to sales'],
-  def: ['Compare business plans', 'Start a free trial', 'Copilot for business']
+  def: ['Compare business plans', 'Start a free trial', 'Get a quote']
 };
 
 function detectTopic(text){
@@ -937,7 +986,7 @@ function setEmailMode(mode){
   /* Reset chat so user sees fresh behavior for the selected mode */
   var body = document.getElementById('bodyE');
   if(initHTML['E']) body.innerHTML = initHTML['E'];
-  eMsgCount = 0; eTotalTurns = 0; handoffDismissed = false; handoffGateShown = false; guidedAnswers = {};
+  eMsgCount = 0; eTotalTurns = 0; handoffDismissed = false; handoffGateShown = false; guidedAnswers = {}; quoteState = {};
   body.scrollTop = body.scrollHeight;
 }
 
@@ -1098,7 +1147,7 @@ function guidedChoice(step, value, label){
   var typing = addTyping(body);
   setTimeout(function(){
     typing.remove();
-    var reply = guidedReply(step, value) || guidedReplyTrial(step, value) || guidedReplyCopilot(step, value) || guidedReplyHelp(step, value);
+    var reply = guidedReply(step, value) || guidedReplyTrial(step, value) || guidedReplyCopilot(step, value) || guidedReplyHelp(step, value) || guidedReplyQuote(step, value);
     /* If reply is a handoff gate sentinel, show the gate instead */
     if(reply === '__HANDOFF_GATE__'){
       var gateReply = getHandoffGateReply(step, value);
@@ -1131,11 +1180,11 @@ function guidedReply(step, value){
   }
   if(step===2){
     var size = guidedAnswers.s1;
-    if(value==='apps') return '<h4>Recommended: Business Standard</h4><p><strong>Business Standard ($12.50/user/mo)</strong> &#8212; the complete desktop app suite for your team.</p><ul><li>Word, Excel, PowerPoint, Outlook desktop apps</li><li>1 TB cloud storage per user</li><li>Microsoft Teams with webinars</li><li>Copilot available as add-on ($30/user/mo)</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-standard" target="_blank">Start free trial</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans" target="_blank">Compare plans</a></div>';
-    if(value==='email') return '<h4>Recommended: Business Basic</h4><p><strong>Business Basic ($6.00/user/mo)</strong> &#8212; business email and cloud storage at the best price.</p><ul><li>Custom domain email (you@yourcompany.com)</li><li>50 GB mailbox per user</li><li>1 TB OneDrive storage per user</li><li>Web and mobile Office apps</li><li>Microsoft Teams</li></ul><p>Need desktop apps too? <strong>Business Standard ($12.50/user/mo)</strong> adds those.</p><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-basic" target="_blank">Start free trial</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans" target="_blank">Compare plans</a></div>';
-    if(value==='security') return '<h4>Recommended: Business Premium</h4><p><strong>Business Premium ($22.00/user/mo)</strong> &#8212; best-in-class security for your business.</p><ul><li>Everything in Business Standard</li><li>Advanced threat protection</li><li>Intune device management</li><li>Conditional access and data loss prevention</li><li>Azure Information Protection</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-premium" target="_blank">Start free trial</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans" target="_blank">Compare plans</a></div>';
-    if(value==='ai') return '<h4>Recommended: Business Standard + Copilot</h4><p><strong>Business Standard ($12.50/user/mo)</strong> plus <strong>Copilot add-on ($30/user/mo)</strong> gives your team AI across all apps.</p><ul><li>Copilot in Word, Excel, PowerPoint, Outlook, Teams</li><li>Meeting summaries and action items</li><li>AI-powered data analysis</li><li>Email drafting and summarization</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-standard" target="_blank">Start free trial</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365-copilot" target="_blank">Learn about Copilot</a></div>';
-    if(value==='allin') return '<h4>Recommended: Business Premium</h4><p><strong>Business Premium ($22.00/user/mo)</strong> &#8212; everything your ' + (size==='small' ? 'small team' : 'organization') + ' needs in one plan.</p><ul><li>All desktop apps (Word, Excel, PowerPoint, Outlook)</li><li>Business email with 50 GB mailbox</li><li>1 TB cloud storage per user</li><li>Microsoft Teams with webinars</li><li>Advanced security and device management</li><li>Copilot available as add-on</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-premium" target="_blank">Start free trial</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans" target="_blank">Compare plans</a></div>';
+    if(value==='apps') return '<h4>Recommended: Business Standard</h4><p><strong>Business Standard ($12.50/user/mo)</strong> &#8212; the complete desktop app suite for your team.</p><ul><li>Word, Excel, PowerPoint, Outlook desktop apps</li><li>1 TB cloud storage per user</li><li>Microsoft Teams with webinars</li><li>Copilot available as add-on ($30/user/mo)</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-standard" target="_blank">Start free trial</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans" target="_blank">Compare plans</a><a class="sec" onclick="taskSendE(\'I would like to get a quote for my team\')" style="cursor:pointer">Get a quote</a></div>';
+    if(value==='email') return '<h4>Recommended: Business Basic</h4><p><strong>Business Basic ($6.00/user/mo)</strong> &#8212; business email and cloud storage at the best price.</p><ul><li>Custom domain email (you@yourcompany.com)</li><li>50 GB mailbox per user</li><li>1 TB OneDrive storage per user</li><li>Web and mobile Office apps</li><li>Microsoft Teams</li></ul><p>Need desktop apps too? <strong>Business Standard ($12.50/user/mo)</strong> adds those.</p><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-basic" target="_blank">Start free trial</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans" target="_blank">Compare plans</a><a class="sec" onclick="taskSendE(\'I would like to get a quote for my team\')" style="cursor:pointer">Get a quote</a></div>';
+    if(value==='security') return '<h4>Recommended: Business Premium</h4><p><strong>Business Premium ($22.00/user/mo)</strong> &#8212; best-in-class security for your business.</p><ul><li>Everything in Business Standard</li><li>Advanced threat protection</li><li>Intune device management</li><li>Conditional access and data loss prevention</li><li>Azure Information Protection</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-premium" target="_blank">Start free trial</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans" target="_blank">Compare plans</a><a class="sec" onclick="taskSendE(\'I would like to get a quote for my team\')" style="cursor:pointer">Get a quote</a></div>';
+    if(value==='ai') return '<h4>Recommended: Business Standard + Copilot</h4><p><strong>Business Standard ($12.50/user/mo)</strong> plus <strong>Copilot add-on ($30/user/mo)</strong> gives your team AI across all apps.</p><ul><li>Copilot in Word, Excel, PowerPoint, Outlook, Teams</li><li>Meeting summaries and action items</li><li>AI-powered data analysis</li><li>Email drafting and summarization</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-standard" target="_blank">Start free trial</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365-copilot" target="_blank">Learn about Copilot</a><a class="sec" onclick="taskSendE(\'I would like to get a quote for my team\')" style="cursor:pointer">Get a quote</a></div>';
+    if(value==='allin') return '<h4>Recommended: Business Premium</h4><p><strong>Business Premium ($22.00/user/mo)</strong> &#8212; everything your ' + (size==='small' ? 'small team' : 'organization') + ' needs in one plan.</p><ul><li>All desktop apps (Word, Excel, PowerPoint, Outlook)</li><li>Business email with 50 GB mailbox</li><li>1 TB cloud storage per user</li><li>Microsoft Teams with webinars</li><li>Advanced security and device management</li><li>Copilot available as add-on</li></ul><div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-premium" target="_blank">Start free trial</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans" target="_blank">Compare plans</a><a class="sec" onclick="taskSendE(\'I would like to get a quote for my team\')" style="cursor:pointer">Get a quote</a></div>';
   }
   return '';
 }
@@ -1182,6 +1231,148 @@ function guidedReplyHelp(step, value){
     if(value==='call') return '<p>Call us at <strong>(800) 642-7676</strong></p><p>Mon&#8211;Fri, 6 AM &#8211; 6 PM PT.</p>';
   }
   return '';
+}
+
+/* Quote guided flow */
+var quotePlans = {
+  monthly: {
+    teams: [
+      {id:'std',     name:'Microsoft 365 Business Standard',                              price:'$15.00', num:15.00},
+      {id:'std-cop', name:'Microsoft 365 Business Standard and\nMicrosoft 365 Copilot Business', price:'$40.20', num:40.20},
+      {id:'basic',   name:'Microsoft 365 Business Basic',                                 price:'$7.20',  num:7.20},
+      {id:'basic-cop',name:'Microsoft 365 Business Basic and\nMicrosoft 365 Copilot Business',  price:'$32.40', num:32.40},
+      {id:'prem',    name:'Microsoft 365 Business Premium',                               price:'$26.40', num:26.40},
+      {id:'prem-cop',name:'Microsoft 365 Business Premium and\nMicrosoft 365 Copilot Business', price:'$51.60', num:51.60}
+    ],
+    noteams: [
+      {id:'std',     name:'Microsoft 365 Business Standard (no Teams)',                   price:'$12.50', num:12.50},
+      {id:'basic',   name:'Microsoft 365 Business Basic (no Teams)',                      price:'$6.00',  num:6.00},
+      {id:'prem',    name:'Microsoft 365 Business Premium (no Teams)',                    price:'$24.00', num:24.00}
+    ]
+  },
+  yearly: {
+    teams: [
+      {id:'std',     name:'Microsoft 365 Business Standard',                              price:'$12.50', num:12.50},
+      {id:'std-cop', name:'Microsoft 365 Business Standard and\nMicrosoft 365 Copilot Business', price:'$42.50', num:42.50},
+      {id:'basic',   name:'Microsoft 365 Business Basic',                                 price:'$6.00',  num:6.00},
+      {id:'basic-cop',name:'Microsoft 365 Business Basic and\nMicrosoft 365 Copilot Business',  price:'$36.00', num:36.00},
+      {id:'prem',    name:'Microsoft 365 Business Premium',                               price:'$22.00', num:22.00},
+      {id:'prem-cop',name:'Microsoft 365 Business Premium and\nMicrosoft 365 Copilot Business', price:'$52.00', num:52.00}
+    ],
+    noteams: [
+      {id:'std',     name:'Microsoft 365 Business Standard (no Teams)',                   price:'$10.50', num:10.50},
+      {id:'basic',   name:'Microsoft 365 Business Basic (no Teams)',                      price:'$5.00',  num:5.00},
+      {id:'prem',    name:'Microsoft 365 Business Premium (no Teams)',                    price:'$20.00', num:20.00}
+    ]
+  }
+};
+var quoteState = {};
+
+function guidedReplyQuote(step, value){
+  if(step===40){
+    quoteState = {billing: value};
+    return '<p>Microsoft 365 Business plans are available with or without Teams. Would you like your plan to include Microsoft Teams?</p><div class="choice-btns"><button class="choice-btn" onclick="guidedChoice(41,\'teams\',this.textContent)">Yes, include Teams</button><button class="choice-btn" onclick="guidedChoice(41,\'noteams\',this.textContent)">No Teams</button></div>';
+  }
+  if(step===41){
+    quoteState.teams = value;
+    var billing = quoteState.billing;
+    var plans = quotePlans[billing][value];
+    var billingLabel = billing === 'monthly' ? 'Pay monthly' : 'Pay yearly';
+    var unitLabel = billing === 'monthly' ? 'user/mo' : 'user/mo';
+    var html = '<h4>Configure your subscription</h4><p>In order to get an accurate quote for you, let\'s configure a couple more things.</p><p>Which subscription and payment option will work best for your business?</p><p style="font-size:11px;color:#616161">If eligible, an additional Copilot discount will be applied at checkout.</p>';
+    html += '<div class="q-plan-grid" id="qPlanGrid">';
+    for(var i=0;i<plans.length;i++){
+      var p = plans[i];
+      var nameEsc = p.name.replace(/\n/g,'<br>');
+      html += '<div class="q-plan-card" data-idx="'+i+'" onclick="selectQuotePlan(this)">';
+      html += '<div class="qpc-check"></div>';
+      html += '<div class="qpc-info">';
+      html += '<div class="qpc-label">'+( billing==='monthly' ? 'Monthly' : 'Annual') +' Subscription</div>';
+      html += '<div class="qpc-name">'+nameEsc+'</div>';
+      html += '<div class="qpc-billing">'+billingLabel+'</div>';
+      html += '<div class="qpc-price">'+p.price+' <span class="qpc-unit">'+unitLabel+'</span></div>';
+      html += '</div></div>';
+    }
+    html += '</div>';
+    html += '<div class="q-actions"><button class="q-btn-primary" onclick="submitQuotePlan()">Submit</button><button class="q-btn-secondary" onclick="taskSendE(\'I would like to get a quote for my team\')">Change previous info</button></div>';
+    return html;
+  }
+  if(step===43){
+    var qty = parseInt(value) || 1;
+    quoteState.qty = qty;
+    var plans = quotePlans[quoteState.billing][quoteState.teams];
+    var plan = plans[quoteState.planIdx];
+    var monthly = plan.num;
+    var yearTotal = (monthly * qty * 12).toFixed(2);
+    var billingNote = quoteState.billing === 'monthly' ? 'Monthly subscription-Auto renews' : 'Annual subscription-Auto renews';
+    var priceLabel = plan.price + '/mo, paid ' + quoteState.billing;
+    var html = '<p>Here\'s a draft quote for your review and reference:</p>';
+    html += '<div class="q-summary">';
+    html += '<div class="qs-name">' + plan.name.replace(/\n/g,' and ').replace(/ and and /g,' and ') + '</div>';
+    html += '<table><tr><th>Qty</th><th>Price per user</th><th>Year total</th></tr>';
+    html += '<tr><td>'+qty+'</td><td>'+priceLabel+'</td><td>$'+yearTotal+'</td></tr></table>';
+    html += '<div class="qs-note">('+billingNote+')</div>';
+    html += '<div class="qs-total"><div class="qs-total-label">Year subtotal</div><div class="qs-total-amount">$'+yearTotal+'</div><div class="qs-total-sub">(without tax and fees)</div></div>';
+    html += '</div>';
+    html += '<p>Almost there! If everything looks good, I can send you a confirmation email with next steps.</p>';
+    html += '<p style="font-size:11px;color:#616161">If you\'re currently working with a Microsoft Partner or account executive, we encourage you to continue working with them to ensure you receive the best support as they manage your licensing procurement and agreement.</p>';
+    html += '<p style="font-size:11px;color:#616161">Add-on products require a Microsoft 365 Business base plan. Eligibility will be verified before purchase.</p>';
+    html += '<div class="q-actions"><button class="q-btn-primary" onclick="guidedChoice(44,\'send\',\'Yes, send it to my email.\')">Yes, send it to my email.</button><button class="q-btn-secondary" onclick="taskSendE(\'I would like to get a quote for my team\')">Make changes</button></div>';
+    return html;
+  }
+  if(step===44){
+    var html = '<p>I will need your first name and email address in order to send the email with your quote ID and next steps.</p>';
+    html += '<p style="font-size:11px;color:#616161">The name and email provided here will be used to provide you the quote. Also, a Microsoft Sales representative may contact you to discuss the quote, and a copy of chat transcript will be provided to them. This quote capability only applies to US Market. <a href="https://privacy.microsoft.com/en-us/privacystatement" target="_blank">Microsoft Privacy Statement</a></p>';
+    html += '<div class="q-form" id="qForm">';
+    html += '<label>First Name <span class="req">*</span></label>';
+    html += '<input type="text" id="qName" placeholder="John">';
+    html += '<label>Email <span class="req">*</span></label>';
+    html += '<input type="email" id="qEmail" placeholder="john.doe@example.com">';
+    html += '</div>';
+    html += '<div class="q-actions" style="margin-top:10px"><button class="q-btn-primary" onclick="submitQuoteEmail()">Submit</button><button class="q-btn-secondary" onclick="guidedChoice(43,\''+quoteState.qty+'\',\''+quoteState.qty+' users\')">Change previous info</button></div>';
+    return html;
+  }
+  return '';
+}
+
+function selectQuotePlan(card){
+  var grid = card.closest('.q-plan-grid');
+  grid.querySelectorAll('.q-plan-card').forEach(function(c){ c.classList.remove('selected'); });
+  card.classList.add('selected');
+  quoteState.planIdx = parseInt(card.getAttribute('data-idx'));
+}
+
+function submitQuotePlan(){
+  if(quoteState.planIdx === undefined){ alert('Please select a plan first.'); return; }
+  var plans = quotePlans[quoteState.billing][quoteState.teams];
+  var plan = plans[quoteState.planIdx];
+  var planLabel = plan.name.replace(/\n/g,' ');
+  var body = document.getElementById('bodyE');
+  addMsg(body, planLabel, 'mu');
+  var typing = addTyping(body);
+  setTimeout(function(){
+    typing.remove();
+    addMsg(body, '<p>Great. How many users will be using <strong>'+planLabel+'</strong>?</p>', 'mb');
+    eTotalTurns++;
+    /* Wire up next input to capture quantity */
+    quoteState.awaitQty = true;
+    body.scrollTop = body.scrollHeight;
+  }, 600 + Math.random()*400);
+}
+
+function submitQuoteEmail(){
+  var name = document.getElementById('qName').value.trim();
+  var email = document.getElementById('qEmail').value.trim();
+  if(!name || !email){ alert('Please fill in all required fields.'); return; }
+  var body = document.getElementById('bodyE');
+  addMsg(body, name + ' / ' + email, 'mu');
+  var typing = addTyping(body);
+  setTimeout(function(){
+    typing.remove();
+    addMsg(body, '<div class="email-sent-confirm"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#107c10"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Quote sent! Check your inbox for your quote ID and next steps.</div>', 'mb');
+    eTotalTurns++;
+    body.scrollTop = body.scrollHeight;
+  }, 800 + Math.random()*400);
 }
 
 function micToggle(btn){
