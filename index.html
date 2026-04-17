@@ -784,7 +784,7 @@ function sendMsg(input, variant){
         addContextChips(body, topic);
         if(eMsgCount === 2) addHandoffBar(body);
       }
-      if(eTotalTurns >= 3) addProactiveEmailCapture(body);
+      if(handoffDismissed) addProactiveEmailCapture(body);
     }
   }, 800 + Math.random() * 600);
 }
@@ -818,12 +818,13 @@ function resetChat(btn){
   var v = id.replace('body','');
   if(initHTML[v]) body.innerHTML = initHTML[v];
   body.scrollTop = body.scrollHeight;
-  if(v === 'E'){ eMsgCount = 0; eTotalTurns = 0; guidedAnswers = {}; emailCaptureShown = false; var sb = document.getElementById('saveBtn'); if(sb) sb.classList.remove('saved'); }
+  if(v === 'E'){ eMsgCount = 0; eTotalTurns = 0; handoffDismissed = false; guidedAnswers = {}; emailCaptureShown = false; var sb = document.getElementById('saveBtn'); if(sb) sb.classList.remove('saved'); }
 }
 
 /* ========== AI-NATIVE VARIANT (E) FEATURES ========== */
 var eMsgCount = 0;
 var eTotalTurns = 0;
+var handoffDismissed = false;
 
 var ctxChipMap = {
   plan: ['Start a free trial', 'Which plan for families?', 'Business plans'],
@@ -948,7 +949,7 @@ function addHandoffBar(body){
     div.style.opacity = '0';
     div.style.transform = 'translateY(6px)';
     div.style.transition = 'opacity .3s ease, transform .3s ease';
-    div.innerHTML = '<div class="ho-text">I can keep helping, or connect you with a specialist if you\'d prefer.</div><div class="ho-actions"><button class="ho-btn ho-btn-primary" onclick="this.closest(\'.handoff-bar\').remove()">Keep exploring with AI</button><button class="ho-btn ho-btn-secondary" onclick="handoffAccepted()">Talk to a person</button></div>';
+    div.innerHTML = '<div class="ho-text">I can keep helping, or connect you with a specialist if you\'d prefer.</div><div class="ho-actions"><button class="ho-btn ho-btn-primary" onclick="handoffDismissed=true;this.closest(\'.handoff-bar\').remove()">Keep exploring with AI</button><button class="ho-btn ho-btn-secondary" onclick="handoffAccepted()">Talk to a person</button></div>';
     body.appendChild(div);
     body.scrollTop = body.scrollHeight;
     requestAnimationFrame(function(){ div.style.opacity = '1'; div.style.transform = 'translateY(0)'; });
@@ -1008,7 +1009,7 @@ function guidedChoice(step, value, label){
       addContextChips(body, detectTopic(label));
       if(eMsgCount === 2) addHandoffBar(body);
     }
-    if(eTotalTurns >= 3) addProactiveEmailCapture(body);
+    if(handoffDismissed) addProactiveEmailCapture(body);
     body.scrollTop = body.scrollHeight;
   }, 600 + Math.random()*400);
 }
