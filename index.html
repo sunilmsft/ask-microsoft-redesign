@@ -236,28 +236,17 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .enh .task-card .tc-label{font-size:11.5px;font-weight:600;color:#333}
 .enh .task-card .tc-sub{display:none}
 
-/* Guided entry variant — same grid, styling-only hierarchy */
-.guided .task-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.guided .task-card{padding:8px 11px;background:#fff;border:1px solid #d1d1d1;border-radius:8px;cursor:pointer;transition:all .15s;line-height:1.35}
-.guided .task-card:hover{border-color:#0F6CBD;background:#f8fbff;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.guided .task-card:active{background:#eef4fb}
-.guided .task-card .tc-label{font-size:12px;font-weight:600;color:#242424}
-.guided .task-card .tc-sub{display:none}
-.guided .task-card.primary{background:#f5f9ff;border-color:#b8d4ea}
-.guided .task-card.primary .tc-label{color:#0F6CBD}
-.guided .task-card.primary:hover{border-color:#0F6CBD;background:#eef4fb;box-shadow:0 1px 6px rgba(15,108,189,.1)}
-
 /* Polished variant — guidance label, show-4 collapse, primary elevation */
 .polished .grid-label{font-size:10px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
-.polished .task-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
-.polished .task-card{padding:8px 11px;background:#fff;border:1px solid #d1d1d1;border-radius:8px;cursor:pointer;transition:all .15s;line-height:1.35}
-.polished .task-card:hover{border-color:#0F6CBD;background:#f8fbff;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.polished .task-card:active{background:#eef4fb}
-.polished .task-card .tc-label{font-size:12px;font-weight:600;color:#242424}
+.polished .task-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.polished .task-card{padding:9px 12px;background:#f7f7f7;border:none;border-radius:10px;cursor:pointer;transition:all .18s;line-height:1.35;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.polished .task-card:hover{background:#eef4fb;box-shadow:0 2px 8px rgba(0,0,0,.1);transform:translateY(-1px)}
+.polished .task-card:active{background:#e5eef8;transform:none;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.polished .task-card .tc-label{font-size:12px;font-weight:600;color:#333}
 .polished .task-card .tc-sub{display:none}
-.polished .task-card.primary{background:#f5f9ff;border-color:#b8d4ea;box-shadow:0 1px 6px rgba(15,108,189,.08)}
+.polished .task-card.primary{background:#EBF3FC;box-shadow:0 1px 5px rgba(15,108,189,.12)}
 .polished .task-card.primary .tc-label{color:#0F6CBD}
-.polished .task-card.primary:hover{border-color:#0F6CBD;background:#eef4fb;box-shadow:0 2px 8px rgba(15,108,189,.14)}
+.polished .task-card.primary:hover{background:#ddeaf7;box-shadow:0 3px 10px rgba(15,108,189,.18);transform:translateY(-1px)}
 .polished .task-card.xtra{display:none}
 .polished.expanded .task-card.xtra{display:block}
 .polished .more-link{text-align:center;margin-top:4px;font-size:11px;color:#0F6CBD;font-weight:500;cursor:pointer;transition:.15s}
@@ -522,7 +511,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
       <div class="cw-body" id="bodyE">
         <!-- BASELINE STARTER PROMPTS (original, preserved) -->
         <div class="ai-welcome" id="promptBaseline" style="display:none">
-          <div class="ai-welcome-text">Hi, I'm an AI assistant. Here are some things I can help with, or feel free to ask me anything below. <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button class="active" onclick="togPrompt('base')">v1</button><button onclick="togPrompt('guide')">v3</button><button onclick="togPrompt('polish')">v4</button></span></div>
+          <div class="ai-welcome-text">Hi, I'm an AI assistant. Here are some things I can help with, or feel free to ask me anything below. <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button class="active" onclick="togPrompt('base')">v1</button><button onclick="togPrompt('polish')">v3</button></span></div>
           <div class="task-grid">
             <div class="task-card" onclick="taskSendE('Which Microsoft 365 plan is right for me?')">
               <div class="tc-label">Find my plan<span class="tc-sub">Compare pricing &#38; features</span></div>
@@ -546,7 +535,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
         </div>
         <!-- ENHANCED STARTER PROMPTS -->
         <div class="ai-welcome enh" id="promptEnhanced" style="display:none">
-          <div class="ai-welcome-text">Hi, I'm an AI assistant. What can I help you with? <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button onclick="togPrompt('guide')">v3</button><button onclick="togPrompt('polish')">v4</button></span></div>
+          <div class="ai-welcome-text">Hi, I'm an AI assistant. What can I help you with? <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button onclick="togPrompt('polish')">v3</button></span></div>
           <div class="task-grid">
             <div class="task-card hero" onclick="taskSendE('Help me pick the best Microsoft 365 plan for my needs')">
               <div class="tc-label">Which plan is best for me?</div>
@@ -568,33 +557,9 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
             </div>
           </div>
         </div>
-        <!-- GUIDED ENTRY VARIANT -->
-        <div class="ai-welcome guided" id="promptGuided" style="display:none">
-          <div class="ai-welcome-text">Hi, I'm an AI assistant. What can I help you with? <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button class="active" onclick="togPrompt('guide')">v3</button><button onclick="togPrompt('polish')">v4</button></span></div>
-          <div class="task-grid">
-            <div class="task-card primary" onclick="taskSendE('Help me compare Microsoft 365 plans and pick the right one')">
-              <div class="tc-label">Compare plans &#38; pricing</div>
-            </div>
-            <div class="task-card" onclick="taskSendE('I want to try Microsoft 365 free')">
-              <div class="tc-label">Start a free trial</div>
-            </div>
-            <div class="task-card" onclick="taskSendE('What can Copilot AI do for me?')">
-              <div class="tc-label">What does Copilot do?</div>
-            </div>
-            <div class="task-card" onclick="taskSendE('I need help fixing an issue')">
-              <div class="tc-label">Troubleshoot an issue</div>
-            </div>
-            <div class="task-card" onclick="taskSendE('Show me student and education offers')">
-              <div class="tc-label">Student discounts</div>
-            </div>
-            <div class="task-card" onclick="taskSendE('Help me set up Outlook email')">
-              <div class="tc-label">Set up Outlook</div>
-            </div>
-          </div>
-        </div>
         <!-- POLISHED VARIANT -->
         <div class="ai-welcome polished" id="promptPolished">
-          <div class="ai-welcome-text">Hi, I'm an AI assistant. What can I help you with? <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button onclick="togPrompt('guide')">v3</button><button class="active" onclick="togPrompt('polish')">v4</button></span></div>
+          <div class="ai-welcome-text">Hi, I'm an AI assistant. What can I help you with? <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button class="active" onclick="togPrompt('polish')">v3</button></span></div>
           <div class="grid-label">Most people start here</div>
           <div class="task-grid">
             <div class="task-card primary" onclick="taskSendE('Help me compare Microsoft 365 plans and pick the right one')">
@@ -1073,14 +1038,12 @@ function compareE(mode){
 function togPrompt(v){
   var base=document.getElementById('promptBaseline');
   var enh=document.getElementById('promptEnhanced');
-  var guide=document.getElementById('promptGuided');
   var polish=document.getElementById('promptPolished');
-  base.style.display='none';enh.style.display='none';guide.style.display='none';polish.style.display='none';
+  base.style.display='none';enh.style.display='none';polish.style.display='none';
   if(v==='base') base.style.display='';
   else if(v==='enh') enh.style.display='';
-  else if(v==='guide') guide.style.display='';
   else polish.style.display='';
-  var map={base:'v1',enh:'v2',guide:'v3',polish:'v4'};
+  var map={base:'v1',enh:'v2',polish:'v3'};
   document.querySelectorAll('.prompt-tog button').forEach(function(b){b.classList.toggle('active',b.textContent===map[v])});
 }
 function togMore(el){el.closest('.polished').classList.add('expanded')}
