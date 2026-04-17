@@ -109,7 +109,7 @@ A quick overview of how the prototype evolved. Scroll down for the detailed chan
 ---
 
 ### v7 — Layout and Compliance Refinement (Apr 17)
-*Tag: `v7`*
+*Tag: `v7` · Commit: `3a37a3b`*
 
 | Area | What changed | Why |
 |------|-------------|-----|
@@ -144,7 +144,7 @@ git checkout v6-baseline -- index.html
 | `v5` | `66f0463` | 3-tab consolidation, email capture, sequenced nudges |
 | `v6` | `bf59346` | Business-only focus, intent-based handoff gate |
 | `v6-baseline` | `60fc864` | Pre-refinement snapshot — safe revert point |
-| `v7` | *(pending)* | Layout and compliance refinement |
+| `v7` | `3a37a3b` | Layout and compliance refinement |
 
 ---
 
