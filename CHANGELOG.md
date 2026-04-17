@@ -26,6 +26,7 @@ A quick overview of how the prototype evolved. Scroll down for the detailed chan
 | **v7** | `v7` | Apr 17 | Layout and compliance refinement — reduce bottom clutter, preserve compliance |
 | **v7.2** | `v7.2` | Apr 17 | Bottom area declutter — focused input, email moved to inline, data usage below input |
 | **v7.3** | `v7.3` | Apr 17 | Fixed Proactive vs Passive toggle regression — modes now behave correctly |
+| **v7.4** | `v7.4` | Apr 17 | Restored Always On icon, made Proactive vs Passive visibly distinct |
 
 ---
 
@@ -151,6 +152,21 @@ A quick overview of how the prototype evolved. Scroll down for the detailed chan
 
 ---
 
+### v7.4 — Restore Always On Icon + Distinct Mode Behavior (Apr 17)
+*Tag: `v7.4`*
+
+| Area | What changed | Why |
+|------|-------------|-----|
+| Always On icon restored | Re-added "Email me a copy" button to cwE footer with `.save-btn` CSS | Was deleted in v7.2 — this button is the whole point of Passive mode ("customer taps Save when ready") |
+| Passive mode — new behavior | Footer button appears after first exchange; user clicks it whenever ready; no system-initiated card | Passive = user-initiated. Persistent button is the differentiator — not a timed card |
+| Proactive mode — unchanged | No footer button visible; system shows "Want a copy?" card after handoff dismissed + next exchange | Proactive = system-initiated. Card only appears at the right moment in the conversation |
+| Button visibility | `showPassiveButton()` shows the footer button only in Passive mode after first exchange; hidden in Proactive | Proactive users never see the button; Passive users always have it available |
+| Toggle reset | `setEmailMode` now hides the button, resets chat, resets all state | Clean demo of each mode from scratch |
+| `resetChat` | Re-added `saveBtn` hide on reset | Button must disappear when conversation resets |
+| Root cause | v7.3 fixed state reset but both modes still produced the same inline card — no visual distinction | The real differentiator was the persistent footer icon (Passive) vs system card (Proactive), not timing of the same card |
+
+---
+
 ### v6-baseline — Pre-Refinement Snapshot (Apr 17)
 *Tag: `v6-baseline` · Commit: `60fc864`*
 
@@ -176,6 +192,7 @@ git checkout v6-baseline -- index.html
 | `v7` | `3a37a3b` | Layout and compliance refinement |
 | `v7.2` | `4a38937` | Bottom area declutter |
 | `v7.3` | `41498b9` | Fix Proactive vs Passive toggle |
+| `v7.4` | *(pending)* | Restore Always On icon + distinct mode behavior |
 
 ---
 
