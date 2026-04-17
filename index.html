@@ -247,6 +247,23 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .guided .task-card.primary .tc-label{color:#0F6CBD}
 .guided .task-card.primary:hover{border-color:#0F6CBD;background:#eef4fb;box-shadow:0 1px 6px rgba(15,108,189,.1)}
 
+/* Polished variant — guidance label, show-4 collapse, primary elevation */
+.polished .grid-label{font-size:10px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.polished .task-grid{display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.polished .task-card{padding:8px 11px;background:#fff;border:1px solid #d1d1d1;border-radius:8px;cursor:pointer;transition:all .15s;line-height:1.35}
+.polished .task-card:hover{border-color:#0F6CBD;background:#f8fbff;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.polished .task-card:active{background:#eef4fb}
+.polished .task-card .tc-label{font-size:12px;font-weight:600;color:#242424}
+.polished .task-card .tc-sub{display:none}
+.polished .task-card.primary{background:#f5f9ff;border-color:#b8d4ea;box-shadow:0 1px 6px rgba(15,108,189,.08)}
+.polished .task-card.primary .tc-label{color:#0F6CBD}
+.polished .task-card.primary:hover{border-color:#0F6CBD;background:#eef4fb;box-shadow:0 2px 8px rgba(15,108,189,.14)}
+.polished .task-card.xtra{display:none}
+.polished.expanded .task-card.xtra{display:block}
+.polished .more-link{text-align:center;margin-top:4px;font-size:11px;color:#0F6CBD;font-weight:500;cursor:pointer;transition:.15s}
+.polished .more-link:hover{color:#115EA3;text-decoration:underline}
+.polished.expanded .more-link{display:none}
+
 .prompt-tog{display:inline-flex;align-items:center;gap:0;background:#f0f0f0;border-radius:5px;padding:2px;margin-left:8px;vertical-align:middle}
 .prompt-tog button{padding:3px 8px;border:none;background:none;font-family:inherit;font-size:10px;font-weight:600;color:#888;border-radius:4px;cursor:pointer;transition:all .12s;letter-spacing:.2px}
 .prompt-tog button.active{background:#fff;color:#0F6CBD;box-shadow:0 1px 2px rgba(0,0,0,.1)}
@@ -505,7 +522,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
       <div class="cw-body" id="bodyE">
         <!-- BASELINE STARTER PROMPTS (original, preserved) -->
         <div class="ai-welcome" id="promptBaseline" style="display:none">
-          <div class="ai-welcome-text">Hi, I'm an AI assistant. Here are some things I can help with, or feel free to ask me anything below. <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button class="active" onclick="togPrompt('base')">v1</button><button onclick="togPrompt('guide')">v3</button></span></div>
+          <div class="ai-welcome-text">Hi, I'm an AI assistant. Here are some things I can help with, or feel free to ask me anything below. <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button class="active" onclick="togPrompt('base')">v1</button><button onclick="togPrompt('guide')">v3</button><button onclick="togPrompt('polish')">v4</button></span></div>
           <div class="task-grid">
             <div class="task-card" onclick="taskSendE('Which Microsoft 365 plan is right for me?')">
               <div class="tc-label">Find my plan<span class="tc-sub">Compare pricing &#38; features</span></div>
@@ -529,7 +546,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
         </div>
         <!-- ENHANCED STARTER PROMPTS -->
         <div class="ai-welcome enh" id="promptEnhanced" style="display:none">
-          <div class="ai-welcome-text">Hi, I'm an AI assistant. What can I help you with? <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button onclick="togPrompt('guide')">v3</button></span></div>
+          <div class="ai-welcome-text">Hi, I'm an AI assistant. What can I help you with? <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button onclick="togPrompt('guide')">v3</button><button onclick="togPrompt('polish')">v4</button></span></div>
           <div class="task-grid">
             <div class="task-card hero" onclick="taskSendE('Help me pick the best Microsoft 365 plan for my needs')">
               <div class="tc-label">Which plan is best for me?</div>
@@ -552,8 +569,8 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
           </div>
         </div>
         <!-- GUIDED ENTRY VARIANT -->
-        <div class="ai-welcome guided" id="promptGuided">
-          <div class="ai-welcome-text">Hi, I'm an AI assistant. What can I help you with? <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button class="active" onclick="togPrompt('guide')">v3</button></span></div>
+        <div class="ai-welcome guided" id="promptGuided" style="display:none">
+          <div class="ai-welcome-text">Hi, I'm an AI assistant. What can I help you with? <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button class="active" onclick="togPrompt('guide')">v3</button><button onclick="togPrompt('polish')">v4</button></span></div>
           <div class="task-grid">
             <div class="task-card primary" onclick="taskSendE('Help me compare Microsoft 365 plans and pick the right one')">
               <div class="tc-label">Compare plans &#38; pricing</div>
@@ -574,6 +591,32 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
               <div class="tc-label">Set up Outlook</div>
             </div>
           </div>
+        </div>
+        <!-- POLISHED VARIANT -->
+        <div class="ai-welcome polished" id="promptPolished">
+          <div class="ai-welcome-text">Hi, I'm an AI assistant. What can I help you with? <span class="prompt-tog"><button onclick="togPrompt('enh')">v2</button><button onclick="togPrompt('base')">v1</button><button onclick="togPrompt('guide')">v3</button><button class="active" onclick="togPrompt('polish')">v4</button></span></div>
+          <div class="grid-label">Most people start here</div>
+          <div class="task-grid">
+            <div class="task-card primary" onclick="taskSendE('Help me compare Microsoft 365 plans and pick the right one')">
+              <div class="tc-label">Compare plans &#38; pricing</div>
+            </div>
+            <div class="task-card" onclick="taskSendE('I want to try Microsoft 365 free')">
+              <div class="tc-label">Start a free trial</div>
+            </div>
+            <div class="task-card" onclick="taskSendE('What can Copilot AI do for me?')">
+              <div class="tc-label">What does Copilot do?</div>
+            </div>
+            <div class="task-card" onclick="taskSendE('I need help fixing an issue')">
+              <div class="tc-label">Troubleshoot an issue</div>
+            </div>
+            <div class="task-card xtra" onclick="taskSendE('Show me student and education offers')">
+              <div class="tc-label">Student discounts</div>
+            </div>
+            <div class="task-card xtra" onclick="taskSendE('Help me set up Outlook email')">
+              <div class="tc-label">Set up Outlook</div>
+            </div>
+          </div>
+          <div class="more-link" onclick="togMore(this)">More options</div>
         </div>
         <div class="tr-note" style="margin-top:8px"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="#999"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16.5l-4-4 1.41-1.41L11 14.67l6.59-6.59L19 9.5l-8 8z"/></svg> <a href="#">Transparency FAQ &#8599;</a></div>
         <div class="opt-row">We may save conversations to improve your experience. <a href="#" onclick="this.parentElement.innerHTML='&#10003; Opted out &#8212; this conversation will not be saved.';this.parentElement.style.color='#a4262c';this.parentElement.style.fontWeight='600';return false">Opt out</a></div>
@@ -1031,13 +1074,16 @@ function togPrompt(v){
   var base=document.getElementById('promptBaseline');
   var enh=document.getElementById('promptEnhanced');
   var guide=document.getElementById('promptGuided');
-  base.style.display='none';enh.style.display='none';guide.style.display='none';
+  var polish=document.getElementById('promptPolished');
+  base.style.display='none';enh.style.display='none';guide.style.display='none';polish.style.display='none';
   if(v==='base') base.style.display='';
   else if(v==='enh') enh.style.display='';
-  else guide.style.display='';
-  var map={base:'v1',enh:'v2',guide:'v3'};
+  else if(v==='guide') guide.style.display='';
+  else polish.style.display='';
+  var map={base:'v1',enh:'v2',guide:'v3',polish:'v4'};
   document.querySelectorAll('.prompt-tog button').forEach(function(b){b.classList.toggle('active',b.textContent===map[v])});
 }
+function togMore(el){el.closest('.polished').classList.add('expanded')}
 
 function micToggle(btn){
   btn.classList.toggle('listening');
