@@ -64,7 +64,8 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 
 .cw-main{flex:1;display:flex;overflow:hidden;min-height:0}
 .cw-bar{width:4px;background:linear-gradient(180deg,#0F6CBD,#62ABF5,#0F6CBD);flex-shrink:0}
-.cw-body{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:#fafafa;min-height:0;justify-content:flex-end}
+.cw-body{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:#fafafa;min-height:0}
+.cw-body::before{content:'';flex:1 1 auto}
 .cw-foot{padding:6px 10px 6px;background:#fff;flex-shrink:0;border-top:1px solid #e0e0e0}
 .cw-foot .disc{font-size:10px;color:#aaa;text-align:center;margin-bottom:3px;font-weight:400}
 .cw-input{display:flex;gap:6px;align-items:center;background:#fff;border:1px solid #d1d1d1;border-radius:8px;padding:4px 10px;position:relative;overflow:hidden;transition:border-color .1s}
@@ -443,12 +444,19 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
       <ul>
         <li><strong>Welcome:</strong> Task-based entry cards &#8212; zero text wall</li>
         <li><strong>Guided Flows:</strong> Clickable buttons narrow intent before answering</li>
-        <li><strong>Human Offramp:</strong> Seamless inline handoff after 2 exchanges</li>
+        <li><strong>Human Offramp:</strong> Intent-based handoff gate (see below)</li>
         <li><strong>Stay-In:</strong> Inline action buttons (no redirect feel)</li>
         <li><strong>Voice:</strong> Mic icon in input bar</li>
         <li><strong>Visual:</strong> Pill-shaped cards with primary hierarchy</li>
       </ul>
       <div class="note"><strong>Why it works:</strong> Task-based entry reduces cognitive load. Guided flows keep the conversation flowing naturally. The human offramp appears after enough context is gathered &#8212; not upfront where it competes with AI engagement.</div>
+      <div class="note" style="margin-top:8px;border-left-color:#5c2d91">
+        <strong>Handoff Gate</strong> &#8212; an intent-based decision point that appears <em>before</em> the AI response. Triggered when:<br>
+        &#8226; User selects &#8220;Large / Enterprise (300+)&#8221;<br>
+        &#8226; User selects &#8220;Business Premium&#8221; trial<br>
+        &#8226; User types intent words: <em>pricing, buy, purchase, license, enterprise, sales</em><br>
+        Shows &#8220;Keep exploring with AI&#8221; (primary) or &#8220;Talk to a specialist&#8221; (link). Appears once per session.
+      </div>
       <div class="email-mode-section">
         <div class="email-mode-label"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#0F6CBD"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg> Email Transcript Capture</div>
         <div class="email-mode-seg">
@@ -461,7 +469,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
             <span class="em-desc">Customer taps Save when ready</span>
           </button>
         </div>
-        <div class="email-mode-detail" id="emailModeDetail"><strong>Proactive:</strong> After the handoff bar, the next exchange triggers an inline card: &#8220;Want a copy of this conversation?&#8221; &#8212; customer enters email or ignores it.</div>
+        <div class="email-mode-detail" id="emailModeDetail"><strong>Proactive:</strong> The email capture card appears automatically when either: (1) the handoff gate is dismissed, or (2) the conversation reaches 4+ turns. Customer enters email or ignores it.<br><br><strong>How to trigger it:</strong> Either type &#8220;pricing&#8221;/&#8220;enterprise&#8221; and dismiss the gate, or just keep chatting &#8212; it appears after the 4th exchange.</div>
       </div>
     </div>
   </div>
@@ -816,7 +824,7 @@ function sendMsg(input, variant){
         addInlineActions(body, topic);
         addContextChips(body, topic);
       }
-      if(handoffDismissed) addProactiveEmailCapture(body);
+      if(handoffDismissed || eTotalTurns >= 4) addProactiveEmailCapture(body);
       /* Passive: show the always-on footer button after first exchange */
       if(emailMode === 'passive' && eTotalTurns >= 1) showPassiveButton();
     } else {
@@ -919,9 +927,9 @@ function setEmailMode(mode){
   btns[1].classList.toggle('active', mode==='passive');
   var detail = document.getElementById('emailModeDetail');
   if(mode==='proactive'){
-    detail.innerHTML = '<strong>Proactive:</strong> After the handoff bar is dismissed, the next exchange triggers an inline card: &#8220;Want a copy of this conversation?&#8221; &#8212; system-initiated, customer enters email or ignores it.';
+    detail.innerHTML = '<strong>Proactive:</strong> The email capture card appears automatically when either: (1) the handoff gate is dismissed, or (2) the conversation reaches 4+ turns. Customer enters email or ignores it.<br><br><strong>How to trigger it:</strong> Either type &#8220;pricing&#8221;/&#8220;enterprise&#8221; and dismiss the gate, or just keep chatting &#8212; it appears after the 4th exchange.';
   } else {
-    detail.innerHTML = '<strong>Passive:</strong> A persistent &#8220;Email me a copy&#8221; link appears in the footer after the first exchange. Customer taps it whenever ready &#8212; or not at all. Zero system prompts.';
+    detail.innerHTML = '<strong>Passive:</strong> A persistent &#8220;Email me a copy&#8221; button appears in the footer after the first exchange. Customer taps it whenever ready &#8212; or not at all. Zero system prompts.<br><br><strong>How to trigger it:</strong> Send any message. The &#8220;Email me a copy&#8221; button appears in the footer after the first response.';
   }
   /* Show/hide the always-on save button based on mode */
   var saveBtn = document.getElementById('saveBtn');
@@ -1006,6 +1014,8 @@ function addInlineActions(body, topic){
   var msgs = body.querySelectorAll('.m.mb');
   var last = msgs[msgs.length - 1];
   if(!last) return;
+  /* Skip if the reply already contains inline action buttons */
+  if(last.querySelector('.inline-act')) return;
   var actHTML = '';
   if(topic === 'plan') actHTML = '<div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans" target="_blank">Compare plans</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-standard" target="_blank">Try Standard free</a></div>';
   else if(topic === 'trial') actHTML = '<div class="inline-act"><a href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-basic" target="_blank">Try Basic free</a><a class="sec" href="https://www.microsoft.com/en-us/microsoft-365/business/microsoft-365-business-standard" target="_blank">Try Standard free</a></div>';
@@ -1107,7 +1117,7 @@ function guidedChoice(step, value, label){
       eMsgCount++;
       addContextChips(body, detectTopic(label));
     }
-    if(handoffDismissed) addProactiveEmailCapture(body);
+    if(handoffDismissed || eTotalTurns >= 4) addProactiveEmailCapture(body);
     /* Passive: show the always-on footer button after first exchange */
     if(emailMode === 'passive' && eTotalTurns >= 1) showPassiveButton();
     body.scrollTop = body.scrollHeight;
