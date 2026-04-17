@@ -153,7 +153,7 @@ A quick overview of how the prototype evolved. Scroll down for the detailed chan
 ---
 
 ### v7.4 — Restore Always On Icon + Distinct Mode Behavior (Apr 17)
-*Tag: `v7.4`*
+*Tag: `v7.4` · Commit: `c5258f7`*
 
 | Area | What changed | Why |
 |------|-------------|-----|
@@ -192,7 +192,7 @@ git checkout v6-baseline -- index.html
 | `v7` | `3a37a3b` | Layout and compliance refinement |
 | `v7.2` | `4a38937` | Bottom area declutter |
 | `v7.3` | `41498b9` | Fix Proactive vs Passive toggle |
-| `v7.4` | *(pending)* | Restore Always On icon + distinct mode behavior |
+| `v7.4` | `c5258f7` | Restore Always On icon + distinct mode behavior |
 
 ---
 
