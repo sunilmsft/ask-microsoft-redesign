@@ -216,7 +216,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .opp-card p{margin:0;font-size:12px;color:#616161}
 .opp-card-icon{font-size:20px;flex-shrink:0;margin-top:1px}
 .opp-legend{display:flex;align-items:center;gap:6px;font-size:11px;color:#616161;line-height:1.3;padding:3px 0}
-.opp-leg-num{width:20px;height:20px;border-radius:50%;background:#3B82F6;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.opp-leg-num{width:26px;height:26px;border-radius:50%;background:#1E40AF;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 1px 3px rgba(30,64,175,.25)}
 .opp-legend-card{display:flex;gap:8px;align-items:flex-start;background:#fff;border-radius:8px;padding:10px 12px;border:1px solid #DBEAFE;font-size:12px;line-height:1.4;color:#555}
 .opp-legend-card strong{color:#1E40AF;font-size:12px;display:block}
 .opp-legend-card span{color:#6B7280;font-size:11px}
@@ -412,10 +412,10 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 </div>
 
 <div class="tabs">
-  <div class="tab" onclick="sw('E')">A &#183; Recommended &#9733;</div>
+  <div class="tab active" onclick="sw('O')" style="color:#1E40AF">&#128269; Opportunity</div>
+  <div class="tab" onclick="sw('E')" style="margin-left:8px;border-left:1px solid #ddd">A &#183; Recommended &#9733;</div>
   <div class="tab" onclick="sw('A')">B &#183; Baseline</div>
   <div class="tab" onclick="sw('D')">C &#183; Chips</div>
-  <div class="tab active" onclick="sw('O')" style="margin-left:8px;border-left:1px solid #ddd;color:#c42b1c">&#128269; Opportunity</div>
   <div class="tab" onclick="sw('S')" style="margin-left:auto;border-left:1px solid #ddd">&#9776; Summary</div>
 </div>
 
@@ -660,8 +660,8 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
     <!-- ===== COL 2: WHAT EACH NUMBER MEANS ===== -->
     <div style="flex:0 0 270px;padding:0 20px;display:flex;flex-direction:column;gap:14px">
       <div style="background:#EFF6FF;border:1px solid #DBEAFE;border-radius:10px;padding:14px 16px">
-        <h2 style="color:#1E40AF;font-size:15px;margin:0 0 4px;display:flex;align-items:center;gap:6px"><svg width="18" height="18" viewBox="0 0 24 24" fill="#1E40AF"><path d="M11 15h2v2h-2zm0-8h2v6h-2zm1-5C6.47 2 2 6.5 2 12a10 10 0 0020 0c0-5.5-4.47-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg> What's Wrong</h2>
-        <p style="font-size:12px;margin:0;color:#6B7280">7 elements competing for attention in one message.</p>
+        <h2 style="color:#1E40AF;font-size:15px;margin:0 0 4px;display:flex;align-items:center;gap:6px"><svg width="18" height="18" viewBox="0 0 24 24" fill="#1E40AF"><path d="M11 15h2v2h-2zm0-8h2v6h-2zm1-5C6.47 2 2 6.5 2 12a10 10 0 0020 0c0-5.5-4.47-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg> Room to Improve</h2>
+        <p style="font-size:12px;margin:0;color:#6B7280">7 elements that could work harder for the user.</p>
       </div>
 
       <div style="display:flex;flex-direction:column;gap:6px">
@@ -697,7 +697,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
     </div>
 
     <!-- ===== DIVIDER 2 ===== -->
-    <div style="width:1px;background:linear-gradient(180deg,transparent 0%,#BBF7D0 10%,#BBF7D0 90%,transparent 100%);flex-shrink:0;margin:0 4px"></div>
+    <div style="width:1px;background:linear-gradient(180deg,transparent 0%,#94A3B8 8%,#94A3B8 92%,transparent 100%);flex-shrink:0;margin:0 8px"></div>
 
     <!-- ===== COL 3: OPPORTUNITY + BEFORE/AFTER ===== -->
     <div style="flex:1;min-width:340px;padding-left:20px;display:flex;flex-direction:column;gap:14px">
@@ -742,8 +742,8 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
         </div>
       </div>
 
-      <!-- Subtle divider -->
-      <div style="height:1px;background:linear-gradient(90deg,transparent 0%,#D1FAE5 20%,#D1FAE5 80%,transparent 100%)"></div>
+      <!-- Section divider -->
+      <div style="height:2px;background:linear-gradient(90deg,transparent 0%,#94A3B8 15%,#94A3B8 85%,transparent 100%);margin:6px 0"></div>
 
       <!-- Before / After Header -->
       <div style="display:flex;align-items:center;gap:8px">
@@ -905,7 +905,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 <script>
 /* Tab switching */
 function sw(id){
-  var ids=['E','A','D','O','S'];
+  var ids=['O','E','A','D','S'];
   document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('active',ids[i]===id)});
   document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active',p.id==='p'+id)});
   document.querySelectorAll('.pop.open').forEach(function(p){p.classList.remove('open')});
