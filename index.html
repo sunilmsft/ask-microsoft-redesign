@@ -204,19 +204,25 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .insight-card.gap{border-left:3px solid #c42b1c}
 
 /* ===== OPPORTUNITY TAB ===== */
-.opp-callout{position:absolute;width:26px;height:26px;border-radius:50%;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;z-index:5;box-shadow:0 2px 6px rgba(196,43,28,.4);animation:opp-pulse 2s infinite}
-@keyframes opp-pulse{0%,100%{box-shadow:0 2px 6px rgba(196,43,28,.4)}50%{box-shadow:0 2px 12px rgba(196,43,28,.7)}}
-.opp-item{display:flex;gap:10px;background:#fff;border-radius:8px;padding:12px 14px;box-shadow:0 2px 4px rgba(0,0,0,.06),0 0 2px rgba(0,0,0,.04);border-left:3px solid #c42b1c;font-size:13px;line-height:1.5;color:#444}
+.opp-callout{position:absolute;width:24px;height:24px;border-radius:50%;background:#C07000;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;z-index:5;box-shadow:0 2px 8px rgba(192,112,0,.35)}
+.opp-item{display:flex;gap:10px;background:#fff;border-radius:8px;padding:12px 14px;box-shadow:0 2px 4px rgba(0,0,0,.06),0 0 2px rgba(0,0,0,.04);border-left:3px solid #C07000;font-size:13px;line-height:1.5;color:#444}
 .opp-item strong{color:#242424;display:block;margin-bottom:2px;font-size:13px}
 .opp-item p{margin:0;font-size:12px;color:#616161}
 .opp-num{width:24px;height:24px;border-radius:50%;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
 .opp-card{display:flex;gap:10px;background:#fff;border-radius:8px;padding:14px 16px;box-shadow:0 2px 4px rgba(0,0,0,.06),0 0 2px rgba(0,0,0,.04);font-size:13px;line-height:1.5;color:#444}
-.opp-card.green{border-left:3px solid #107c10}
+.opp-card.green{border-left:3px solid #0E7A0D}
 .opp-card strong{color:#242424;display:block;margin-bottom:2px}
 .opp-card p{margin:0;font-size:12px;color:#616161}
 .opp-card-icon{font-size:20px;flex-shrink:0;margin-top:1px}
 .opp-legend{display:flex;align-items:center;gap:6px;font-size:11px;color:#616161;line-height:1.3;padding:3px 0}
-.opp-leg-num{width:18px;height:18px;border-radius:50%;background:#c42b1c;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.opp-leg-num{width:20px;height:20px;border-radius:50%;background:#C07000;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.opp-legend-card{display:flex;gap:8px;align-items:flex-start;background:#fff;border-radius:8px;padding:10px 12px;border:1px solid #F5E6D3;font-size:12px;line-height:1.4;color:#555}
+.opp-legend-card strong{color:#333;font-size:12px;display:block}
+.opp-legend-card span{color:#888;font-size:11px}
+.opp-card-v2{background:#fff;border-radius:8px;padding:10px 12px;border:1px solid #D3E8D3;font-size:12px;line-height:1.4;color:#555}
+.opp-card-v2 strong{color:#333;font-size:12px;display:block;margin-bottom:2px}
+.opp-card-v2 p{margin:0;font-size:11px;color:#888;line-height:1.35}
+.opp-card-v2-icon{font-size:16px;margin-bottom:4px}
 
 /* Star badge for Option D */
 .tag-d{background:#fff3e0;color:#d83b01}
@@ -596,48 +602,47 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 
 <!-- ==================== OPPORTUNITY ANALYSIS ==================== -->
 <div class="panel active" id="pO" style="padding-right:24px">
-  <div style="display:flex;gap:28px;align-items:stretch;width:100%;max-width:1400px">
+  <div style="display:flex;gap:0;align-items:stretch;width:100%;max-width:1500px">
 
-    <!-- ===== LEFT COLUMN: THE PROBLEM (full height) ===== -->
-    <div style="flex:0 0 440px;display:flex;flex-direction:column;gap:12px">
-      <div class="cmp-intro" style="border-left:4px solid #c42b1c;margin:0">
-        <h2 style="color:#c42b1c;font-size:15px;margin-bottom:2px">&#128269; The Problem: Too Much at Once</h2>
-        <p style="font-size:12px;margin:0">The current chat packs <strong>7 competing elements</strong> into one small widget. Users face decision overload before typing anything.</p>
+    <!-- ===== COL 1: ANNOTATED CHAT MOCKUP ===== -->
+    <div style="flex:0 0 420px;display:flex;flex-direction:column;gap:14px;padding-right:28px">
+      <div style="background:#FFF8F0;border:1px solid #F5E6D3;border-radius:10px;padding:14px 16px">
+        <h2 style="color:#A35A00;font-size:15px;margin:0 0 4px;display:flex;align-items:center;gap:6px"><svg width="18" height="18" viewBox="0 0 24 24" fill="#A35A00"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Current State</h2>
+        <p style="font-size:12px;margin:0;color:#8B6914">The live Ask Microsoft chat on microsoft.com today.</p>
       </div>
 
-      <!-- Annotated Chat Replica -->
-      <div style="position:relative;flex:1">
-        <div style="font-size:10px;text-transform:uppercase;letter-spacing:.5px;color:#999;font-weight:600;margin-bottom:6px">Current State (Live on microsoft.com)</div>
-        <div style="width:400px;background:#fff;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.15);overflow:hidden;font-family:'Segoe UI',sans-serif">
+      <!-- Taller Chat Replica -->
+      <div style="position:relative">
+        <div style="width:400px;background:#fff;border-radius:12px;box-shadow:0 2px 16px rgba(0,0,0,.1);overflow:hidden;font-family:'Segoe UI',sans-serif;border:1px solid #e8e8e8">
           <!-- Header -->
-          <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:#f8f9fa;border-bottom:1px solid #e0e0e0">
-            <div style="width:32px;height:32px;background:#0078d4;border-radius:8px;display:flex;align-items:center;justify-content:center">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+          <div style="display:flex;align-items:center;gap:10px;padding:14px 16px;background:linear-gradient(180deg,#fafbfc,#f0f2f4);border-bottom:1px solid #e0e0e0">
+            <div style="width:36px;height:36px;background:#0078d4;border-radius:8px;display:flex;align-items:center;justify-content:center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
             </div>
-            <span style="font-size:16px;font-weight:700;flex:1">Ask Microsoft</span>
-            <span style="font-size:16px;cursor:pointer;color:#666">&times;</span>
+            <span style="font-size:18px;font-weight:700;flex:1">Ask Microsoft</span>
+            <span style="font-size:18px;cursor:pointer;color:#999">&times;</span>
           </div>
           <!-- Sidebar accent + body -->
-          <div style="display:flex;min-height:320px">
+          <div style="display:flex;min-height:440px">
             <div style="width:4px;background:linear-gradient(180deg,#0078d4,#62ABF5,#0078d4);flex-shrink:0"></div>
-            <div style="flex:1;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;background:#fafafa">
-              <div style="background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:10px 12px;font-size:12px;line-height:1.5;color:#333">
-                <p style="margin:0 0 6px">Hi, I'm an AI agent, I can help you compare plans and features, start a free trial, answer support questions or connect you with a Microsoft Sales Representative. You can also request a sales call <a href="#" style="color:#0078d4;text-decoration:underline">here</a> &#8599; or call us at <span style="font-weight:600">(800) 642-7676</span> M-F 6 AM to 6 PM PT.</p>
-                <p style="margin:6px 0 0;font-size:12px;color:#333">What can I do for you?</p>
-                <p style="margin:6px 0 0;font-size:11px;color:#666">To learn more about this AI web feature, read the <a href="#" style="color:#0078d4;text-decoration:underline">Transparency FAQ (PDF)</a> &#8599;</p>
-                <div style="display:flex;gap:6px;margin-top:8px;padding-top:6px;border-top:1px solid #f0f0f0;align-items:center">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><path d="M7 22V11M2 13V20a2 2 0 002 2h13.4a2 2 0 002-1.7l1.4-9a2 2 0 00-2-2.3H15V4a2 2 0 00-2-2h0a2 2 0 00-2 1.6L9 11H4a2 2 0 00-2 2z"/></svg>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><path d="M17 2V13M22 11V4a2 2 0 00-2-2H6.6a2 2 0 00-2 1.7L3.2 12.7A2 2 0 005.2 15H9v3a2 2 0 002 2h0a2 2 0 002-1.6L15 13h5a2 2 0 002-2z"/></svg>
+            <div style="flex:1;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;background:#fafafa">
+              <div style="background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.6;color:#333">
+                <p style="margin:0 0 10px">Hi, I'm an AI agent, I can help you compare plans and features, start a free trial, answer support questions or connect you with a Microsoft Sales Representative. You can also request a sales call <a href="#" style="color:#0078d4;text-decoration:underline">here</a> &#8599; or call us at <span style="font-weight:600">(800) 642-7676</span> M-F 6 AM to 6 PM PT.</p>
+                <p style="margin:0 0 10px;font-size:13px;color:#333">What can I do for you?</p>
+                <p style="margin:0;font-size:12px;color:#666">To learn more about this AI web feature, read the <a href="#" style="color:#0078d4;text-decoration:underline">Transparency FAQ (PDF)</a> &#8599;</p>
+                <div style="display:flex;gap:6px;margin-top:10px;padding-top:8px;border-top:1px solid #f0f0f0;align-items:center">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><path d="M7 22V11M2 13V20a2 2 0 002 2h13.4a2 2 0 002-1.7l1.4-9a2 2 0 00-2-2.3H15V4a2 2 0 00-2-2h0a2 2 0 00-2 1.6L9 11H4a2 2 0 00-2 2z"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><path d="M17 2V13M22 11V4a2 2 0 00-2-2H6.6a2 2 0 00-2 1.7L3.2 12.7A2 2 0 005.2 15H9v3a2 2 0 002 2h0a2 2 0 002-1.6L15 13h5a2 2 0 002-2z"/></svg>
                 </div>
-                <div style="font-size:9px;color:#aaa;margin-top:3px">just now</div>
+                <div style="font-size:10px;color:#bbb;margin-top:4px">just now</div>
               </div>
             </div>
           </div>
           <!-- Footer -->
-          <div style="padding:6px 10px;background:#fff;border-top:1px solid #e0e0e0">
-            <div style="font-size:9px;color:#aaa;text-align:center;margin-bottom:3px">AI-generated content may be incorrect</div>
-            <div style="display:flex;align-items:center;border:1px solid #d1d1d1;border-radius:8px;padding:5px 8px;gap:6px;position:relative;overflow:hidden">
-              <span style="flex:1;font-size:12px;color:#999">Ask a work question or make a request</span>
+          <div style="padding:8px 12px;background:#fff;border-top:1px solid #e0e0e0">
+            <div style="font-size:10px;color:#bbb;text-align:center;margin-bottom:4px">AI-generated content may be incorrect</div>
+            <div style="display:flex;align-items:center;border:1px solid #d1d1d1;border-radius:8px;padding:6px 10px;gap:6px;position:relative;overflow:hidden">
+              <span style="flex:1;font-size:13px;color:#999">Ask a work question or make a request</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="#0078d4"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
               <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#0078d4,#62ABF5,#96C6F7,#62ABF5,#0078d4)"></div>
             </div>
@@ -645,104 +650,128 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
         </div>
 
         <!-- Numbered callout circles -->
-        <div class="opp-callout" style="top:55px;right:20px;background:#c42b1c">1</div>
-        <div class="opp-callout" style="top:208px;left:45px;background:#c42b1c">2</div>
-        <div class="opp-callout" style="top:225px;right:25px;background:#c42b1c">3</div>
-        <div class="opp-callout" style="top:262px;left:45px;background:#c42b1c">4</div>
-        <div class="opp-callout" style="top:305px;left:45px;background:#c42b1c">5</div>
-        <div class="opp-callout" style="bottom:55px;left:70px;background:#c42b1c">6</div>
-        <div class="opp-callout" style="bottom:18px;right:45px;background:#c42b1c">7</div>
-      </div>
-
-      <!-- Callout legend under the mockup -->
-      <div style="display:flex;flex-direction:column;gap:4px;margin-top:4px">
-        <div class="opp-legend"><span class="opp-leg-num">1</span> No header actions &#8212; everything jammed in message body</div>
-        <div class="opp-legend"><span class="opp-leg-num">2</span> Callback CTA buried mid-sentence as a hyperlink</div>
-        <div class="opp-legend"><span class="opp-leg-num">3</span> Phone + hours as raw inline text, not tappable on mobile</div>
-        <div class="opp-legend"><span class="opp-leg-num">4</span> Transparency FAQ competes with greeting CTAs</div>
-        <div class="opp-legend"><span class="opp-leg-num">5</span> Thumbs feedback on welcome msg &#8212; noise before interaction</div>
-        <div class="opp-legend"><span class="opp-leg-num">6</span> AI disclaimer adds to wall of caveats</div>
-        <div class="opp-legend"><span class="opp-leg-num">7</span> No starter prompts &#8212; blank input, no guidance</div>
+        <div class="opp-callout" style="top:60px;right:16px">1</div>
+        <div class="opp-callout" style="top:228px;left:42px">2</div>
+        <div class="opp-callout" style="top:250px;right:22px">3</div>
+        <div class="opp-callout" style="top:298px;left:42px">4</div>
+        <div class="opp-callout" style="top:348px;left:42px">5</div>
+        <div class="opp-callout" style="bottom:62px;left:68px">6</div>
+        <div class="opp-callout" style="bottom:22px;right:50px">7</div>
       </div>
     </div>
 
-    <!-- ===== RIGHT COLUMN: OPPORTUNITY + BEFORE/AFTER ===== -->
-    <div style="flex:1;min-width:360px;display:flex;flex-direction:column;gap:16px">
+    <!-- ===== DIVIDER 1 ===== -->
+    <div style="width:1px;background:linear-gradient(180deg,transparent 0%,#e0d5c8 10%,#e0d5c8 90%,transparent 100%);flex-shrink:0"></div>
+
+    <!-- ===== COL 2: WHAT EACH NUMBER MEANS ===== -->
+    <div style="flex:0 0 280px;padding:0 24px;display:flex;flex-direction:column;gap:14px">
+      <div style="background:#FFF8F0;border:1px solid #F5E6D3;border-radius:10px;padding:14px 16px">
+        <h2 style="color:#A35A00;font-size:15px;margin:0 0 4px;display:flex;align-items:center;gap:6px"><svg width="18" height="18" viewBox="0 0 24 24" fill="#A35A00"><path d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg> What's Wrong</h2>
+        <p style="font-size:12px;margin:0;color:#8B6914">7 elements competing for attention in one message.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div class="opp-legend-card">
+          <span class="opp-leg-num">1</span>
+          <div><strong>No header actions</strong><br><span>Everything jammed in message body text</span></div>
+        </div>
+        <div class="opp-legend-card">
+          <span class="opp-leg-num">2</span>
+          <div><strong>Callback buried inline</strong><br><span>CTA hidden mid-sentence as a hyperlink</span></div>
+        </div>
+        <div class="opp-legend-card">
+          <span class="opp-leg-num">3</span>
+          <div><strong>Phone as raw text</strong><br><span>Not tappable on mobile, no copy button</span></div>
+        </div>
+        <div class="opp-legend-card">
+          <span class="opp-leg-num">4</span>
+          <div><strong>FAQ competes with CTAs</strong><br><span>Legal disclosure mixed with greeting</span></div>
+        </div>
+        <div class="opp-legend-card">
+          <span class="opp-leg-num">5</span>
+          <div><strong>Feedback too early</strong><br><span>Thumbs on welcome &#8212; noise before interaction</span></div>
+        </div>
+        <div class="opp-legend-card">
+          <span class="opp-leg-num">6</span>
+          <div><strong>Wall of caveats</strong><br><span>AI disclaimer + FAQ + dense text = overload</span></div>
+        </div>
+        <div class="opp-legend-card">
+          <span class="opp-leg-num">7</span>
+          <div><strong>No guided entry</strong><br><span>Blank input, no prompts, no direction</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== DIVIDER 2 ===== -->
+    <div style="width:1px;background:linear-gradient(180deg,transparent 0%,#d3e0d5 10%,#d3e0d5 90%,transparent 100%);flex-shrink:0"></div>
+
+    <!-- ===== COL 3: OPPORTUNITY + BEFORE/AFTER ===== -->
+    <div style="flex:1;min-width:340px;padding-left:24px;display:flex;flex-direction:column;gap:14px">
+
+      <!-- Opportunity Header -->
+      <div style="background:#F0F9F0;border:1px solid #D3E8D3;border-radius:10px;padding:14px 16px">
+        <h2 style="color:#0E7A0D;font-size:15px;margin:0 0 4px;display:flex;align-items:center;gap:6px"><svg width="18" height="18" viewBox="0 0 24 24" fill="#0E7A0D"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> The Opportunity</h2>
+        <p style="font-size:12px;margin:0;color:#1B7A1B">Declutter, guide, and increase engagement.</p>
+      </div>
 
       <!-- Opportunity Cards -->
-      <div class="cmp-intro" style="border-left:4px solid #107c10;margin:0">
-        <h2 style="color:#107c10;font-size:15px;margin-bottom:2px">&#10003; The Opportunity: Declutter &#38; Guide</h2>
-        <p style="font-size:12px;margin:0">Reorganize these elements to reduce cognitive load and increase engagement.</p>
-      </div>
-
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-        <div class="opp-card green">
-          <div class="opp-card-icon">&#128222;</div>
-          <div>
-            <strong>Move contact to header icons</strong>
-            <p>Callback &#38; Call Us as icon buttons &#8212; always accessible, never cluttering the message.</p>
-          </div>
+        <div class="opp-card-v2">
+          <div class="opp-card-v2-icon">&#128222;</div>
+          <strong>Contact &#8594; header icons</strong>
+          <p>Callback &#38; Call Us as clean icon buttons, always accessible.</p>
         </div>
-        <div class="opp-card green">
-          <div class="opp-card-icon">&#128172;</div>
-          <div>
-            <strong>Task cards replace text wall</strong>
-            <p>4&#8211;6 clickable starter prompts. Users scan &#38; tap instead of read &#38; type.</p>
-          </div>
+        <div class="opp-card-v2">
+          <div class="opp-card-v2-icon">&#128172;</div>
+          <strong>Text wall &#8594; task cards</strong>
+          <p>4&#8211;6 clickable prompts. Scan &#38; tap beats read &#38; type.</p>
         </div>
-        <div class="opp-card green">
-          <div class="opp-card-icon">&#128274;</div>
-          <div>
-            <strong>Separate trust signals</strong>
-            <p>Transparency FAQ as a subtle pill below cards. AI disclaimer stays in footer only.</p>
-          </div>
+        <div class="opp-card-v2">
+          <div class="opp-card-v2-icon">&#128274;</div>
+          <strong>Trust signals separated</strong>
+          <p>FAQ as subtle pill below cards. Disclaimer in footer only.</p>
         </div>
-        <div class="opp-card green">
-          <div class="opp-card-icon">&#9889;</div>
-          <div>
-            <strong>Shorten greeting to ~18 words</strong>
-            <p>From ~50 words of dense text to a concise intro + visual cards do the rest.</p>
-          </div>
+        <div class="opp-card-v2">
+          <div class="opp-card-v2-icon">&#9889;</div>
+          <strong>50 words &#8594; 18 words</strong>
+          <p>Concise greeting + visual cards do the heavy lifting.</p>
         </div>
-        <div class="opp-card green">
-          <div class="opp-card-icon">&#128101;</div>
-          <div>
-            <strong>Delay human handoff</strong>
-            <p>Surface a human-assist bar after 2 exchanges &#8212; when the user actually needs it.</p>
-          </div>
+        <div class="opp-card-v2">
+          <div class="opp-card-v2-icon">&#128101;</div>
+          <strong>Smart human handoff</strong>
+          <p>Appears after 2 exchanges, when the user actually needs it.</p>
         </div>
-        <div class="opp-card green">
-          <div class="opp-card-icon">&#128200;</div>
-          <div>
-            <strong>Remove welcome feedback</strong>
-            <p>Reserve thumbs up/down for substantive AI responses where it provides real signal.</p>
-          </div>
+        <div class="opp-card-v2">
+          <div class="opp-card-v2-icon">&#128200;</div>
+          <strong>Feedback where it counts</strong>
+          <p>Thumbs on AI responses only &#8212; not on the welcome message.</p>
         </div>
       </div>
 
-      <!-- Before / After Table -->
-      <div class="cmp-intro" style="margin:0">
-        <h2 style="font-size:15px;margin-bottom:2px">Before vs. After</h2>
-        <p style="font-size:12px;margin:0">What changes when we apply the redesign.</p>
+      <!-- Subtle divider -->
+      <div style="height:1px;background:linear-gradient(90deg,transparent 0%,#d3e0d5 20%,#d3e0d5 80%,transparent 100%)"></div>
+
+      <!-- Before / After Header -->
+      <div style="display:flex;align-items:center;gap:8px">
+        <h2 style="font-size:14px;color:#444;margin:0">Before vs. After</h2>
+        <div style="flex:1;height:1px;background:#e8e8e8"></div>
       </div>
 
       <table class="cmp-tbl" style="width:100%;font-size:12px">
-        <thead><tr><th style="width:140px;padding:8px 10px">Element</th><th style="background:#c42b1c;padding:8px 10px">Current</th><th style="background:#107c10;padding:8px 10px">Redesign</th></tr></thead>
+        <thead><tr><th style="width:110px;padding:7px 10px">Element</th><th style="background:#B8860B;padding:7px 10px">Current</th><th style="background:#0E7A0D;padding:7px 10px">Redesign</th></tr></thead>
         <tbody>
-          <tr><td class="feat">Greeting</td><td>~50 words, dense paragraph</td><td class="hi">~18 words + visual cards</td></tr>
-          <tr><td class="feat">Callback</td><td>Inline link, mid-sentence</td><td class="hi">Header icon &#8594; popover</td></tr>
-          <tr><td class="feat">Phone</td><td>Raw text in body</td><td class="hi">Header icon &#8594; click-to-call + copy</td></tr>
-          <tr><td class="feat">FAQ</td><td>Link inside greeting</td><td class="hi">Subtle pill below cards</td></tr>
+          <tr><td class="feat">Greeting</td><td>~50 words, dense</td><td class="hi">~18 words + cards</td></tr>
+          <tr><td class="feat">Callback</td><td>Inline link</td><td class="hi">Header icon</td></tr>
+          <tr><td class="feat">Phone</td><td>Raw text</td><td class="hi">Click-to-call + copy</td></tr>
           <tr><td class="feat">Prompts</td><td><span class="dim">None</span></td><td class="hi">4&#8211;6 task cards</td></tr>
-          <tr><td class="feat">Feedback</td><td>On welcome msg</td><td class="hi">On AI responses only</td></tr>
-          <tr><td class="feat">Handoff</td><td>Immediate in text</td><td class="hi">After 2 exchanges</td></tr>
-          <tr><td class="feat">Hierarchy</td><td>All same priority</td><td class="hi">3 clear zones</td></tr>
-          <tr><td class="feat" style="color:#c42b1c">Attention items</td><td style="color:#c42b1c;font-weight:700">7 in one message</td><td class="hi" style="font-weight:700">3 zones</td></tr>
+          <tr><td class="feat">Handoff</td><td>Immediate</td><td class="hi">After 2 exchanges</td></tr>
+          <tr><td class="feat">Hierarchy</td><td>Flat</td><td class="hi">3 clear zones</td></tr>
+          <tr style="background:#F0F9F0"><td class="feat" style="color:#0E7A0D">Result</td><td style="color:#B8860B;font-weight:700">7 items fighting</td><td style="color:#0E7A0D;font-weight:700">3 organized zones</td></tr>
         </tbody>
       </table>
 
-      <div class="cmp-note" style="border-left-color:#107c10;margin:0;font-size:12px;padding:10px 14px">
-        <strong>Bottom line:</strong> 7 competing elements in a 380px widget &#8594; 3 clear zones (header, cards, footer). See the <strong>A &#183; Recommended</strong> tab for the full interactive prototype.
+      <div style="background:#F0F9F0;border:1px solid #D3E8D3;border-radius:8px;padding:10px 14px;font-size:12px;color:#1B7A1B;line-height:1.5">
+        <strong>See it in action:</strong> Click <strong>A &#183; Recommended</strong> for the full interactive prototype.
       </div>
     </div>
   </div>
