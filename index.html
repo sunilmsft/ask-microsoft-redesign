@@ -203,6 +203,19 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 .insight-card.edge{border-left:3px solid #0F6CBD}
 .insight-card.gap{border-left:3px solid #c42b1c}
 
+/* ===== OPPORTUNITY TAB ===== */
+.opp-callout{position:absolute;width:26px;height:26px;border-radius:50%;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;z-index:5;box-shadow:0 2px 6px rgba(196,43,28,.4);animation:opp-pulse 2s infinite}
+@keyframes opp-pulse{0%,100%{box-shadow:0 2px 6px rgba(196,43,28,.4)}50%{box-shadow:0 2px 12px rgba(196,43,28,.7)}}
+.opp-item{display:flex;gap:10px;background:#fff;border-radius:8px;padding:12px 14px;box-shadow:0 2px 4px rgba(0,0,0,.06),0 0 2px rgba(0,0,0,.04);border-left:3px solid #c42b1c;font-size:13px;line-height:1.5;color:#444}
+.opp-item strong{color:#242424;display:block;margin-bottom:2px;font-size:13px}
+.opp-item p{margin:0;font-size:12px;color:#616161}
+.opp-num{width:24px;height:24px;border-radius:50%;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.opp-card{display:flex;gap:10px;background:#fff;border-radius:8px;padding:14px 16px;box-shadow:0 2px 4px rgba(0,0,0,.06),0 0 2px rgba(0,0,0,.04);font-size:13px;line-height:1.5;color:#444}
+.opp-card.green{border-left:3px solid #107c10}
+.opp-card strong{color:#242424;display:block;margin-bottom:2px}
+.opp-card p{margin:0;font-size:12px;color:#616161}
+.opp-card-icon{font-size:20px;flex-shrink:0;margin-top:1px}
+
 /* Star badge for Option D */
 .tag-d{background:#fff3e0;color:#d83b01}
 
@@ -393,6 +406,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
   <div class="tab active" onclick="sw('E')">A &#183; Recommended &#9733;</div>
   <div class="tab" onclick="sw('A')">B &#183; Baseline</div>
   <div class="tab" onclick="sw('D')">C &#183; Chips</div>
+  <div class="tab" onclick="sw('O')" style="margin-left:8px;border-left:1px solid #ddd;color:#c42b1c">&#128269; Opportunity</div>
   <div class="tab" onclick="sw('S')" style="margin-left:auto;border-left:1px solid #ddd">&#9776; Summary</div>
 </div>
 
@@ -578,6 +592,207 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
   <!-- Classic comparison widget removed -->
 </div>
 
+<!-- ==================== OPPORTUNITY ANALYSIS ==================== -->
+<div class="panel" id="pO">
+  <div class="cmp-wrap">
+    <div class="cmp-intro" style="border-left:4px solid #c42b1c">
+      <h2 style="color:#c42b1c">&#128269; The Problem: Too Much Happening at Once</h2>
+      <p>The current Ask Microsoft chat packs <strong>multiple competing CTAs, disclosure links, and contact options</strong> into a small widget. Users face decision overload before they even type a question. Here's the annotated breakdown.</p>
+    </div>
+
+    <!-- Annotated current-state mockup -->
+    <div style="display:flex;gap:24px;flex-wrap:wrap;margin-top:8px;align-items:flex-start;width:100%">
+
+      <!-- Left: Annotated Chat Replica -->
+      <div style="flex:0 0 380px;position:relative">
+        <div style="font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#999;font-weight:600;margin-bottom:8px">Current State (Live on microsoft.com)</div>
+        <div style="width:380px;background:#fff;border-radius:12px;box-shadow:0 4px 24px rgba(0,0,0,.15);overflow:hidden;position:relative;font-family:'Segoe UI',sans-serif">
+          <!-- Header -->
+          <div style="display:flex;align-items:center;gap:10px;padding:14px 16px;background:#f8f9fa;border-bottom:1px solid #e0e0e0">
+            <div style="width:36px;height:36px;background:#0078d4;border-radius:8px;display:flex;align-items:center;justify-content:center">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+            </div>
+            <span style="font-size:18px;font-weight:700;flex:1">Ask Microsoft</span>
+            <span style="font-size:18px;cursor:pointer;color:#666">&times;</span>
+          </div>
+          <!-- Sidebar accent -->
+          <div style="display:flex;min-height:380px">
+            <div style="width:4px;background:linear-gradient(180deg,#0078d4,#62ABF5,#0078d4);flex-shrink:0"></div>
+            <div style="flex:1;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;background:#fafafa">
+              <!-- Bot message -->
+              <div style="background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.55;color:#333;position:relative">
+                <p style="margin:0 0 8px">Hi, I'm an AI agent, I can help you compare plans and features, start a free trial, answer support questions or connect you with a Microsoft Sales Representative. You can also request a sales call <a href="#" style="color:#0078d4;text-decoration:underline">here</a> &#8599; or call us at <span style="font-weight:600">(800) 642-7676</span> M-F 6 AM to 6 PM PT.</p>
+                <p style="margin:8px 0 0;font-size:13px;color:#333">What can I do for you?</p>
+                <p style="margin:8px 0 0;font-size:12px;color:#666">To learn more about this AI web feature, read the <a href="#" style="color:#0078d4;text-decoration:underline">Transparency FAQ (PDF)</a> &#8599;</p>
+                <!-- Feedback -->
+                <div style="display:flex;gap:6px;margin-top:10px;padding-top:8px;border-top:1px solid #f0f0f0;align-items:center">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><path d="M7 22V11M2 13V20a2 2 0 002 2h13.4a2 2 0 002-1.7l1.4-9a2 2 0 00-2-2.3H15V4a2 2 0 00-2-2h0a2 2 0 00-2 1.6L9 11H4a2 2 0 00-2 2z"/></svg>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="1.5"><path d="M17 2V13M22 11V4a2 2 0 00-2-2H6.6a2 2 0 00-2 1.7L3.2 12.7A2 2 0 005.2 15H9v3a2 2 0 002 2h0a2 2 0 002-1.6L15 13h5a2 2 0 002-2z"/></svg>
+                </div>
+                <div style="font-size:10px;color:#aaa;margin-top:4px">just now</div>
+              </div>
+            </div>
+          </div>
+          <!-- Footer -->
+          <div style="padding:8px 12px;background:#fff;border-top:1px solid #e0e0e0">
+            <div style="font-size:10px;color:#aaa;text-align:center;margin-bottom:4px">AI-generated content may be incorrect</div>
+            <div style="display:flex;align-items:center;border:1px solid #d1d1d1;border-radius:8px;padding:6px 10px;gap:6px;position:relative;overflow:hidden">
+              <span style="flex:1;font-size:13px;color:#999">Ask a work question or make a request</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#0078d4"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+              <div style="position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#0078d4,#62ABF5,#96C6F7,#62ABF5,#0078d4)"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Numbered callout circles overlaid on the mockup -->
+        <div class="opp-callout" style="top:68px;right:-18px;background:#c42b1c">1</div>
+        <div class="opp-callout" style="top:245px;left:55px;background:#c42b1c">2</div>
+        <div class="opp-callout" style="top:265px;right:30px;background:#c42b1c">3</div>
+        <div class="opp-callout" style="top:305px;left:55px;background:#c42b1c">4</div>
+        <div class="opp-callout" style="top:355px;left:55px;background:#c42b1c">5</div>
+        <div class="opp-callout" style="bottom:65px;left:90px;background:#c42b1c">6</div>
+        <div class="opp-callout" style="bottom:24px;right:55px;background:#c42b1c">7</div>
+
+        <!-- Connector lines as SVG overlay -->
+        <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none" viewBox="0 0 420 560">
+          <!-- Dashed circles around problem areas -->
+          <ellipse cx="190" cy="255" rx="155" ry="45" fill="none" stroke="#c42b1c" stroke-width="2" stroke-dasharray="6,4" opacity=".6"/>
+          <ellipse cx="190" cy="320" rx="135" ry="20" fill="none" stroke="#c42b1c" stroke-width="2" stroke-dasharray="6,4" opacity=".6"/>
+        </svg>
+      </div>
+
+      <!-- Right: Callout Descriptions -->
+      <div style="flex:1;min-width:280px;display:flex;flex-direction:column;gap:10px">
+        <div class="opp-item">
+          <div class="opp-num" style="background:#c42b1c">1</div>
+          <div>
+            <strong>No header actions</strong>
+            <p>Current chat has no callback/call buttons in the header — everything is jammed into the message body text. No clear visual hierarchy for contact options.</p>
+          </div>
+        </div>
+        <div class="opp-item">
+          <div class="opp-num" style="background:#c42b1c">2</div>
+          <div>
+            <strong>"Request a sales call here" — inline link</strong>
+            <p>The callback CTA is buried mid-sentence as a hyperlink. Easy to miss, competes with the greeting text, and breaks reading flow.</p>
+          </div>
+        </div>
+        <div class="opp-item">
+          <div class="opp-num" style="background:#c42b1c">3</div>
+          <div>
+            <strong>"Call us at (800) 642-7676 M-F 6 AM to 6 PM PT"</strong>
+            <p>Phone number, hours, and call CTA all inlined as raw text. Not tappable on mobile. No copy button. Adds visual noise to the greeting.</p>
+          </div>
+        </div>
+        <div class="opp-item">
+          <div class="opp-num" style="background:#c42b1c">4</div>
+          <div>
+            <strong>"Transparency FAQ (PDF)" link</strong>
+            <p>Legal disclosure mixed with the greeting message. Important for compliance, but competes with primary CTAs. Should be accessible but not prominent.</p>
+          </div>
+        </div>
+        <div class="opp-item">
+          <div class="opp-num" style="background:#c42b1c">5</div>
+          <div>
+            <strong>Thumbs up/down + timestamp</strong>
+            <p>Feedback controls on the welcome message add visual weight before the user has even interacted. Should appear only on substantive responses.</p>
+          </div>
+        </div>
+        <div class="opp-item">
+          <div class="opp-num" style="background:#c42b1c">6</div>
+          <div>
+            <strong>"AI-generated content may be incorrect"</strong>
+            <p>Persistent AI disclaimer in the footer. Necessary, but combined with the Transparency FAQ and the dense greeting, it creates a wall of caveats.</p>
+          </div>
+        </div>
+        <div class="opp-item">
+          <div class="opp-num" style="background:#c42b1c">7</div>
+          <div>
+            <strong>No starter prompts or guided actions</strong>
+            <p>The user sees a blank input field with no guidance. No chips, no cards, no suggested questions. Everything depends on the user knowing what to type.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Opportunity Section -->
+    <div class="cmp-intro" style="margin-top:24px;border-left:4px solid #107c10">
+      <h2 style="color:#107c10">&#10003; The Opportunity: Declutter &#38; Guide</h2>
+      <p>By reorganizing these elements, we can reduce cognitive load and increase engagement.</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;width:100%">
+      <div class="opp-card green">
+        <div class="opp-card-icon">&#128222;</div>
+        <div>
+          <strong>Move contact options to header icons</strong>
+          <p>Callback and Call Us become clean icon buttons in the header bar — always accessible, never cluttering the message. Popovers provide full details on demand.</p>
+        </div>
+      </div>
+      <div class="opp-card green">
+        <div class="opp-card-icon">&#128172;</div>
+        <div>
+          <strong>Replace wall-of-text with task cards</strong>
+          <p>Instead of listing capabilities in a paragraph, show 4&#8211;6 actionable starter prompts as clickable cards. Users scan &#38; tap instead of read &#38; type.</p>
+        </div>
+      </div>
+      <div class="opp-card green">
+        <div class="opp-card-icon">&#128274;</div>
+        <div>
+          <strong>Separate trust signals from greeting</strong>
+          <p>Transparency FAQ becomes a subtle pill link below the cards. AI disclaimer stays in footer. Neither competes with the primary greeting experience.</p>
+        </div>
+      </div>
+      <div class="opp-card green">
+        <div class="opp-card-icon">&#9889;</div>
+        <div>
+          <strong>Shorten greeting to ~18 words</strong>
+          <p>Current: ~50 words of dense text. Proposed: "Hi, I'm your AI assistant for Microsoft 365. What can I help with?" + visual cards do the rest.</p>
+        </div>
+      </div>
+      <div class="opp-card green">
+        <div class="opp-card-icon">&#128101;</div>
+        <div>
+          <strong>Delay human handoff to the right moment</strong>
+          <p>Instead of showing "call us" immediately, surface a human-assist bar after 2 exchanges — when the user actually needs escalation.</p>
+        </div>
+      </div>
+      <div class="opp-card green">
+        <div class="opp-card-icon">&#128200;</div>
+        <div>
+          <strong>Remove feedback on welcome message</strong>
+          <p>Thumbs up/down on the greeting is noise. Reserve feedback for substantive AI responses where it provides real signal.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Before/After comparison -->
+    <div class="cmp-intro" style="margin-top:24px">
+      <h2>Before vs. After: At a Glance</h2>
+      <p>What changes when we apply the redesign.</p>
+    </div>
+
+    <table class="cmp-tbl" style="width:100%">
+      <thead><tr><th style="width:180px">Element</th><th style="background:#c42b1c">Current (Problem)</th><th style="background:#107c10">Redesign (Opportunity)</th></tr></thead>
+      <tbody>
+        <tr><td class="feat">Greeting length</td><td>~50 words, dense paragraph</td><td class="hi">~18 words + visual cards</td></tr>
+        <tr><td class="feat">Callback CTA</td><td>Inline hyperlink, mid-sentence</td><td class="hi">Header icon with popover</td></tr>
+        <tr><td class="feat">Phone number</td><td>Raw text in greeting body</td><td class="hi">Header icon &#8594; popover with click-to-call + copy</td></tr>
+        <tr><td class="feat">Transparency FAQ</td><td>Hyperlink inside greeting message</td><td class="hi">Subtle pill below cards, always visible</td></tr>
+        <tr><td class="feat">Starter prompts</td><td><span class="dim">None &#8212; blank input field</span></td><td class="hi">4&#8211;6 task cards (Compare plans, Free trial, etc.)</td></tr>
+        <tr><td class="feat">Feedback controls</td><td>Thumbs on welcome message</td><td class="hi">Thumbs only on substantive AI responses</td></tr>
+        <tr><td class="feat">Human handoff</td><td>Shown immediately in greeting text</td><td class="hi">Contextual bar after 2 exchanges</td></tr>
+        <tr><td class="feat">Visual hierarchy</td><td>Everything at same priority level</td><td class="hi">Primary: cards. Secondary: header icons. Tertiary: footer</td></tr>
+        <tr><td class="feat">Items competing for attention</td><td style="color:#c42b1c;font-weight:600">7 distinct elements in one message</td><td class="hi">3 clear zones: greeting, cards, subtle links</td></tr>
+      </tbody>
+    </table>
+
+    <div class="cmp-note" style="margin-top:16px;border-left-color:#107c10">
+      <strong>The bottom line:</strong> The current Ask Microsoft chat tries to do everything in one welcome message &#8212; greet, disclose, offer callbacks, show a phone number, link to FAQs, and collect feedback. That's <strong>7 competing elements</strong> in a 380px-wide widget. Our redesign separates these into <strong>3 clear zones</strong> (header actions, greeting + cards, subtle footer links), reducing cognitive load while keeping every feature accessible. See the <strong>A &#183; Recommended</strong> tab for the full interactive prototype.
+    </div>
+  </div>
+</div>
+
 <!-- ==================== SUMMARY & COMPARISON ==================== -->
 <div class="panel" id="pS">
   <div class="cmp-wrap">
@@ -712,16 +927,16 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 <script>
 /* Tab switching */
 function sw(id){
-  var ids=['E','A','D','S'];
+  var ids=['E','A','D','O','S'];
   document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('active',ids[i]===id)});
   document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('active',p.id==='p'+id)});
   document.querySelectorAll('.pop.open').forEach(function(p){p.classList.remove('open')});
   document.querySelectorAll('.cw').forEach(function(c){c.style.display='none'});
-  if(id!=='S'){
+  if(id!=='S' && id!=='O'){
     var cw=document.getElementById('cw'+id);
     if(cw) cw.style.display='flex';
   }
-  document.querySelectorAll('.panel').forEach(function(p){if(p.id==='pS'){p.style.paddingRight='24px'}else{p.style.paddingRight=''}});
+  document.querySelectorAll('.panel').forEach(function(p){if(p.id==='pS'||p.id==='pO'){p.style.paddingRight='24px'}else{p.style.paddingRight=''}});
 }
 
 /* Popovers */
