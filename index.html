@@ -403,10 +403,10 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 </div>
 
 <div class="tabs">
-  <div class="tab active" onclick="sw('E')">A &#183; Recommended &#9733;</div>
+  <div class="tab" onclick="sw('E')">A &#183; Recommended &#9733;</div>
   <div class="tab" onclick="sw('A')">B &#183; Baseline</div>
   <div class="tab" onclick="sw('D')">C &#183; Chips</div>
-  <div class="tab" onclick="sw('O')" style="margin-left:8px;border-left:1px solid #ddd;color:#c42b1c">&#128269; Opportunity</div>
+  <div class="tab active" onclick="sw('O')" style="margin-left:8px;border-left:1px solid #ddd;color:#c42b1c">&#128269; Opportunity</div>
   <div class="tab" onclick="sw('S')" style="margin-left:auto;border-left:1px solid #ddd">&#9776; Summary</div>
 </div>
 
@@ -497,7 +497,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 </div>
 
 <!-- ==================== OPTION E - AI-NATIVE EXPERIENCE ==================== -->
-<div class="panel active" id="pE">
+<div class="panel" id="pE">
   <div style="display:flex;flex-direction:column;gap:16px;flex:1;max-width:420px;min-width:280px">
     <div class="info-card" id="infoE-ai">
       <span class="e-badge">&#10024; Recommended</span>
@@ -593,7 +593,7 @@ body{font-family:'Segoe UI Variable','Segoe UI',-apple-system,BlinkMacSystemFont
 </div>
 
 <!-- ==================== OPPORTUNITY ANALYSIS ==================== -->
-<div class="panel" id="pO">
+<div class="panel active" id="pO" style="padding-right:24px">
   <div class="cmp-wrap">
     <div class="cmp-intro" style="border-left:4px solid #c42b1c">
       <h2 style="color:#c42b1c">&#128269; The Problem: Too Much Happening at Once</h2>
@@ -1135,7 +1135,6 @@ document.addEventListener('DOMContentLoaded', function(){
     if(b) initHTML[v] = b.innerHTML;
   });
   document.querySelectorAll('.cw').forEach(function(c){c.style.display='none'});
-  document.getElementById('cwE').style.display='flex';
 });
 function resetChat(btn){
   var cw = btn.closest('.cw');
